@@ -13,4 +13,8 @@ Admin.create!(
   password_confirmation: "securepassword",
   role: "superadmin"
 )
+Student.create!(email: "student1@example.com",
+ name: "John Doe", 
+ password_digest: "hashedpassword123", 
+ credits_earned: 30)
 
