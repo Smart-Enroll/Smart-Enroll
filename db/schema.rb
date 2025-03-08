@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_195034) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_201943) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", primary_key: "CRN", force: :cascade do |t|
+    t.string "class_name", null: false
+    t.string "professor", null: false
+    t.string "term", null: false
+    t.integer "credits", null: false
+    t.time "class_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
