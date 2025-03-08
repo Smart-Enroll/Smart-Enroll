@@ -9,7 +9,7 @@ one:
   class_time: 2025-03-08 15:19:43
 
 two:
-  CRN: 1
+  CRN: 2
   class_name: MyString
   professor: MyString
   term: MyString
