@@ -9,15 +9,15 @@ class Course < ApplicationRecord
     validates :credits, numericality: { greater_than: 0 }
     validates :class_time, presence: true
   
-    # Associations
-    has_many :user_schedules
-    has_many :students, through: :user_schedules
+    # # Associations
+    # has_many :user_schedules
+    # has_many :students, through: :user_schedules
   
-    has_many :enrollments
-    has_many :students, through: :enrollments
+    # has_many :enrollments
+    # has_many :students, through: :enrollments
   
-    has_many :prerequisites, class_name: "ClassPrerequisite", foreign_key: "course_name"
-    has_many :required_courses, through: :prerequisites, source: :prerequisite
+    # has_many :prerequisites, class_name: "ClassPrerequisite", foreign_key: "course_name"
+    # has_many :required_courses, through: :prerequisites, source: :prerequisite
   
     # Instance Methods
     def full_course_name
