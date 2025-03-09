@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_09_191103) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_09_195056) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -49,6 +49,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_191103) do
     t.index ["student_id"], name: "index_user_schedules_on_student_id"
   end
 
-  add_foreign_key "user_schedules", "courses"
+  add_foreign_key "user_schedules", "courses", primary_key: "CRN"
   add_foreign_key "user_schedules", "students"
 end
