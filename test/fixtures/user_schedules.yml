@@ -2,10 +2,10 @@
 
 one:
   student: one
-  course: one
-  status: MyString
+  course_id: 101
+  status: "active"
 
 two:
   student: two
-  course: two
-  status: MyString
+  course_id: 102
+  status: "Inactive"

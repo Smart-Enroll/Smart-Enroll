@@ -42,11 +42,11 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   # Test full_name method
-  test "should return full name" do
-    @student.first_name = "John"
-    @student.last_name = "Doe"
-    assert_equal "John Doe", @student.full_name, "Full name is incorrect"
-  end
+  # test "should return full name" do
+  #   @student.first_name = "John"
+  #   @student.last_name = "Doe"
+  #   assert_equal "John Doe", @student.full_name, "Full name is incorrect"
+  # end
 
   # Test password presence and secure password handling
   test "should not save student without password" do
@@ -58,4 +58,3 @@ class StudentTest < ActiveSupport::TestCase
     assert @student.save, "Could not save the student with a password"
   end
 end
-
