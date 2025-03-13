@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_201943) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_09_195056) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -38,4 +38,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_201943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "user_schedules", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "course_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_user_schedules_on_course_id"
+    t.index ["student_id"], name: "index_user_schedules_on_student_id"
+  end
+
+  add_foreign_key "user_schedules", "courses", primary_key: "CRN"
+  add_foreign_key "user_schedules", "students"
 end
