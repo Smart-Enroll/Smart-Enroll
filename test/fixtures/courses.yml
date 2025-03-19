@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-database_design:
+one:
   CRN: 101
   class_name: "Database Design"
   professor: "Dr. Smith"
@@ -8,7 +8,7 @@ database_design:
   credits: 3
   class_time: "2000-01-01 10:00:00"
 
-operating_systems:
+two:
   CRN: 102
   class_name: "Operating Systems"
   professor: "Dr. Small"
