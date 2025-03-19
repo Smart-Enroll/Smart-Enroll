@@ -11,7 +11,7 @@ class Course < ApplicationRecord
 
     # # Associations
     has_many :user_schedules
-    has_many :students, through: :user_schedules
+    has_many :students, through: :user_schedules, dependent: :destroy
 
     # has_many :enrollments
     # has_many :students, through: :enrollments
