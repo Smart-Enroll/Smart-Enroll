@@ -1,0 +1,40 @@
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "admins"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "admins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250308182627)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-03-08 19:23:04.715680', '2025-03-08 19:23:04.715681') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '35b879a4d14756c164e8e8a066fb88daf7dd0f1a', '2025-03-08 19:23:04.719487', '2025-03-08 19:23:04.719487') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (8.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.3ms)[0m  [1m[31mDELETE FROM "admins";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-03-08 19:23:04.762763', '2025-03-08 19:23:04.762763'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-03-08 19:23:04.762763', '2025-03-08 19:23:04.762763')[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------
+AdminTest: test_should_save_admin_with_valid_attributes
+-------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.1ms)[0m  [1m[32mINSERT INTO "admins" ("name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Test Admin"], ["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "superadmin"], ["created_at", "2025-03-08 19:23:04.809503"], ["updated_at", "2025-03-08 19:23:04.809503"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------
+AdminTest: test_should_not_save_admin_without_email
+---------------------------------------------------
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m

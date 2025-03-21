@@ -1,4 +1,5 @@
 .DS_Store
+<<<<<<< HEAD
 /log
 /tmp
 /db/*.sqlite3
@@ -6,3 +7,5 @@
 /public/system
 /node_modules
 /yarn-error.log
+=======
+>>>>>>> 26f6c4c (Added .DS_Store to .gitignore)
