@@ -1,6 +1,10 @@
 class ScheduleViewController < ApplicationController
   def index
-    @term = Course.first&.term || "N/A"  # Avoid nil error if no courses exist
-    @user_schedules = UserSchedule.all || []  # Ensure @user_schedules is always an array
+    # TODO - Add user from session not fixed
+    @student = Student.first
+
+    @term = Course.first&.term || "N/A"
+
+    @user_schedules = @student.user_schedules.includes(:course)
   end
 end
