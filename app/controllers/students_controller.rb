@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [ :show, :edit, :update, :destroy ]
 
   # GET /students
   def index
@@ -11,9 +11,7 @@ class StudentsController < ApplicationController
 
   # GET /students/:id
   def show
-    respond_to do |format|
-      format.html
-    end
+    @student = Student.find(params[:id])
   end
 
   # GET /students/new
@@ -28,7 +26,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      redirect_to @student, notice: "Student was successfully created."
     else
       render :new
     end
@@ -44,7 +42,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/:id
   def update
     if @student.update(student_params)
-      redirect_to @student, notice: 'Student was successfully updated.'
+      redirect_to @student, notice: "Student was successfully updated."
     else
       render :edit
     end
@@ -53,7 +51,7 @@ class StudentsController < ApplicationController
   # DELETE /students/:id
   def destroy
     @student.destroy
-    redirect_to students_url, notice: 'Student was successfully removed.'
+    redirect_to students_url, notice: "Student was successfully removed."
   end
 
   private
