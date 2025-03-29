@@ -45,7 +45,7 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
-      margin: 0 auto; /* Ensure it's centered */
+      margin: 0 auto;
       width: 100%;
     }
 
@@ -123,10 +123,7 @@
       justify-content: center;
       border: 1px solid #ddd;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      height: 150px;  /* Match course card height */
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 150px;
     }
 
     .footer {
@@ -142,34 +139,15 @@
       border-radius: 5px;
       border: none;
       cursor: pointer;
-      width: auto;  /* Ensure the width is only as wide as the text */
-      margin-left: 0; /* Align it to the left */
-      margin-top: 20px; /* Add space above */
+      margin-top: 20px;
     }
 
     .back-button:hover {
       background: #003F26;
     }
-
-    .help-button {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: #004B2D;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .help-button:hover {
-      background: #003F26;
-    }
   </style>
 </head>
 <body>
-
   <div class="container">
     <div class="header">
       <img src="<%= asset_path('LogoWithCircle.png') %>" alt="USF Logo">
@@ -178,24 +156,24 @@
     </div>
 
     <div class="course-container">
-      <% @user_schedules.each do |schedule| %>
-        <div class="course-card">
-          <i class="info-icon">ℹ️</i>
-          <span class="status <%= schedule.status.downcase.gsub(' ', '-') %>">
-            <%= schedule.status %>
-          </span>
-        </div>
-      <% end %>
-      <div class="add-button">+</div>
-    </div>
-
-    <!-- Back Button now aligned to the left -->
-    <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
-
-    <div class="footer">
-      <span>Help ?</span>
-    </div>
+    <% @user_schedules.each do |schedule| %>
+      <% course = schedule.course %>  <!-- Assuming `user_schedules` has a `course` association -->
+      <div class="course-card">
+        <i class="info-icon">ℹ️</i>
+        <h3><%= course.class_name %></h3>
+        <p>CRN: <%= course.CRN %></p>
+        <p>Professor: <%= course.professor %></p>
+        <p>Term: <%= course.term %></p>
+        <p>Credits: <%= course.credits %></p>
+      </div>
+    <% end %>
+  
+    <!-- Add Button to Navigate to Course Selection Page -->
+    <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
   </div>
+  
 
+    <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
+  </div>
 </body>
 </html>

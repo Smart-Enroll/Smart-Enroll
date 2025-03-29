@@ -12,6 +12,20 @@ class CoursesController < ApplicationController
       @course = Course.new
     end
   
+    def enroll
+      course = Course.find(params[:id])
+      current_student = Student.find(session[:student_id])  # Ensure user is logged in
+    
+      if current_student.courses.include?(course)
+        flash[:notice] = "You're already enrolled in this course!"
+      else
+        current_student.courses << course
+        flash[:notice] = "Successfully enrolled in #{course.class_name}!"
+      end
+    
+      redirect_to courses_path
+    end
+    
     def create
       @course = Course.new(course_params)
       if @course.save

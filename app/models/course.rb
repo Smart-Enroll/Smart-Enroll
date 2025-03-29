@@ -8,6 +8,7 @@ class Course < ApplicationRecord
     validates :term, presence: true
     validates :credits, numericality: { greater_than: 0 }
     validates :class_time, presence: true
+    validates :major, presence: true
 
     # # Associations
     has_many :user_schedules
