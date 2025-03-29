@@ -9,162 +9,168 @@
   <%= javascript_include_tag 'application' %>
 
   <style>
-  body {
-  background-color: #004B2D; /* USF Green */
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    body {
+      background-color: #004B2D;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    .container {
+      background: white;
+      color: black;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      margin: 40px auto;
+      text-align: center;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-.container {
-  background: white;
-  color: black;
-  border-radius: 10px;
-  width: 100vw;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 40px auto;
-  text-align: center;
-  height: 70vh;
+    .header {
+      background-color: #004B2D;
+      color: white;
+      padding: 15px;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      margin: 0 auto; /* Ensure it's centered */
+      width: 100%;
+    }
 
- 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-}
+    .header img {
+      width: 80px;
+      position: relative;
+      z-index: 2;
+    }
 
-.header {
-  background-color: #004B2D;
-  color: white;
-  padding: 15px;
-  border-radius: 10px 10px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
+    .course-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+      flex-grow: 1;
+    }
 
-.header img {
-  width: 100px; 
-  position: relative;
-  z-index: 2;
-}
+    .course-card {
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.course-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-  flex-grow: 1; 
-}
+    .status {
+      display: block;
+      padding: 5px;
+      font-size: 12px;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-.course-card {
-  background: lightgray;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  font-weight: bold;
-  position: relative;
-}
+    .status.ready {
+      background: green;
+      color: white;
+    }
 
-.status {
-  display: block;
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    .status.full {
+      background: yellow;
+      color: black;
+    }
 
-.status.ready {
-  background: green;
-  color: white;
-}
+    .status.conflict {
+      background: red;
+      color: white;
+    }
 
-.status.full {
-  background: yellow;
-  color: black;
-}
+    .info-icon {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-.status.conflict {
-  background: red;
-  color: white;
-}
+    .add-button {
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      height: 150px;  /* Match course card height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.info-icon {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  font-size: 18px;
-  cursor: pointer;
-}
+    .footer {
+      margin-top: 20px;
+      font-weight: bold;
+    }
 
-.add-button {
-  background: lightgray;
-  border-radius: 10px;
-  padding: 30px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
+    .back-button {
+      background: #004B2D;
+      color: white;
+      padding: 10px 20px;
+      font-size: 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      width: auto;  /* Ensure the width is only as wide as the text */
+      margin-left: 0; /* Align it to the left */
+      margin-top: 20px; /* Add space above */
+    }
 
- 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .back-button:hover {
+      background: #003F26;
+    }
 
-.footer {
-  margin-top: 20px;
-  font-weight: bold;
-}
+    .help-button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #004B2D;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
 
-.back-button {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: #004B2D;
-  color: white;
-  padding: 15px 20px; 
-  font-size: 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  background: #003F26;
-
-.help-button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: #004B2D;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.help-button:hover {
-  background: #003F26; 
-}
-
-
+    .help-button:hover {
+      background: #003F26;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container style="width: 100p">
+  <div class="container">
     <div class="header">
       <img src="<%= asset_path('LogoWithCircle.png') %>" alt="USF Logo">
       <h2>Student Course Schedule for <span style="color: yellow;"><%= @term %></span></h2>
@@ -183,7 +189,8 @@
       <div class="add-button">+</div>
     </div>
 
-    <button class="back-button">← Back</button>
+    <!-- Back Button now aligned to the left -->
+    <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
 
     <div class="footer">
       <span>Help ?</span>
