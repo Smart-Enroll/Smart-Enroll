@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login, only: [:dashboard]
+  #Student Controller
   # GET /students
   def index
     @students = Student.all
@@ -8,6 +9,11 @@ class StudentsController < ApplicationController
       format.html
     end
   end
+
+  def dashboard
+    @student = Student.find(session[:student_id])
+  end
+
 
   # GET /students/:id
   def show
@@ -27,13 +33,15 @@ class StudentsController < ApplicationController
   # POST /students
   def create
     @student = Student.new(student_params)
+
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      # Redirect to the login page (or root path if that's where your login is)
+      redirect_to root_path , notice: 'Student was successfully created. Please log in.'
     else
+      # Render the 'new' form again if there are errors
       render :new
     end
   end
-
   # GET /students/:id/edit
   def edit
     respond_to do |format|
@@ -58,6 +66,12 @@ class StudentsController < ApplicationController
 
   private
 
+  def require_login
+    unless session[:student_id]
+      redirect_to login_path, alert: "You must be logged in to access the dashboard"
+    end
+  end
+  
   def set_student
     @student = Student.find(params[:id])
   end
