@@ -4,6 +4,10 @@ class ScheduleViewController < ApplicationController
     @student = Student.first
 
     @term = Course.first&.term || "N/A"
+    
+    @student = Student.find(session[:student_id])  # Ensure the student is found
+
+    @enrolled_courses = @student.courses  # Fetch enrolled courses
 
     @user_schedules = @student.user_schedules.includes(:course)
   end

@@ -1,24 +1,26 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Root path
   root "home#index"  # Sets the home page to the index action of HomeController
 
-  resources :students
-  resources :courses
-  resources :schedule_view
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Authentication routes
   post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy", as: :logout
   get "/dashboard", to: "students#dashboard", as: :dashboard
 
-  delete "/logout", to: "sessions#destroy", as: :logout
+  # Health check
+  get "up" => "rails/health#show", as: :rails_health_check
 
+  # Resourceful routes
+  resources :students
+  resources :courses do
+    member do
+      get 'enroll'  # Custom route for enrolling in a course
+    end
+  end
+  resources :schedule_view, only: [:index]  # Restrict to index action
+  resources :admins
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  # Future PWA support (commented for now)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
-  resources :admins
 end

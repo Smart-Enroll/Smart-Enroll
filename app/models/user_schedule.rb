@@ -3,5 +3,6 @@ class UserSchedule < ApplicationRecord
   # A student can have many courses and a course can have many students
   belongs_to :student
   # Need to modify the foreign key so RoR knows we changed it to "CRN"
+  #sadadsasdsad
   belongs_to :course, foreign_key: "course_id", primary_key: "CRN"
 end
