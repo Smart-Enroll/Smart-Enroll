@@ -3,8 +3,12 @@ class CoursesController < ApplicationController
   
     def index
       @courses = Course.all
+    
+      if params[:recommended] == "true" && current_student
+        @courses = @courses.where(major: current_student.major)
+      end
     end
-  
+    
     def show
     end
   
