@@ -23,9 +23,61 @@
   }
 
   .top-banner, .bottom-banner {
-    background-color: #006747;
+    background-color: #004B2D;
     width: 100%;
     height: 100px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .top-banner {
+    top: 0;
+  }
+
+  .bottom-banner {
+    bottom: 0;
+  }
+
+  .banner-text {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .top-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    height: 80px; 
+    margin-right: 35px;
+  }
+
+  .logout-container {
+    position: absolute;
+    top: 110px; 
+    right: 20px; 
+  }
+
+  .logout-button {
+    background-color: #006747;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .logout-button:hover {
+    background-color: #004d00;
   }
 
   .dashboard-container {
@@ -35,6 +87,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 140px; 
   }
 
   .welcome-text h2 {
@@ -42,8 +95,6 @@
     font-size: 24px;
     font-weight: bold;
     margin-top: 20px;
-    margin-left: 20px;
-    align-self: flex-start;
   }
 
   .button-container {
@@ -67,24 +118,30 @@
   .green-button:hover {
     background-color: #004d00;
   }
-</style>
+  </style>
 </head>
 <body>
 
-  <!-- Top Banner with title -->
+  <!-- Top Banner -->
   <div class="top-banner">
-    <h2 style="text-align: center; color: white; line-height: 100px; font-size: 24px;">
-      Welcome to Your Dashboard
-    </h2>
+    <span class="banner-text">WELCOME TO YOUR DASHBOARD</span>
+    <div class="top-right">
+      <img src="<%= asset_path('LogoWithCircle.png') %>" alt="Logo" class="logo">
+    </div>
+  </div>
+
+  <!-- Logout Button Below Logo -->
+  <div class="logout-container">
+    <%= button_to "Logout", logout_path, method: :delete, class: "logout-button" %>
   </div>
 
   <div class="dashboard-container">
-    <!-- Welcome text in green, same as banners -->
+    <!-- Welcome text -->
     <div class="welcome-text">
       <h2>Welcome, <%= @student.name %>!</h2>
     </div>
 
-    <!-- Buttons inside a form, placed horizontally -->
+    <!-- Buttons -->
     <div class="button-container">
       <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
       <button class="green-button">Other Action 1</button>
@@ -94,8 +151,6 @@
 
   <!-- Bottom Banner -->
   <div class="bottom-banner"></div>
-  <%= button_to "Logout", logout_path, method: :delete, class: "logout-button" %>
 
 </body>
 </html>
-
