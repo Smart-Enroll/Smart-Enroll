@@ -23,6 +23,18 @@
     text-align: center;
     padding: 30px;
   }
+  label {
+  display: flex;
+  align-items: center;
+  margin-left: 70%;
+  gap: 10px; 
+  height: 0px; 
+}
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: -10px; 
+}
 
   .main-content {
     background-color: white;
@@ -78,6 +90,7 @@
 
   .back-button {
     margin-top: 30px;
+    height: 48px;
     background-color: #f44336;
     color: white;
     border: none;
@@ -110,41 +123,62 @@
   </div>
 
   <div class="main-content">
-    <h1>All Courses</h1>
+  <h1>All Courses</h1>
 
-    <table class="courses-table">
-      <thead>
+  
+
+  <table class="courses-table">
+    <thead>
+      <tr>
+        <th>CRN</th>
+        <th>Course Name</th>
+        <th>Professor</th>
+        <th>Term</th>
+        <th>Credits</th>
+        <th>Major</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
         <tr>
-          <th>CRN</th>
-          <th>Course Name</th>
-          <th>Professor</th>
-          <th>Term</th>
-          <th>Credits</th>
-          <th>Major</th>
-          <th>Actions</th>
+          <td><%= course.CRN %></td>
+          <td><%= course.class_name %></td>
+          <td><%= course.professor %></td>
+          <td><%= course.term %></td>
+          <td><%= course.credits %></td>
+          <td><%= course.major.present? ? course.major : "Not Provided" %></td>
+          <td>
+            <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @courses.each do |course| %>
-          <tr>
-            <td><%= course.CRN %></td>
-            <td><%= course.class_name %></td>
-            <td><%= course.professor %></td>
-            <td><%= course.term %></td>
-            <td><%= course.credits %></td>
-            <td><%= course.major.present? ? course.major : "Not Provided" %></td>
-            <td>
-              <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
 
-    <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
-  </div>
+ 
+  <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
+  <!-- Checkbox for filtering recommended courses -->
+  <label>
+  <h1>Recommended Courses</h1><input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>
+  </label>
 
-  <div class="bottom-banner">
-    <p>Footer Content Here</p>
-  </div>
 </div>
+
+
+
+
+<script>
+  document.getElementById("recommended-courses-checkbox").addEventListener("change", function() {
+    const checked = this.checked;
+    const url = new URL(window.location.href);
+    
+    if (checked) {
+      url.searchParams.set("recommended", "true");
+    } else {
+      url.searchParams.delete("recommended");
+    }
+
+    window.location.href = url.toString();
+  });
+</script>

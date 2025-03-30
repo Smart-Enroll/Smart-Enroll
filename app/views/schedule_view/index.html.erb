@@ -17,7 +17,7 @@
       padding: 0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; 
       height: 100vh;
     }
 
@@ -26,14 +26,14 @@
       color: black;
       border-radius: 10px;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px; 
       padding: 20px;
-      margin: 40px auto;
+      margin: 0 auto;
       text-align: center;
-      height: 70vh;
+      min-height: 100vh; 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start; 
     }
 
     .header {
@@ -45,8 +45,8 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
-      width: 99%;  
-      margin-left: -4%;  
+      width: 99%;
+      margin-left: -4%;
     }
 
     .header img {
@@ -56,12 +56,14 @@
     }
 
     .course-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-      flex-grow: 1;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 15px;
+  margin-top: 20px;
+  flex-grow: 1;
+  position: relative;
+  align-items: start; 
+}
 
     .course-card {
       background: #f4f4f4;
@@ -70,11 +72,16 @@
       text-align: center;
       font-weight: bold;
       position: relative;
-      height: 150px;
+      height: 200px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .course-card:hover {
+      transform: scale(1.05);
     }
 
     .unenroll-container {
@@ -143,7 +150,11 @@
       justify-content: center;
       border: 1px solid #ddd;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      height: 150px;
+      height: 200px;
+      width: 95%;
+      text-align: center;
+      position: relative;
+      order: 999; 
     }
 
     .footer {
@@ -154,16 +165,59 @@
     .back-button {
       background: #004B2D;
       color: white;
-      padding: 10px 20px;
-      font-size: 20px;
+      padding: 8px 16px;
+      font-size: 14px; 
       border-radius: 5px;
       border: none;
       cursor: pointer;
-      margin-top: 20px;
+      position: fixed;
+      bottom: 20px; 
+      left: 20px;
+      z-index: 10;
     }
 
     .back-button:hover {
       background: #003F26;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    td, th {
+      padding: 8px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: bold;
+      color: #333;
+    }
+
+    td {
+      color: #555;
+    }
+
+    .invisible-table th, .invisible-table td {
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .course-container {
+        grid-template-columns: 1fr;
+      }
+
+      .course-card {
+        height: auto;
+      }
+
+      .add-button {
+        width: auto;
+        position: relative;
+        margin-top: 20px; 
     }
   </style>
 </head>
@@ -176,26 +230,46 @@
     </div>
 
     <div class="course-container">
-    <% @user_schedules.each do |schedule| %>
-      <% course = schedule.course %>  <!-- Assuming `user_schedules` has a `course` association -->
-      <div class="course-card">
-        <i class="info-icon">ℹ️</i>
-        <h3><%= course.class_name %></h3>
-        <p>CRN: <%= course.CRN %></p>
-        <p>Professor: <%= course.professor %></p>
-        <p>Term: <%= course.term %></p>
-        <p>Credits: <%= course.credits %></p>
-        <div class="unenroll-container">
-          <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
-        </div>
+  <% @user_schedules.each do |schedule| %>
+    <% course = schedule.course %>
+    <div class="course-card">
+      <table class="invisible-table">
+        <tr>
+          <th>Course Name</th>
+          <td><%= course.class_name %></td>
+        </tr>
+        <tr>
+          <th>CRN</th>
+          <td><%= course.CRN %></td>
+        </tr>
+        <tr>
+          <th>Professor</th>
+          <td><%= course.professor %></td>
+        </tr>
+        <tr>
+          <th>Term</th>
+          <td><%= course.term %></td>
+        </tr>
+        <tr>
+          <th>Credits</th>
+          <td><%= course.credits %></td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td><%= schedule.status %></td> <!-- Add the status here -->
+        </tr>
+      </table>
+
+      <div class="unenroll-container">
+        <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
       </div>
-    <% end %>
-  
-    <!-- Add Button to Navigate to Course Selection Page -->
+    </div>
+  <% end %>
+
     <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
   </div>
-  
-    <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
-  </div>
+</div>
+
+  <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
 </body>
 </html>
