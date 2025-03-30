@@ -13,13 +13,41 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            justify-content: space-between;
         }
 
         .top-banner, .bottom-banner {
-            background-color: #006747;
+            background-color: #004B2D;
             width: 100%;
-            height: 50px;  /* Adjust the height as needed */
+            height: 100px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: fixed;
+            left: 0;
+            z-index: 1000;
         }
+
+        .top-banner {
+            top: 0;
+        }
+
+        .bottom-banner {
+            bottom: 0;
+        }
+
+        .banner-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo {
+            height: 85px; 
+            margin-right: 30px; 
+        }
+    
 
         .login-container {
             background: white;
@@ -29,28 +57,20 @@
             width: 600px;
             text-align: center;
             border: 5px solid #006747;
-            margin: 20px auto; /* Centers the login container */
+            margin: auto;
+            margin-top: 140px;
         }
 
-        .logo {
-            width: 100px; /* Adjust size as needed */
-            height: auto;
-            display: block;
-            margin: 0 auto 20px; /* Centers and adds space below */
-        }
-
-        .header {
-            background: #006747;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
+        .login-header {
+            font-size: 22px;
             font-weight: bold;
-            border-radius: 5px 5px 0 0;
+            color: #006747;
+            margin-bottom: 20px;
         }
 
         .input-container {
             margin: 15px 0;
-            text-align: center;
+            text-align: left;
         }
 
         .input-container label {
@@ -58,29 +78,22 @@
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
+            color: #006747;
         }
 
         .input-container input {
-            width: 50%;
+            width: 95%;
             padding: 12px;
             border: 2px solid #006747;
             border-radius: 5px;
             font-size: 16px;
         }
 
-        .forgot-link {
-            color: purple;
-            font-size: 14px;
-            display: block;
-            text-decoration: none;
-            margin-top: 5px;
-        }
-
-        .login-button, .signup-button {
-            width: 40%;
-            padding: 10px;
+        .login-button {
             background: #006747;
             color: white;
+            width: 100%;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             font-size: 18px;
@@ -92,54 +105,54 @@
             background: #004d00;
         }
 
+        .signup-container {
+            margin-top: 20px;
+        }
+
         .signup-button {
-            background: #ffffff;
+            background: white;
             color: #006747;
+            width: 96%;
+            padding: 10px;
             border: 2px solid #006747;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         .signup-button:hover {
             background: #f4f4f4;
         }
 
-        .password-container {
-            position: relative;
-        }
-
-        .password-container input {
-            width: 50%;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 110px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <div class="top-banner"></div>  <!-- Top Banner -->
-  
-    <div class="login-container">
-        <!-- Logo added here -->
-        <div class="header">WELCOME TO SMART ENROLL</div>
-        <form action="<%= login_path %>" method="POST">
-        <div class="input-container">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
-        </div>
-        <div class="input-container password-container">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" placeholder="Enter Your Password" required>
-        </div>
-        <button type="submit" class="login-button">Login</button>
-      </form>
-
-        <!-- Sign Up Button -->
-        <%= link_to 'Sign Up', new_student_path %>
+    <div class="top-banner">
+        <span class="banner-text">WELCOME TO SMART ENROLL</span>
+        <img src="<%= asset_path('LogoWithCircle.png') %>" alt="Logo" class="logo">
     </div>
-    <div class="bottom-banner"></div>  <!-- Bottom Banner -->
+
+    <div class="login-container">
+        <div class="login-header">Log in</div>
+        <form action="<%= login_path %>" method="POST">
+            <div class="input-container">
+                <label for="email">Student Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter Your Password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <div class="signup-container">
+            <%= link_to 'Sign Up', new_student_path, class: 'signup-button' %>
+        </div>
+    </div>
+
+    <div class="bottom-banner"></div>
 </body>
 </html>
