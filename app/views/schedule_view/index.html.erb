@@ -77,6 +77,26 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
+    .unenroll-container {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .unenroll-button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .unenroll-button:hover {
+      background-color: #cc0000;
+    }
+
     .status {
       display: block;
       padding: 5px;
@@ -165,6 +185,9 @@
         <p>Professor: <%= course.professor %></p>
         <p>Term: <%= course.term %></p>
         <p>Credits: <%= course.credits %></p>
+        <div class="unenroll-container">
+          <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
+        </div>
       </div>
     <% end %>
   
@@ -172,7 +195,6 @@
     <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
   </div>
   
-
     <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
   </div>
 </body>

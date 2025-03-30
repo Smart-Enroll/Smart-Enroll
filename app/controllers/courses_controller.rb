@@ -22,10 +22,16 @@ class CoursesController < ApplicationController
         current_student.courses << course
         flash[:notice] = "Successfully enrolled in #{course.class_name}!"
       end
-    
+      
       redirect_to courses_path
     end
-    
+
+    def unenroll
+      course = Course.find(params[:id])
+      current_student.courses.delete(course)
+      redirect_to schedule_view_index_path, notice: "You have been unenrolled from #{course.class_name}."
+    end
+
     def create
       @course = Course.new(course_params)
       if @course.save
