@@ -22,7 +22,6 @@ class ScheduleViewController < ApplicationController
 
     # Create a new record joining the two values
     UserSchedule.create!(student_id: student.id, course_id: course_id)
-
     redirect_to schedule_view_index_path, notice: "Course added to your schedule!"
   end
 

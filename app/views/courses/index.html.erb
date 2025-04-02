@@ -115,6 +115,22 @@ input[type="checkbox"] {
       font-size: 16px;
     }
   }
+
+  .flash-notice {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+
+  .flash-alert {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
 </style>
 
 <div class="container">
@@ -123,50 +139,51 @@ input[type="checkbox"] {
   </div>
 
   <div class="main-content">
-  <h1>All Courses</h1>
+    <% flash.each do |key, message| %>
+      <div class="flash-<%= key %>">
+        <%= message %>
+      </div>
+    <% end %>
 
-  
+    <h1>All Courses</h1>
 
-  <table class="courses-table">
-    <thead>
-      <tr>
-        <th>CRN</th>
-        <th>Course Name</th>
-        <th>Professor</th>
-        <th>Term</th>
-        <th>Credits</th>
-        <th>Major</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @courses.each do |course| %>
+    <table class="courses-table">
+      <thead>
         <tr>
-          <td><%= course.CRN %></td>
-          <td><%= course.class_name %></td>
-          <td><%= course.professor %></td>
-          <td><%= course.term %></td>
-          <td><%= course.credits %></td>
-          <td><%= course.major.present? ? course.major : "Not Provided" %></td>
-          <td>
-            <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
-          </td>
+          <th>CRN</th>
+          <th>Course Name</th>
+          <th>Professor</th>
+          <th>Term</th>
+          <th>Credits</th>
+          <th>Major</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.CRN %></td>
+            <td><%= course.class_name %></td>
+            <td><%= course.professor %></td>
+            <td><%= course.term %></td>
+            <td><%= course.credits %></td>
+            <td><%= course.major.present? ? course.major : "Not Provided" %></td>
+            <td>
+              <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
- 
-  <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
-  <!-- Checkbox for filtering recommended courses -->
-  <label>
-  <h1>Recommended Courses</h1><input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>
-  </label>
+    <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
 
+    <!-- Checkbox for filtering recommended courses -->
+    <label>
+      <h1>Recommended Courses</h1><input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>
+    </label>
+  </div>
 </div>
-
-
-
 
 <script>
   document.getElementById("recommended-courses-checkbox").addEventListener("change", function() {
