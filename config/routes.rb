@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
-
   # Resourceful routes
   resources :students
   resources :courses do
@@ -19,7 +18,12 @@ Rails.application.routes.draw do
   end
   resources :schedule_view, only: [:index]  # Restrict to index action
   resources :admins
+  get 'students/:id/edit_password', to: 'students#edit_password', as: 'edit_password'
+  patch 'students/:id/update_password', to: 'students#update_password', as: 'update_password'
+
   delete '/courses/:id/unenroll', to: 'courses#unenroll', as: 'unenroll_course'
+  get '/students/:id', to: 'students#show', as: 'student_profile'
+
   # Future PWA support (commented for now)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

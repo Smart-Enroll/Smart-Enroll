@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .profile-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 50%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #006747;
+    }
+
+    .profile-info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .profile-info p {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .edit-button, .save-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 4px 8px; 
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .edit-button:hover {
+      background-color: #004d00;
+    }
+
+    .save-button {
+      background-color: #004B2D;
+    }
+
+    .save-button:hover {
+      background-color: #003a23;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .back-button, .password-button {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #004B2D;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .password-button {
+      background-color: #006747;
+    }
+
+    .back-button:hover, .password-button:hover {
+      opacity: 0.9;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <h1>Student Profile</h1>
+
+    <div class="profile-info">
+      <p>
+        <strong>Name:</strong>
+        <span id="name-display"><%= @student.name %></span>
+        <input type="text" id="name-input" value="<%= @student.name %>" style="display:none;">
+        <button class="edit-button" onclick="editField('name')">Edit</button>
+        <button class="save-button" onclick="saveField('name', <%= @student.id %>)" style="display:none;">Save</button>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <span id="email-display"><%= @student.email %></span>
+        <input type="text" id="email-input" value="<%= @student.email %>" style="display:none;">
+        <button class="edit-button" onclick="editField('email')">Edit</button>
+        <button class="save-button" onclick="saveField('email', <%= @student.id %>)" style="display:none;">Save</button>
+      </p>
+
+      <p>
+        <strong>Major:</strong>
+        <span id="major-display"><%= @student.major.present? ? @student.major : "Not Provided" %></span>
+      </p>
+    
+      <p><strong>Credits Earned:</strong> <%= @student.credits_earned %></p>
+    </div>
+
+    <div class="button-container">
+      <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
+      <a href="<%= edit_password_path %>" class="password-button">Change Password</a>
+    </div>
+  </div>
+
+  <script>
+    function editField(field) {
+      document.getElementById(field + "-display").style.display = "none";
+      document.getElementById(field + "-input").style.display = "inline";
+      document.querySelector(`[onclick="editField('${field}')"]`).style.display = "none";
+      document.querySelector(`[onclick="saveField('${field}', <%= @student.id %>)"]`).style.display = "inline";
+    }
+
+    function saveField(field, studentId) {
+      const newValue = document.getElementById(field + "-input").value;
+
+      fetch(`/students/${studentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": "<%= form_authenticity_token %>"
+        },
+        body: JSON.stringify({ student: { [field]: newValue } })
+      })
+      .then(response => response.json()
+        .catch(() => { throw new Error("Unexpected server response. Are you logged in?"); }) // Handles HTML response errors
+      )
+      .then(data => {
+        if (!data.success) throw new Error(data.errors ? data.errors.join(", ") : "Unknown error");
+
+        document.getElementById(field + "-display").textContent = newValue;
+        document.getElementById(field + "-display").style.display = "inline";
+        document.getElementById(field + "-input").style.display = "none";
+        document.querySelector(`[onclick="editField('${field}')"]`).style.display = "inline";
+        document.querySelector(`[onclick="saveField('${field}', ${studentId})"]`).style.display = "none";
+      })
+      .catch(error => alert("Update failed: " + error.message));
+    }
+  </script>
+
+</body>
+</html>

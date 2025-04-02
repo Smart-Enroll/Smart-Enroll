@@ -14400,3 +14400,2561 @@ Processing by ScheduleViewController#index as HTML
 Completed 200 OK in 53ms (Views: 2.1ms | ActiveRecord: 0.2ms (5 queries, 0 cached) | GC: 0.3ms)
 
 
+Started GET "/" for ::1 at 2025-04-02 16:54:17 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 23.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 271.1ms | GC: 0.0ms)
+Completed 200 OK in 3162ms (Views: 428.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-02 16:54:26 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 442.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 445.9ms | GC: 0.0ms)
+Completed 200 OK in 3242ms (Views: 462.8ms | ActiveRecord: 12.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 16:54:44 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (1.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 3229ms (ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 16:54:48 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | GC: 0.0ms)
+Completed 200 OK in 2277ms (Views: 10.3ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 16:54:53 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.3ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 517.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 522.4ms | GC: 0.0ms)
+Completed 200 OK in 3686ms (Views: 532.8ms | ActiveRecord: 4.6ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/courses/101/unenroll" for ::1 at 2025-04-02 16:55:00 -0400
+Processing by CoursesController#unenroll as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "101"}
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:56:in 'CoursesController#unenroll'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:57:in 'CoursesController#unenroll'
+  [1m[36mUserSchedule Delete All (8.8ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 AND "user_schedules"."course_id" = 101 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:57:in 'CoursesController#unenroll'
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:57:in 'CoursesController#unenroll'
+Redirected to http://[::1]:3000/schedule_view
+Completed 302 Found in 1840ms (ActiveRecord: 16.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 16:55:02 -0400
+Processing by ScheduleViewController#index as TURBO_STREAM
+Started GET "/courses" for ::1 at 2025-04-02 16:55:04 -0400
+Processing by CoursesController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.9ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 22.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.6ms | GC: 0.0ms)
+Completed 200 OK in 2721ms (Views: 35.1ms | ActiveRecord: 2.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 16:55:07 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 18.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 25.1ms | GC: 0.0ms)
+Completed 200 OK in 3136ms (Views: 42.5ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 14.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | GC: 0.0ms)
+Completed 200 OK in 2557ms (Views: 20.6ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?recommended=true" for ::1 at 2025-04-02 16:55:14 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"recommended" => "true"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."major" IS NULL /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 12.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.4ms | GC: 0.0ms)
+Completed 200 OK in 2146ms (Views: 19.8ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 16:55:24 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 13.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | GC: 0.0ms)
+Completed 200 OK in 1963ms (Views: 20.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?recommended=true" for ::1 at 2025-04-02 16:56:30 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"recommended" => "true"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."major" IS NULL /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | GC: 0.0ms)
+Completed 200 OK in 890ms (Views: 9.8ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 16:56:35 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.6ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 21.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.3ms | GC: 0.0ms)
+Completed 200 OK in 2358ms (Views: 30.7ms | ActiveRecord: 1.9ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 16:56:40 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 2177ms (Views: 11.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 16:56:51 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.6ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 17.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.2ms | GC: 0.0ms)
+Completed 200 OK in 2307ms (Views: 24.1ms | ActiveRecord: 1.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 16:56:55 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:163
+  Rendered courses/index.html.erb within layouts/application (Duration: 8.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | GC: 0.0ms)
+Completed 200 OK in 2188ms (Views: 12.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 17:00:23 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (3.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 16.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.4ms | GC: 0.0ms)
+Completed 200 OK in 964ms (Views: 33.7ms | ActiveRecord: 3.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=Database+Design" for ::1 at 2025-04-02 17:00:38 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "Database Design"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (2.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 91.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 93.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2358ms (ActiveRecord: 2.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (SQLite3::SQLException: near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^)
+Caused by: ActiveRecord::StatementInvalid (SQLite3::SQLException: near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^)
+Caused by: SQLite3::SQLException (near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^)
+
+Information for: ActionView::Template::Error (SQLite3::SQLException: near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^):
+    163:         </tr>
+    164:       </thead>
+    165:       <tbody>
+    166:         <% @courses.each do |course| %>
+    167:           <tr>
+    168:             <td><%= course.CRN %></td>
+    169:             <td><%= course.class_name %></td>
+  
+
+Information for cause: ActiveRecord::StatementInvalid (SQLite3::SQLException: near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^):
+  
+
+Information for cause: SQLite3::SQLException (near "ILIKE": syntax error:
+SELECT "courses".* FROM "courses" WHERE (class_name ILIKE '%Database Design%') /*action='index',application='SmartEnroll',controller='courses'*/
+                                                    ^):
+  
+app/views/courses/index.html.erb:166
+Started GET "/courses" for ::1 at 2025-04-02 17:01:32 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (4.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 38.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 68.4ms | GC: 0.0ms)
+Completed 200 OK in 2229ms (Views: 75.8ms | ActiveRecord: 6.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=Database+Design" for ::1 at 2025-04-02 17:01:41 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "Database Design"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (LOWER(class_name) LIKE '%database design%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | GC: 0.0ms)
+Completed 200 OK in 1579ms (Views: 9.3ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=data" for ::1 at 2025-04-02 17:02:00 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "data"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (LOWER(class_name) LIKE '%data%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | GC: 0.0ms)
+Completed 200 OK in 2055ms (Views: 9.3ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=" for ::1 at 2025-04-02 17:02:06 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 12.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | GC: 0.0ms)
+Completed 200 OK in 2067ms (Views: 21.7ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=data" for ::1 at 2025-04-02 17:02:12 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "data"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.9ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (LOWER(class_name) LIKE '%data%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 12.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | GC: 0.0ms)
+Completed 200 OK in 2359ms (Views: 17.7ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 17:02:51 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.4ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 11.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | GC: 0.0ms)
+Completed 200 OK in 896ms (Views: 24.0ms | ActiveRecord: 2.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 17:02:53 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | GC: 0.0ms)
+Completed 200 OK in 2202ms (Views: 11.6ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses/101/enroll" for ::1 at 2025-04-02 17:02:57 -0400
+Processing by CoursesController#enroll as HTML
+  Parameters: {"id" => "101"}
+  [1m[36mCourse Load (0.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:26:in 'CoursesController#enroll'
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:27:in 'CoursesController#enroll'
+Started GET "/schedule_view" for ::1 at 2025-04-02 17:03:00 -0400
+  [1m[36mCourse Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" INNER JOIN "user_schedules" ON "courses"."CRN" = "user_schedules"."course_id" WHERE "user_schedules"."student_id" = 980190963 AND "courses"."CRN" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:30:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Create (27.5ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at") VALUES (980190963, 101, NULL, '2025-04-02 21:03:00.266278', '2025-04-02 21:03:00.266278') RETURNING "id" /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Load (0.4ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 AND "user_schedules"."course_id" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:36:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Update (12.6ms)[0m  [1m[33mUPDATE "user_schedules" SET "status" = 'Planned', "updated_at" = '2025-04-02 21:03:00.343991' WHERE "user_schedules"."id" = 980191018 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+Redirected to http://[::1]:3000/courses
+Completed 302 Found in 2453ms (ActiveRecord: 47.1ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 17:03:00 -0400
+Processing by ScheduleViewController#index as HTML
+Processing by CoursesController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.6ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 37.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 50.5ms | GC: 0.0ms)
+Completed 200 OK in 3229ms (Views: 55.8ms | ActiveRecord: 1.8ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 8.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | GC: 0.0ms)
+Completed 200 OK in 3195ms (Views: 12.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 17:03:06 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.3ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 24.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.5ms | GC: 0.0ms)
+Completed 200 OK in 1933ms (Views: 29.7ms | ActiveRecord: 1.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/courses/101/unenroll" for ::1 at 2025-04-02 17:03:10 -0400
+Processing by CoursesController#unenroll as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "101"}
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:48:in 'CoursesController#unenroll'
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+  [1m[36mUserSchedule Delete All (13.6ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 AND "user_schedules"."course_id" = 101 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+Redirected to http://[::1]:3000/schedule_view
+Completed 302 Found in 2199ms (ActiveRecord: 15.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 17:03:13 -0400
+Processing by ScheduleViewController#index as TURBO_STREAM
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.4ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 12.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.3ms | GC: 0.0ms)
+Completed 200 OK in 2406ms (Views: 21.9ms | ActiveRecord: 1.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:04:04 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 1131ms (Views: 10.0ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:05:52 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.5ms | GC: 0.2ms)
+Completed 200 OK in 926ms (Views: 33.4ms | ActiveRecord: 23.5ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:06:15 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | GC: 0.0ms)
+Completed 200 OK in 1838ms (Views: 36.4ms | ActiveRecord: 8.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:11:21 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.2ms | GC: 0.0ms)
+Completed 200 OK in 2017ms (Views: 46.6ms | ActiveRecord: 5.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:11:25 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 27.5ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.6ms | GC: 0.2ms)
+Completed 500 Internal Server Error in 2087ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method 'enrollment_year' for an instance of Student)
+Caused by: NoMethodError (undefined method 'enrollment_year' for an instance of Student)
+
+Information for: ActionView::Template::Error (undefined method 'enrollment_year' for an instance of Student):
+    70:       <p><strong>Name:</strong> <%= @student.name %></p>
+    71:       <p><strong>Email:</strong> <%= @student.email %></p>
+    72:       <p><strong>Major:</strong> <%= @student.major.present? ? @student.major : "Not Provided" %></p>
+    73:       <p><strong>Enrollment Year:</strong> <%= @student.enrollment_year %></p>
+    74:     </div>
+    75: 
+    76:     <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
+  
+app/views/students/show.html.erb:73
+
+Information for cause: NoMethodError (undefined method 'enrollment_year' for an instance of Student):
+  
+app/views/students/show.html.erb:73
+Started GET "/favicon.ico" for ::1 at 2025-04-02 17:11:30 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:13:00 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (1.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 10.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1394ms (ActiveRecord: 7.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'first_name' for an instance of Student)
+Caused by: NameError (undefined local variable or method 'first_name' for an instance of Student)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'first_name' for an instance of Student):
+    67:   <div class="profile-container">
+    68:     <h1>Student Profile</h1>
+    69:     <div class="profile-info">
+    70:       <p><strong>Name:</strong> <%= @student.full_name %></p>
+    71:       <p><strong>Email:</strong> <%= @student.email %></p>
+    72:       <p><strong>Major:</strong> <%= @student.major.present? ? @student.major : "Not Provided" %></p>
+    73:       <p><strong>Credits Earned:</strong> <%= @student.credits_earned %></p>
+  
+app/models/student.rb:18:in 'Student#full_name'
+app/views/students/show.html.erb:70
+
+Information for cause: NameError (undefined local variable or method 'first_name' for an instance of Student):
+  
+app/models/student.rb:18:in 'Student#full_name'
+app/views/students/show.html.erb:70
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:16:25 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 14.7ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.5ms | GC: 0.2ms)
+Completed 500 Internal Server Error in 2021ms (ActiveRecord: 11.4ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'first_name' for an instance of Student)
+Caused by: NameError (undefined local variable or method 'first_name' for an instance of Student)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'first_name' for an instance of Student):
+    67:   <div class="profile-container">
+    68:     <h1>Student Profile</h1>
+    69:     <div class="profile-info">
+    70:     <p><strong>Name:</strong> <%= @student.full_name %></p>
+    71:       <p><strong>Email:</strong> <%= @student.email %></p>
+    72:       <p><strong>Major:</strong> <%= @student.major.present? ? @student.major : "Not Provided" %></p>
+    73:       <p><strong>Credits Earned:</strong> <%= @student.credits_earned %></p>
+  
+app/models/student.rb:18:in 'Student#full_name'
+app/views/students/show.html.erb:70
+
+Information for cause: NameError (undefined local variable or method 'first_name' for an instance of Student):
+  
+app/models/student.rb:18:in 'Student#full_name'
+app/views/students/show.html.erb:70
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:17:05 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.4ms | GC: 0.0ms)
+Completed 200 OK in 962ms (Views: 29.8ms | ActiveRecord: 5.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:17:10 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | GC: 0.0ms)
+Completed 200 OK in 1944ms (Views: 7.3ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:17:12 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | GC: 0.0ms)
+Completed 200 OK in 1832ms (Views: 11.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:17:15 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 3.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.0ms)
+Completed 200 OK in 2330ms (Views: 14.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:17:37 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 0.0ms)
+Completed 200 OK in 1789ms (Views: 6.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:17:55 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 1253ms (Views: 3.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:19:18 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | GC: 0.0ms)
+Completed 200 OK in 2064ms (Views: 29.2ms | ActiveRecord: 5.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:35 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 135.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 139.5ms | GC: 0.0ms)
+Completed 200 OK in 2526ms (Views: 300.6ms | ActiveRecord: 18.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:38 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:39 -0400
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:40 -0400
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (10.9ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | GC: 0.0ms)
+Completed 200 OK in 2467ms (Views: 22.3ms | ActiveRecord: 11.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:40 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (44.0ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 31.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 54.8ms | GC: 0.0ms)
+Completed 200 OK in 5841ms (Views: 63.0ms | ActiveRecord: 46.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:46 -0400
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (19.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 15.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.1ms | GC: 0.0ms)
+Completed 200 OK in 5989ms (Views: 37.4ms | ActiveRecord: 20.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:47 -0400
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (16.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 16.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.3ms | GC: 0.0ms)
+Completed 200 OK in 6064ms (Views: 26.1ms | ActiveRecord: 17.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:19:48 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (35.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 22.9ms | GC: 990.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.3ms | GC: 990.2ms)
+Completed 200 OK in 6370ms (Views: 56.2ms | ActiveRecord: 36.3ms (2 queries, 0 cached) | GC: 990.2ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:54 -0400
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (21.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 12.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | GC: 0.0ms)
+Completed 200 OK in 6441ms (Views: 36.5ms | ActiveRecord: 22.0ms (2 queries, 0 cached) | GC: 990.2ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:55 -0400
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:14:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 9.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.4ms | GC: 0.0ms)
+Completed 200 OK in 6347ms (Views: 24.2ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 990.2ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:19:55 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (38.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 19.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.1ms | GC: 0.0ms)
+Completed 200 OK in 5318ms (Views: 55.4ms | ActiveRecord: 39.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:20:01 -0400
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (30.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 26.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 41.4ms | GC: 0.0ms)
+Completed 200 OK in 5618ms (Views: 49.9ms | ActiveRecord: 31.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:20:01 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (23.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 15.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.5ms | GC: 0.0ms)
+Completed 200 OK in 5922ms (Views: 41.0ms | ActiveRecord: 24.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Juan Alberto"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.0ms | GC: 0.0ms)
+Completed 200 OK in 4236ms (Views: 30.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mStudent Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:55:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 3970ms (Views: 7.7ms | ActiveRecord: 4.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:21:20 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:77:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | GC: 0.0ms)
+Completed 200 OK in 901ms (Views: 23.2ms | ActiveRecord: 4.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:22:46 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.4ms | GC: 0.0ms)
+Completed 200 OK in 1433ms (Views: 51.2ms | ActiveRecord: 8.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:00 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Torrez"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | GC: 0.0ms)
+Completed 200 OK in 1787ms (Views: 14.2ms | ActiveRecord: 7.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:02 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Torrez"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (15.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 12.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | GC: 0.0ms)
+Completed 200 OK in 1638ms (Views: 18.8ms | ActiveRecord: 16.1ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:23:05 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | GC: 0.0ms)
+Completed 200 OK in 1767ms (Views: 5.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:14 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:14 -0400
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:14 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (26.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@gmail.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 16.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 42.0ms | GC: 0.0ms)
+Completed 200 OK in 4546ms (Views: 52.4ms | ActiveRecord: 27.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:19 -0400
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (26.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@gmail.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 23.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 38.3ms | GC: 0.0ms)
+Completed 200 OK in 5521ms (Views: 46.2ms | ActiveRecord: 27.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:20 -0400
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (18.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@gmail.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 9.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.0ms | GC: 0.0ms)
+Completed 200 OK in 5380ms (Views: 28.7ms | ActiveRecord: 19.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (13.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@gmail.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 7.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | GC: 0.0ms)
+Completed 200 OK in 3915ms (Views: 18.4ms | ActiveRecord: 13.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@gmail.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.0ms)
+Completed 200 OK in 3228ms (Views: 6.0ms | ActiveRecord: 3.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:24 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"major" => "Computer Science"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:25 -0400
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:23:25 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"major" => "Computer Science"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"major" => "Computer Science"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (35.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 11.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.0ms | GC: 0.0ms)
+Completed 200 OK in 2806ms (Views: 25.2ms | ActiveRecord: 36.1ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:23:28 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (38.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 30.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.6ms | GC: 0.0ms)
+Completed 200 OK in 5275ms (Views: 59.1ms | ActiveRecord: 39.4ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (31.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 29.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 43.7ms | GC: 0.0ms)
+Completed 200 OK in 5333ms (Views: 49.6ms | ActiveRecord: 32.5ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | GC: 0.0ms)
+Completed 200 OK in 3890ms (Views: 11.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:24:56 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.8ms | GC: 0.0ms)
+Completed 200 OK in 1085ms (Views: 35.5ms | ActiveRecord: 4.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:04 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 14.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.7ms | GC: 0.0ms)
+Completed 200 OK in 2026ms (Views: 31.9ms | ActiveRecord: 16.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:07 -0400
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:07 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (26.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | GC: 0.0ms)
+Completed 200 OK in 3585ms (Views: 25.9ms | ActiveRecord: 27.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:11 -0400
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (17.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 6.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | GC: 0.0ms)
+Completed 200 OK in 3702ms (Views: 10.8ms | ActiveRecord: 18.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (15.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 14.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.1ms | GC: 0.0ms)
+Completed 200 OK in 1817ms (Views: 22.5ms | ActiveRecord: 16.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:13 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (9.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | GC: 0.0ms)
+Completed 200 OK in 2083ms (Views: 8.2ms | ActiveRecord: 9.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:15 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (15.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 21.1ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.5ms | GC: 0.2ms)
+Completed 200 OK in 1969ms (Views: 29.2ms | ActiveRecord: 16.2ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:18 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (6.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | GC: 0.0ms)
+Completed 200 OK in 1581ms (Views: 8.4ms | ActiveRecord: 7.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:19 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (7.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 15.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | GC: 0.0ms)
+Completed 200 OK in 1700ms (Views: 27.5ms | ActiveRecord: 8.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:21 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (9.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 5.7ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.2ms)
+Completed 200 OK in 1731ms (Views: 9.7ms | ActiveRecord: 9.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:23 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (6.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 1524ms (Views: 11.0ms | ActiveRecord: 6.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:25 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:25:27 -0400
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (18.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 0.0ms)
+Completed 200 OK in 2341ms (Views: 10.5ms | ActiveRecord: 19.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 5.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 0.0ms)
+Completed 200 OK in 1546ms (Views: 8.7ms | ActiveRecord: 4.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:29:30 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:69:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | GC: 0.0ms)
+Completed 200 OK in 992ms (Views: 31.3ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:32:41 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:70:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.1ms | GC: 0.0ms)
+Completed 200 OK in 1782ms (Views: 55.2ms | ActiveRecord: 4.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:32:53 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Torrez"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:70:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 17.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.1ms | GC: 0.0ms)
+Completed 200 OK in 2245ms (Views: 33.0ms | ActiveRecord: 13.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:35:04 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:74:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 2.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 2154ms (Views: 21.2ms | ActiveRecord: 2.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:35:14 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Torrez"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:74:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 14.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | GC: 0.0ms)
+Completed 200 OK in 1861ms (Views: 30.0ms | ActiveRecord: 8.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:35:24 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Torrez"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:74:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (9.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | GC: 0.0ms)
+Completed 200 OK in 1893ms (Views: 10.1ms | ActiveRecord: 9.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:38:33 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | GC: 0.0ms)
+Completed 200 OK in 1155ms (Views: 34.5ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:38:36 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:65:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | GC: 0.0ms)
+Completed 200 OK in 2351ms (Views: 19.8ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 17:38:42 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.4ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 6.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.0ms)
+Completed 200 OK in 1922ms (Views: 14.4ms | ActiveRecord: 2.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:38:48 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 2040ms (Views: 12.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:38:58 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Juan"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 422 Unprocessable Content in 1885ms (Views: 0.2ms | ActiveRecord: 5.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:41:42 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 6.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | GC: 0.0ms)
+Completed 200 OK in 1455ms (Views: 37.5ms | ActiveRecord: 4.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:41:51 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Juan"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 422 Unprocessable Content in 1637ms (Views: 0.5ms | ActiveRecord: 6.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:41:58 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Juan"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (6.8ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 422 Unprocessable Content in 1746ms (Views: 0.4ms | ActiveRecord: 7.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:43:35 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.6ms | GC: 0.0ms)
+Completed 200 OK in 2207ms (Views: 72.7ms | ActiveRecord: 7.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 17:43:44 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Juan"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Update (0.3ms)[0m  [1m[33mUPDATE "students" SET "name" = 'Carlos Juan', "updated_at" = '2025-04-02 21:43:46.622614' WHERE "students"."id" = 980190963 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 200 OK in 1937ms (Views: 2.6ms | ActiveRecord: 16.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:43:58 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:65:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 9.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.5ms | GC: 0.0ms)
+Completed 200 OK in 1950ms (Views: 18.1ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:44:02 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | GC: 0.0ms)
+Completed 200 OK in 2348ms (Views: 13.3ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:44:12 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:65:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.0ms)
+Completed 200 OK in 1779ms (Views: 9.1ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 17:44:45 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:65:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 882ms (Views: 3.1ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:46:20 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:75:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2069ms (ActiveRecord: 6.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254670eeda0>)
+Caused by: NameError (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254670eeda0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254670eeda0>):
+    138: 
+    139:     <div class="button-container">
+    140:       <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
+    141:       <a href="<%= edit_password_path %>" class="password-button">Change Password</a>
+    142:     </div>
+    143:   </div>
+    144: 
+  
+app/views/students/show.html.erb:141
+
+Information for cause: NameError (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254670eeda0>):
+  
+app/views/students/show.html.erb:141
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:48:45 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:98:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.3ms | GC: 0.2ms)
+Completed 200 OK in 1838ms (Views: 41.2ms | ActiveRecord: 3.2ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 17:48:51 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 5.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1944ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+Caused by: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+
+Information for: ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 17:48:55 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2382ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+Caused by: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+
+Information for: ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963" for ::1 at 2025-04-02 17:50:24 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 10.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.4ms | GC: 0.0ms)
+Completed 200 OK in 2241ms (Views: 78.0ms | ActiveRecord: 7.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 17:50:29 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2010ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+Caused by: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+
+Information for: ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 17:52:34 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 855ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "edit_password", controller: "students", id: nil}, missing required keys: [:id])
+Caused by: ActionController::UrlGenerationError (No route matches {action: "edit_password", controller: "students", id: nil}, missing required keys: [:id])
+
+Information for: ActionView::Template::Error (No route matches {action: "edit_password", controller: "students", id: nil}, missing required keys: [:id]):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: edit_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "edit_password", controller: "students", id: nil}, missing required keys: [:id]):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 17:53:20 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1911ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'id' for nil)
+Caused by: NoMethodError (undefined method 'id' for nil)
+
+Information for: ActionView::Template::Error (undefined method 'id' for nil):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(id: @student.id), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: NoMethodError (undefined method 'id' for nil):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 18:00:00 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 997ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'update_password_path' for an instance of #<Class:0x00000254683578c0>)
+Caused by: NoMethodError (undefined method 'update_password_path' for an instance of #<Class:0x00000254683578c0>)
+
+Information for: ActionView::Template::Error (undefined method 'update_password_path' for an instance of #<Class:0x00000254683578c0>):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: NoMethodError (undefined method 'update_password_path' for an instance of #<Class:0x00000254683578c0>):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/dashboard" for ::1 at 2025-04-02 18:00:12 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:65:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 19.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 67.3ms | GC: 0.0ms)
+Completed 200 OK in 2132ms (Views: 75.2ms | ActiveRecord: 5.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 18:00:16 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2131ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254683578c0>)
+Caused by: NameError (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254683578c0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254683578c0>):
+    138: 
+    139:     <div class="button-container">
+    140:       <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
+    141:       <a href="<%= edit_password_path %>" class="password-button">Change Password</a>
+    142:     </div>
+    143:   </div>
+    144: 
+  
+app/views/students/show.html.erb:141
+
+Information for cause: NameError (undefined local variable or method 'edit_password_path' for an instance of #<Class:0x00000254683578c0>):
+  
+app/views/students/show.html.erb:141
+Started GET "/students/980190963" for ::1 at 2025-04-02 18:01:00 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | GC: 0.0ms)
+Completed 200 OK in 963ms (Views: 30.4ms | ActiveRecord: 3.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 18:01:03 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2035ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+Caused by: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id])
+
+Information for: ActionView::Template::Error (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+    1: <h1>Change Password</h1>
+    2: 
+    3: <%= form_with model: @student, url: update_password_path(@student), method: :patch do |f| %>
+    4:   <div>
+    5:     <%= f.label :current_password %>
+    6:     <%= f.password_field :current_password %>
+  
+app/views/students/edit_password.html.erb:3
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "update_password", controller: "students", id: nil}, missing required keys: [:id]):
+  
+app/views/students/edit_password.html.erb:3
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 18:07:10 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (1.9ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 3.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | GC: 0.0ms)
+Completed 200 OK in 810ms (Views: 20.8ms | ActiveRecord: 1.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963/update_password" for ::1 at 2025-04-02 18:07:26 -0400
+Processing by StudentsController#update_password as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "student" => {"current_password" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Update Password", "id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:59:in 'StudentsController#update_password'
+[31mUnpermitted parameter: :current_password. Context: { controller: StudentsController, action: update_password, request: #<ActionDispatch::Request:0x000002546493bce0>, params: {"_method" => "patch", "authenticity_token" => "[FILTERED]", "student" => {"current_password" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Update Password", "controller" => "students", "action" => "update_password", "id" => "980190963"} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:63:in 'StudentsController#update_password'
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:63:in 'StudentsController#update_password'
+  [1m[36mStudent Update (0.2ms)[0m  [1m[33mUPDATE "students" SET "password_digest" = '$2a$12$u38SUf4mp8cBpUrRD4l1ReYUOtK9NBc9wtHoYUe7BtstHWnMS8JRu', "updated_at" = '2025-04-02 22:07:29.822982' WHERE "students"."id" = 980190963 /*action='update_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:63:in 'StudentsController#update_password'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:63:in 'StudentsController#update_password'
+Redirected to http://[::1]:3000/students/980190963
+Completed 302 Found in 3394ms (ActiveRecord: 14.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 18:07:29 -0400
+Processing by StudentsController#show as TURBO_STREAM
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 7.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.4ms | GC: 0.0ms)
+Completed 200 OK in 2064ms (Views: 18.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 18:07:36 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.9ms | GC: 0.0ms)
+Completed 200 OK in 2123ms (Views: 18.4ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2025-04-02 18:07:41 -0400
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to http://[::1]:3000/
+Completed 302 Found in 1844ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:07:43 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | GC: 0.0ms)
+Completed 200 OK in 1927ms (Views: 25.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:07:50 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Completed 500 Internal Server Error in 3018ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {locale: [:en], formats: [:turbo_stream, :html], variants: [], handlers: [:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "C:/Users/cacar/OneDrive/Desktop/Software Engineering/Smart-Enroll/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/turbo-rails-2.0.13/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/actiontext-8.0.1/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/actionmailbox-8.0.1/app/views"
+):
+  
+app/controllers/sessions_controller.rb:18:in 'SessionsController#create'
+Started GET "/dashboard" for ::1 at 2025-04-02 18:07:59 -0400
+Processing by StudentsController#dashboard as HTML
+Redirected to http://[::1]:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 1793ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-04-02 18:08:01 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/students/980190963" for ::1 at 2025-04-02 18:08:04 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 2.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.0ms)
+Completed 200 OK in 1824ms (Views: 6.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 18:08:06 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | GC: 0.0ms)
+Completed 200 OK in 2052ms (Views: 10.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 18:08:12 -0400
+Processing by StudentsController#dashboard as HTML
+Redirected to http://[::1]:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 1487ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-04-02 18:08:14 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/" for ::1 at 2025-04-02 18:08:26 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 8.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | GC: 0.0ms)
+Completed 200 OK in 2150ms (Views: 16.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:08:34 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 2375ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 18:08:37 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | GC: 0.0ms)
+Completed 200 OK in 1845ms (Views: 10.0ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2025-04-02 18:09:05 -0400
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to http://[::1]:3000/
+Completed 302 Found in 1900ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:09:07 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 1690ms (Views: 6.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-02 18:09:32 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | GC: 0.0ms)
+Completed 200 OK in 1679ms (Views: 11.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:09:39 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Completed 500 Internal Server Error in 2541ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {locale: [:en], formats: [:turbo_stream, :html], variants: [], handlers: [:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "C:/Users/cacar/OneDrive/Desktop/Software Engineering/Smart-Enroll/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/turbo-rails-2.0.13/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/actiontext-8.0.1/app/views"
+  * "C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/actionmailbox-8.0.1/app/views"
+):
+  
+app/controllers/sessions_controller.rb:18:in 'SessionsController#create'
+Started GET "/" for ::1 at 2025-04-02 18:14:04 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | GC: 0.0ms)
+Completed 200 OK in 2080ms (Views: 54.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:14:12 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/
+Completed 302 Found in 2617ms (ActiveRecord: 7.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:14:14 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 2073ms (Views: 5.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:15:57 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | GC: 0.0ms)
+Completed 200 OK in 935ms (Views: 25.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:16:32 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | GC: 0.0ms)
+Completed 200 OK in 1175ms (Views: 23.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:16:40 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/
+Completed 302 Found in 1425ms (ActiveRecord: 3.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:16:41 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | GC: 0.0ms)
+Completed 200 OK in 1264ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-02 18:16:54 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 7.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 35.4ms | GC: 0.0ms)
+Completed 200 OK in 1304ms (Views: 49.3ms | ActiveRecord: 10.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:18:08 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | GC: 0.0ms)
+Completed 200 OK in 886ms (Views: 38.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 18:18:28 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+Started GET "/students/new" for ::1 at 2025-04-02 18:18:28 -0400
+Processing by StudentsController#new as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/
+Completed 302 Found in 1296ms (ActiveRecord: 3.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 18:18:29 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 7.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | GC: 0.0ms)
+Completed 200 OK in 1211ms (Views: 23.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | GC: 0.0ms)
+Completed 200 OK in 1007ms (Views: 6.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 19:35:06 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 252.7ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 382.5ms | GC: 0.9ms)
+Completed 200 OK in 8680ms (Views: 436.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 19:35:27 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/
+Completed 302 Found in 2376ms (ActiveRecord: 17.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-02 19:35:30 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 1621ms (Views: 10.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 19:35:58 -0400
+Processing by StudentsController#dashboard as HTML
+Redirected to http://[::1]:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 955ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-04-02 19:36:00 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/favicon.ico" for ::1 at 2025-04-02 19:36:00 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/login" for ::1 at 2025-04-02 19:36:42 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 1606ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 19:36:44 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.0ms)
+Completed 200 OK in 1013ms (Views: 19.4ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963" for ::1 at 2025-04-02 19:36:49 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 3.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.0ms)
+Completed 200 OK in 874ms (Views: 6.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 19:37:00 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"name" => "Carlos Caraballo"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Update (1.4ms)[0m  [1m[33mUPDATE "students" SET "name" = 'Carlos Caraballo', "updated_at" = '2025-04-02 23:37:01.427514' WHERE "students"."id" = 980190963 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 200 OK in 841ms (Views: 1.8ms | ActiveRecord: 11.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 19:37:09 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo123@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Update (0.1ms)[0m  [1m[33mUPDATE "students" SET "email" = 'ca.caraballo123@yahoo.com', "updated_at" = '2025-04-02 23:37:10.065926' WHERE "students"."id" = 980190963 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 200 OK in 809ms (Views: 1.2ms | ActiveRecord: 2.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/students/980190963" for ::1 at 2025-04-02 19:37:14 -0400
+Processing by StudentsController#update as */*
+  Parameters: {"student" => {"email" => "[FILTERED]"}, "id" => "980190963"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:102:in 'StudentsController#set_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' AND "students"."id" != 980190963 LIMIT 1 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mStudent Update (0.2ms)[0m  [1m[33mUPDATE "students" SET "email" = 'ca.caraballo@yahoo.com', "updated_at" = '2025-04-02 23:37:15.535150' WHERE "students"."id" = 980190963 /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:41:in 'StudentsController#update'
+Completed 200 OK in 642ms (Views: 1.4ms | ActiveRecord: 4.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 19:37:22 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 148.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 150.1ms | GC: 0.0ms)
+Completed 200 OK in 884ms (Views: 150.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 19:37:32 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | GC: 0.0ms)
+Completed 200 OK in 849ms (Views: 6.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 19:37:34 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+Started GET "/dashboard" for ::1 at 2025-04-02 19:37:34 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 4.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | GC: 0.0ms)
+Completed 200 OK in 1079ms (Views: 9.5ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 19:37:35 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 5.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | GC: 0.0ms)
+Completed 200 OK in 1461ms (Views: 15.8ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 5.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | GC: 0.0ms)
+Completed 200 OK in 1326ms (Views: 9.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190963/edit_password" for ::1 at 2025-04-02 19:37:37 -0400
+Processing by StudentsController#edit_password as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='edit_password',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:54:in 'StudentsController#edit_password'
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit_password.html.erb within layouts/application
+  Rendered students/edit_password.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | GC: 0.0ms)
+Completed 200 OK in 945ms (Views: 5.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 19:37:45 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 0.0ms)
+Completed 200 OK in 757ms (Views: 5.8ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 19:37:47 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.8ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 11.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | GC: 0.0ms)
+Completed 200 OK in 867ms (Views: 19.2ms | ActiveRecord: 1.9ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 19:37:50 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | GC: 0.0ms)
+Completed 200 OK in 682ms (Views: 11.9ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=data" for ::1 at 2025-04-02 19:37:58 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "data"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (LOWER(class_name) LIKE '%data%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.0ms)
+Completed 200 OK in 1273ms (Views: 12.4ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=database" for ::1 at 2025-04-02 19:38:04 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => "database"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE (LOWER(class_name) LIKE '%database%') /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | GC: 0.0ms)
+Completed 200 OK in 1075ms (Views: 11.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?search=" for ::1 at 2025-04-02 19:38:17 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:166
+  Rendered courses/index.html.erb within layouts/application (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | GC: 0.0ms)
+Completed 200 OK in 808ms (Views: 6.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 19:38:24 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 4.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | GC: 0.0ms)
+Completed 200 OK in 906ms (Views: 11.0ms | ActiveRecord: 0.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 19:38:27 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 1052ms (Views: 4.6ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
