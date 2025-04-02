@@ -15,7 +15,7 @@
       </div>
     <% end %>
 
-    <%= form_for @student do |f| %>
+    <%= form_for @student, data: { turbo: false } do |f| %>
       <div class="input-field">
         <%= f.label :name, "Full Name" %>
         <%= f.text_field :name, class: "input-box", placeholder: "Enter your full name" %>
@@ -26,9 +26,14 @@
         <%= f.email_field :email, class: "input-box", placeholder: "Enter your email" %>
       </div>
 
-      <div class="input-field">
-      <%= f.label :major, "Major" %>
-      <%= f.text_field :major, class: "input-box", placeholder: "Enter your major" %>
+      <div class="input-field" style="margin-bottom: 15px;">
+        <%= f.label :major, "Major" %>
+        <%= f.select :major, [
+          "Computer Science", "Information Technology", "Software Engineering", 
+          "Electrical Engineering", "Mechanical Engineering", "Civil Engineering",
+          "Business Administration", "Finance", "Biology", "Chemistry", "Mathematics", 
+          "Physics", "Psychology", "Political Science", "English", "History"
+        ], { prompt: "Select your major" }, class: "input-box" %>
       </div>
 
       <div class="input-field">
