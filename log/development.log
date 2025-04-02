@@ -16958,3 +16958,174 @@ Processing by StudentsController#dashboard as HTML
 Completed 200 OK in 1052ms (Views: 4.6ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Migrating to AddStatusAndPrerequisiteToCourses (20250402234319)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mALTER TABLE "courses" ADD "status" varchar /*application='SmartEnroll'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "courses" ADD "prerequisite" varchar /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250402234319') RETURNING "version" /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Started GET "/" for ::1 at 2025-04-02 19:51:08 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 63.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 105.5ms | GC: 0.3ms)
+Completed 200 OK in 1952ms (Views: 126.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/login" for ::1 at 2025-04-02 19:51:15 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 1193ms (ActiveRecord: 5.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-02 19:51:16 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | GC: 0.0ms)
+Completed 200 OK in 1194ms (Views: 27.3ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 19:51:19 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 11.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | GC: 0.0ms)
+Completed 200 OK in 875ms (Views: 21.2ms | ActiveRecord: 2.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 19:51:21 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:168
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.0ms)
+Completed 200 OK in 808ms (Views: 13.7ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses/101/enroll" for ::1 at 2025-04-02 19:51:29 -0400
+Processing by CoursesController#enroll as HTML
+  Parameters: {"id" => "101"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:26:in 'CoursesController#enroll'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:27:in 'CoursesController#enroll'
+  [1m[36mCourse Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" INNER JOIN "user_schedules" ON "courses"."CRN" = "user_schedules"."course_id" WHERE "user_schedules"."student_id" = 980190963 AND "courses"."CRN" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:30:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Create (4.7ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at") VALUES (980190963, 101, NULL, '2025-04-02 23:51:30.601171', '2025-04-02 23:51:30.601171') RETURNING "id" /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:34:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 AND "user_schedules"."course_id" = 101 LIMIT 1 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:36:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+  [1m[36mUserSchedule Update (3.0ms)[0m  [1m[33mUPDATE "user_schedules" SET "status" = 'Planned', "updated_at" = '2025-04-02 23:51:30.620635' WHERE "user_schedules"."id" = 980191019 /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='enroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:37:in 'CoursesController#enroll'
+Redirected to http://[::1]:3000/courses
+Completed 302 Found in 708ms (ActiveRecord: 11.7ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 19:51:30 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:168
+  Rendered courses/index.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 616ms (Views: 4.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 19:51:32 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 19.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | GC: 0.0ms)
+Completed 200 OK in 570ms (Views: 22.6ms | ActiveRecord: 0.8ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/courses/101/unenroll" for ::1 at 2025-04-02 19:53:10 -0400
+Processing by CoursesController#unenroll as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "101"}
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 101 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:48:in 'CoursesController#unenroll'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+  [1m[36mUserSchedule Delete All (8.4ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 AND "user_schedules"."course_id" = 101 /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='unenroll',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/courses_controller.rb:49:in 'CoursesController#unenroll'
+Redirected to http://[::1]:3000/schedule_view
+Completed 302 Found in 777ms (ActiveRecord: 9.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view" for ::1 at 2025-04-02 19:53:11 -0400
+Processing by ScheduleViewController#index as TURBO_STREAM
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:4:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."CRN" ASC LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:6:in 'ScheduleViewController#index'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:8:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/views/schedule_view/index.html.erb:233
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 831ms (Views: 10.3ms | ActiveRecord: 1.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses" for ::1 at 2025-04-02 19:53:13 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:168
+  Rendered courses/index.html.erb within layouts/application (Duration: 10.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | GC: 0.0ms)
+Completed 200 OK in 745ms (Views: 12.7ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
