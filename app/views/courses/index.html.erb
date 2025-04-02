@@ -151,33 +151,37 @@ input[type="checkbox"] {
     <h1>All Courses</h1>
 
     <table class="courses-table">
-      <thead>
-        <tr>
-          <th>CRN</th>
-          <th>Course Name</th>
-          <th>Professor</th>
-          <th>Term</th>
-          <th>Credits</th>
-          <th>Major</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @courses.each do |course| %>
-          <tr>
-            <td><%= course.CRN %></td>
-            <td><%= course.class_name %></td>
-            <td><%= course.professor %></td>
-            <td><%= course.term %></td>
-            <td><%= course.credits %></td>
-            <td><%= course.major.present? ? course.major : "Not Provided" %></td>
-            <td>
-              <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <thead>
+    <tr>
+      <th>CRN</th>
+      <th>Course Name</th>
+      <th>Professor</th>
+      <th>Term</th>
+      <th>Credits</th>
+      <th>Major</th>
+      <th>Status</th>
+      <th>Prerequisite</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.CRN %></td>
+        <td><%= course.class_name %></td>
+        <td><%= course.professor %></td>
+        <td><%= course.term %></td>
+        <td><%= course.credits %></td>
+        <td><%= course.major.present? ? course.major : "Not Provided" %></td>
+        <td><%= course.status.present? ? course.status : "N/A" %></td>
+        <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
+        <td>
+          <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
     <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
 

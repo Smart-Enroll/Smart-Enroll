@@ -82,7 +82,7 @@ class CoursesController < ApplicationController
     end
   
     def course_params
-      params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time)
+      params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :prerequisite, :status)
     end
   end
   
