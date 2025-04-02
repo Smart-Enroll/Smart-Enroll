@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
           redirect_to dashboard_path, notice: "Successfully logged in!"
         else
           flash[:alert] = "Invalid password"
-          render :new
+          redirect_to root_path
         end
       end
   

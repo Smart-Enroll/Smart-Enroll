@@ -137,7 +137,10 @@ input[type="checkbox"] {
   <div class="top-banner">
     <h2>Welcome to the Course List</h2>
   </div>
-
+  <form method="get" action="<%= courses_path %>" style="margin-bottom: 20px;">
+  <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>" style="padding: 10px; width: 300px; font-size: 16px;">
+  <button type="submit" style="padding: 10px 15px; background-color: #004B2D; color: white; border: none; cursor: pointer;">Search</button>
+</form>
   <div class="main-content">
     <% flash.each do |key, message| %>
       <div class="flash-<%= key %>">

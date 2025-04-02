@@ -4,10 +4,16 @@ class CoursesController < ApplicationController
     def index
       @courses = Course.all
     
+      if params[:search].present?
+        search_term = "%#{params[:search].downcase}%" 
+        @courses = @courses.where("LOWER(class_name) LIKE ?", search_term)
+      end
+    
       if params[:recommended] == "true" && current_student
         @courses = @courses.where(major: current_student.major)
       end
     end
+    
     
     def show
     end
@@ -15,20 +21,6 @@ class CoursesController < ApplicationController
     def new
       @course = Course.new
     end
-  
-    # def enroll
-    #   course = Course.find(params[:id])
-    #   current_student = Student.find(session[:student_id])  # Ensure user is logged in
-    
-    #   if current_student.courses.include?(course)
-    #     flash[:notice] = "You're already enrolled in this course!"
-    #   else
-    #     current_student.courses << course
-    #     flash[:notice] = "Successfully enrolled in #{course.class_name}!"
-    #   end
-      
-    #   redirect_to courses_path
-    # end
 
     def enroll
       course = Course.find(params[:id])
