@@ -23,18 +23,20 @@
     text-align: center;
     padding: 30px;
   }
+
   label {
-  display: flex;
-  align-items: center;
-  margin-left: 70%;
-  gap: 10px; 
-  height: 0px; 
-}
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  margin-top: -10px; 
-}
+    display: flex;
+    align-items: center;
+    margin-left: 70%;
+    gap: 10px;
+    height: 0px;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+  }
 
   .main-content {
     background-color: white;
@@ -131,16 +133,39 @@ input[type="checkbox"] {
     margin-bottom: 20px;
     border-radius: 4px;
   }
+
+  /* Smaller search button and left alignment */
+  .search-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px; /* Increased margin-top to push it down */
+  }
+
+  .search-form input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+  }
+
+  .search-form button {
+    padding: 5px 10px;
+    background-color: #004B2D;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    margin-top: 10px;
+  }
+
+  .search-form button:hover {
+    background-color: #45a049;
+  }
 </style>
 
 <div class="container">
   <div class="top-banner">
     <h2>Welcome to the Course List</h2>
   </div>
-  <form method="get" action="<%= courses_path %>" style="margin-bottom: 20px;">
-  <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>" style="padding: 10px; width: 300px; font-size: 16px;">
-  <button type="submit" style="padding: 10px 15px; background-color: #004B2D; color: white; border: none; cursor: pointer;">Search</button>
-</form>
   <div class="main-content">
     <% flash.each do |key, message| %>
       <div class="flash-<%= key %>">
@@ -150,38 +175,44 @@ input[type="checkbox"] {
 
     <h1>All Courses</h1>
 
+    <!-- Moved search bar below the courses label -->
+    <form method="get" action="<%= courses_path %>" class="search-form">
+      <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>">
+      <button type="submit">Search</button>
+    </form>
+
     <table class="courses-table">
-  <thead>
-    <tr>
-      <th>CRN</th>
-      <th>Course Name</th>
-      <th>Professor</th>
-      <th>Term</th>
-      <th>Credits</th>
-      <th>Major</th>
-      <th>Status</th>
-      <th>Prerequisite</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.CRN %></td>
-        <td><%= course.class_name %></td>
-        <td><%= course.professor %></td>
-        <td><%= course.term %></td>
-        <td><%= course.credits %></td>
-        <td><%= course.major.present? ? course.major : "Not Provided" %></td>
-        <td><%= course.status.present? ? course.status : "N/A" %></td>
-        <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
-        <td>
-          <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th>CRN</th>
+          <th>Course Name</th>
+          <th>Professor</th>
+          <th>Term</th>
+          <th>Credits</th>
+          <th>Major</th>
+          <th>Status</th>
+          <th>Prerequisite</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.CRN %></td>
+            <td><%= course.class_name %></td>
+            <td><%= course.professor %></td>
+            <td><%= course.term %></td>
+            <td><%= course.credits %></td>
+            <td><%= course.major.present? ? course.major : "Not Provided" %></td>
+            <td><%= course.status.present? ? course.status : "N/A" %></td>
+            <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
+            <td>
+              <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
     <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
 

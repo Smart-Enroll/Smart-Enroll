@@ -1,181 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
 
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+        .top-banner, .bottom-banner {
+            background-color: #004B2D;
+            width: 100%;
+            height: 100px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: fixed;
+            left: 0;
+            z-index: 1000;
+        }
 
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+        .top-banner {
+            top: 0;
+        }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+        .bottom-banner {
+            bottom: 0;
+        }
 
-    .profile-container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 50%;
-      text-align: center;
-    }
+        .banner-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    h1 {
-      color: #006747;
-    }
+        .logo {
+            height: 80px; 
+            margin-right: 35px; 
+        }
 
-    .profile-info {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #333;
-    }
+        .profile-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+            border: 5px solid #006747;
+            margin: auto;
+            margin-top: 140px;
+        }
 
-    .profile-info p {
-      margin: 10px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
+        h1 {
+            color: #006747;
+        }
 
-    .edit-button, .save-button {
-      background-color: #006747;
-      color: white;
-      border: none;
-      padding: 4px 8px; 
-      font-size: 12px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+        .profile-info {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
 
-    .edit-button:hover {
-      background-color: #004d00;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    .save-button {
-      background-color: #004B2D;
-    }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
 
-    .save-button:hover {
-      background-color: #003a23;
-    }
+        .edit-button, .save-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 8px 16px; 
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80px; 
+            text-align: center;
+        }
 
-    .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
+        .edit-button:hover, .save-button:hover {
+            background-color: #004d00;
+        }
 
-    .back-button, .password-button {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: #004B2D;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-    }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
 
-    .password-button {
-      background-color: #006747;
-    }
+        .back-button, .password-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #004B2D;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
-    .back-button:hover, .password-button:hover {
-      opacity: 0.9;
-    }
+        .password-button, .back-button {
+            background-color: #006747;
+        }
 
-    input {
-      font-size: 16px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  </style>
+        .back-button:hover, .password-button:hover {
+            opacity: 0.9;
+        }
+
+        input {
+            font-size: 16px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 60%;
+        }
+    </style>
+
+    <script>
+        function editField(field) {
+            var displayElement = document.getElementById(field + '-display');
+            var inputElement = document.getElementById(field + '-input');
+            var editButton = document.querySelector('button[onclick="editField(\'' + field + '\')"]');
+            var saveButton = document.querySelector('button[onclick="saveField(\'' + field + '\', ' + <%= @student.id %> + ')"]');
+            
+            // Toggle visibility between display and input elements
+            displayElement.style.display = 'none';
+            inputElement.style.display = 'block';
+            
+            // Show the save button
+            editButton.style.display = 'none';
+            saveButton.style.display = 'inline-block';
+        }
+
+        function saveField(field, studentId) {
+            var inputElement = document.getElementById(field + '-input');
+            var displayElement = document.getElementById(field + '-display');
+            var editButton = document.querySelector('button[onclick="editField(\'' + field + '\')"]');
+            var saveButton = document.querySelector('button[onclick="saveField(\'' + field + '\', ' + studentId + ')"]');
+            
+            // Replace display text with input value
+            displayElement.textContent = inputElement.value;
+            
+            // Hide the input field and show the display text
+            inputElement.style.display = 'none';
+            displayElement.style.display = 'block';
+            
+            // Hide save button and show edit button
+            saveButton.style.display = 'none';
+            editButton.style.display = 'inline-block';
+
+            // Optionally send an AJAX request to save the new value (for example, using Rails UJS)
+        }
+    </script>
 </head>
 <body>
-
-  <div class="profile-container">
-    <h1>Student Profile</h1>
-
-    <div class="profile-info">
-      <p>
-        <strong>Name:</strong>
-        <span id="name-display"><%= @student.name %></span>
-        <input type="text" id="name-input" value="<%= @student.name %>" style="display:none;">
-        <button class="edit-button" onclick="editField('name')">Edit</button>
-        <button class="save-button" onclick="saveField('name', <%= @student.id %>)" style="display:none;">Save</button>
-      </p>
-
-      <p>
-        <strong>Email:</strong>
-        <span id="email-display"><%= @student.email %></span>
-        <input type="text" id="email-input" value="<%= @student.email %>" style="display:none;">
-        <button class="edit-button" onclick="editField('email')">Edit</button>
-        <button class="save-button" onclick="saveField('email', <%= @student.id %>)" style="display:none;">Save</button>
-      </p>
-
-      <p>
-        <strong>Major:</strong>
-        <span id="major-display"><%= @student.major.present? ? @student.major : "Not Provided" %></span>
-      </p>
-    
-      <p><strong>Credits Earned:</strong> <%= @student.credits_earned %></p>
+    <div class="top-banner">
+        <span class="banner-text">STUDENT PROFILE</span>
+        <img src="<%= asset_path('LogoWithCircle.png') %>" alt="Logo" class="logo">
     </div>
 
-    <div class="button-container">
-      <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
-      <a href="<%= edit_password_path %>" class="password-button">Change Password</a>
+    <div class="profile-container">
+        <h1>Student Profile</h1>
+
+        <div class="profile-info">
+            <table>
+                <tr>
+                    <td><strong>Name:</strong></td>
+                    <td><span id="name-display"><%= @student.name %></span>
+                        <input type="text" id="name-input" value="<%= @student.name %>" style="display:none;"></td>
+                    <td class="button-group">
+                        <button class="edit-button" onclick="editField('name')">Edit</button>
+                        <button class="save-button" onclick="saveField('name', <%= @student.id %>)" style="display:none;">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+                    <td><span id="email-display"><%= @student.email %></span>
+                        <input type="text" id="email-input" value="<%= @student.email %>" style="display:none;"></td>
+                    <td class="button-group">
+                        <button class="edit-button" onclick="editField('email')">Edit</button>
+                        <button class="save-button" onclick="saveField('email', <%= @student.id %>)" style="display:none;">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Major:</strong></td>
+                    <td colspan="2"><span id="major-display"><%= @student.major.present? ? @student.major : "Not Provided" %></span></td>
+                </tr>
+                <tr>
+                    <td><strong>Credits Earned:</strong></td>
+                    <td colspan="2"><%= @student.credits_earned %></td>
+                </tr>
+                  <tr>
+                    <td><strong>Education Level:</strong></td>
+                    <td colspan="2">
+                        <% if @student.credits_earned < 30 %>
+                            Freshman
+                        <% elsif @student.credits_earned < 60 %>
+                            Sophomore
+                        <% elsif @student.credits_earned < 90 %>
+                            Junior
+                        <% else %>
+                            Senior
+                        <% end %>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <a href="<%= dashboard_path %>" class="back-button">Back to Dashboard</a>
+                    </td>
+                    <td></td>
+                    <td style="text-align: right;">
+                        <a href="<%= edit_password_path %>" class="password-button">Change Password</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function editField(field) {
-      document.getElementById(field + "-display").style.display = "none";
-      document.getElementById(field + "-input").style.display = "inline";
-      document.querySelector(`[onclick="editField('${field}')"]`).style.display = "none";
-      document.querySelector(`[onclick="saveField('${field}', <%= @student.id %>)"]`).style.display = "inline";
-    }
-
-    function saveField(field, studentId) {
-      const newValue = document.getElementById(field + "-input").value;
-
-      fetch(`/students/${studentId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": "<%= form_authenticity_token %>"
-        },
-        body: JSON.stringify({ student: { [field]: newValue } })
-      })
-      .then(response => response.json()
-        .catch(() => { throw new Error("Unexpected server response. Are you logged in?"); }) // Handles HTML response errors
-      )
-      .then(data => {
-        if (!data.success) throw new Error(data.errors ? data.errors.join(", ") : "Unknown error");
-
-        document.getElementById(field + "-display").textContent = newValue;
-        document.getElementById(field + "-display").style.display = "inline";
-        document.getElementById(field + "-input").style.display = "none";
-        document.querySelector(`[onclick="editField('${field}')"]`).style.display = "inline";
-        document.querySelector(`[onclick="saveField('${field}', ${studentId})"]`).style.display = "none";
-      })
-      .catch(error => alert("Update failed: " + error.message));
-    }
-  </script>
-
+    <div class="bottom-banner"></div>
 </body>
 </html>
