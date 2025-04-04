@@ -219,56 +219,68 @@
         position: relative;
         margin-top: 20px; 
     }
+   
+
   </style>
-</head>
+  </head>
 <body>
   <div class="container">
     <div class="header">
       <img src="<%= asset_path('LogoWithCircle.png') %>" alt="USF Logo">
       <h2>Student Course Schedule for <span style="color: yellow;"><%= @term %></span></h2>
-      <i class="settings-icon">⚙️</i>
+      <form action="#" method="get" class="term-dropdown-form">
+      <select name="term" id="term-dropdown" onchange="this.form.submit()">
+        <% @dropdown_terms.each do |term| %>
+          <option value="<%= term %>" <%= 'selected' if term == @term %>> <%= term %> </option>
+        <% end %>
+      </select>
+    </form>  
     </div>
 
     <div class="course-container">
-  <% @user_schedules.each do |schedule| %>
-    <% course = schedule.course %>
-    <div class="course-card">
-      <table class="invisible-table">
-        <tr>
-          <th>Course Name</th>
-          <td><%= course.class_name %></td>
-        </tr>
-        <tr>
-          <th>CRN</th>
-          <td><%= course.CRN %></td>
-        </tr>
-        <tr>
-          <th>Professor</th>
-          <td><%= course.professor %></td>
-        </tr>
-        <tr>
-          <th>Term</th>
-          <td><%= course.term %></td>
-        </tr>
-        <tr>
-          <th>Credits</th>
-          <td><%= course.credits %></td>
-        </tr>
-        <tr>
-          <th>Status</th>
-          <td><%= schedule.status %></td> <!-- Add the status here -->
-        </tr>
-      </table>
+      <% if @user_schedules.empty? %>
+        <p style="margin-top: 40px; font-weight: bold; width: 100%;">No courses enrolled for <%= @term %>.</p>
+      <% else %>
+        <% @user_schedules.each do |schedule| %>
+          <% course = schedule.course %>
+          <div class="course-card">
+            <table class="invisible-table">
+              <tr>
+                <th>Course Name</th>
+                <td><%= course.class_name %></td>
+              </tr>
+              <tr>
+                <th>CRN</th>
+                <td><%= course.CRN %></td>
+              </tr>
+              <tr>
+                <th>Professor</th>
+                <td><%= course.professor %></td>
+              </tr>
+              <tr>
+                <th>Term</th>
+                <td><%= course.term %></td>
+              </tr>
+              <tr>
+                <th>Credits</th>
+                <td><%= course.credits %></td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td><%= schedule.status %></td>
+              </tr>
+            </table>
 
-      <div class="unenroll-container">
-        <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
-      </div>
+            <div class="unenroll-container">
+              <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
     </div>
-  <% end %>
-
-    <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
   </div>
-</div>
 
   <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
 </body>

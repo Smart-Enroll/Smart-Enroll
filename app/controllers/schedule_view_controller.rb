@@ -1,20 +1,24 @@
 class ScheduleViewController < ApplicationController
   def index
-    # TODO - Add user from session not fixed
-    @student = Student.find(session[:student_id])  # Ensure the student is found
+    @student = Student.find(session[:student_id])  # Find the student from session
 
-    @term = Course.first&.term || "N/A"
-    
-    @enrolled_courses = @student.courses  # Fetch enrolled courses
+    # Get the current term based on the date
+    @term = next_term  # This will be the next term, like "Summer 2025"
 
-    @user_schedules = @student.user_schedules.includes(:course)
+    # Filter enrolled courses to only include those for the next term
+    @enrolled_courses = @student.courses.where(term: @term)
+
+    # Only show UserSchedules that match the next term
+    @user_schedules = @student.user_schedules.includes(:course).select { |us| us.course.term == @term }
+
+    # Build the dropdown terms for past and future terms
+    @dropdown_terms = build_term_dropdown
   end
 
   def create
-    student = Student.find(session[:student_id])  # Find the student from session
-    course = Course.find(params[:course_id])  # Find the selected course
+    student = Student.find(session[:student_id])
+    course = Course.find(params[:course_id])
 
-    # Create a new UserSchedule with the same term as the course
     UserSchedule.create!(student_id: student.id, course_id: course.id, term: course.term)
 
     redirect_to schedule_view_index_path, notice: "Course added to your schedule for #{course.term}!"
@@ -25,5 +29,39 @@ class ScheduleViewController < ApplicationController
     user_schedule.destroy
 
     redirect_to schedule_view_index_path, notice: "Course removed from your schedule."
+  end
+
+  private
+
+  def next_term
+    today = Date.today
+    year = today.year
+
+    case today
+    when Date.new(year, 1, 1)..Date.new(year, 5, 15)
+      "Summer #{year}"
+    when Date.new(year, 5, 16)..Date.new(year, 8, 10)
+      "Fall #{year}"
+    else
+      "Spring #{year + 1}"
+    end
+  end
+
+  # Build the dropdown list of terms
+  def build_term_dropdown
+    current_year = Date.today.year
+    seasons = ["Spring", "Summer", "Fall"]
+
+    terms = []
+
+    # Generate terms for the next two years and the previous terms
+    (current_year - 1..current_year + 1).each do |year|
+      seasons.each do |season|
+        terms << "#{season} #{year}"
+      end
+    end
+
+    # Sort terms by year and season (Spring, Summer, Fall)
+    terms.sort_by { |term| [term.split.last.to_i, seasons.index(term.split.first)] }
   end
 end
