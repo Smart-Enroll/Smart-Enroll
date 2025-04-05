@@ -2,13 +2,19 @@ class CoursesController < ApplicationController
   before_action :set_course, only: %i[show edit update destroy]
   
   def index
+    @term = params[:term] # get the term from URL params
     @courses = Course.all
-  
+
+    # Filter by selected term
+    @courses = @courses.where(term: @term) if @term.present?
+
+    # Search filter
     if params[:search].present?
       search_term = "%#{params[:search].downcase}%" 
       @courses = @courses.where("LOWER(class_name) LIKE ?", search_term)
     end
-  
+
+    # Recommended courses filter
     if params[:recommended] == "true" && current_student
       @courses = @courses.where(major: current_student.major)
     end

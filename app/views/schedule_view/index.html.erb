@@ -234,7 +234,7 @@
           <option value="<%= term %>" <%= 'selected' if term == @term %>> <%= term %> </option>
         <% end %>
       </select>
-    </form>  
+    </form>
     </div>
 
     <div class="course-container">
@@ -278,7 +278,7 @@
         <% end %>
       <% end %>
 
-      <div class="add-button" onclick="window.location.href='<%= courses_path %>';">+</div>
+      <div class="add-button" onclick="window.location.href='<%= courses_path(term: @term) %>';">+</div>
     </div>
   </div>
 

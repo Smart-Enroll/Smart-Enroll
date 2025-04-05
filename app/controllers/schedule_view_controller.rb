@@ -2,13 +2,13 @@ class ScheduleViewController < ApplicationController
   def index
     @student = Student.find(session[:student_id])  # Find the student from session
 
-    # Get the current term based on the date
-    @term = next_term  # This will be the next term, like "Summer 2025"
+    # Get the current term based on the date or user selection
+    @term = params[:term] || next_term  # Check if there's a selected term, otherwise use the next_term
 
-    # Filter enrolled courses to only include those for the next term
+    # Filter enrolled courses to only include those for the selected term
     @enrolled_courses = @student.courses.where(term: @term)
 
-    # Only show UserSchedules that match the next term
+    # Only show UserSchedules that match the selected term
     @user_schedules = @student.user_schedules.includes(:course).select { |us| us.course.term == @term }
 
     # Build the dropdown terms for past and future terms
