@@ -36,6 +36,20 @@ class StudentsController < ApplicationController
   def edit
   end
 
+  def notifications
+    @student = Student.find(session[:student_id])
+  
+    # If you have a Notification model related to Student:
+    # @notifications = @student.notifications.order(created_at: :desc)
+  
+    # For now, placeholder data:
+    @notifications = [
+      { title: "New Course Added", body: "The course 'Advanced Algorithms' has been added to your major.", created_at: Time.now - 1.day },
+      { title: "Course Updated", body: "The course 'Software Engineering' schedule has been updated.", created_at: Time.now - 2.days }
+    ]
+  end
+  
+
   # PATCH/PUT /students/:id
   def update
     if @student.update(student_params)

@@ -22014,3 +22014,616 @@ FOREIGN KEY ("student_id")
   [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-04-05 19:34:51.262510' WHERE "ar_internal_metadata"."key" = 'environment' /*application='SmartEnroll'*/[0m
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='SmartEnroll'*/[0m
   [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '82e3190693e017372e736c0e1dbecdaa76b7175b', '2025-04-05 19:34:51.266479', '2025-04-05 19:34:51.266516') RETURNING "key" /*application='SmartEnroll'*/[0m
+Started GET "/schedule_view?term=Summer+2026" for ::1 at 2025-04-05 16:05:16 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by ScheduleViewController#index as HTML
+  Parameters: {"term" => "Summer 2026"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:3:in 'ScheduleViewController#index'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" IN (101, 102) /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 23.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 56.2ms | GC: 0.0ms)
+Completed 200 OK in 2293ms (Views: 75.5ms | ActiveRecord: 5.3ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/schedule_view?term=Fall+2026" for ::1 at 2025-04-05 16:05:22 -0400
+Processing by ScheduleViewController#index as HTML
+  Parameters: {"term" => "Fall 2026"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:3:in 'ScheduleViewController#index'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" IN (101, 102) /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 777ms (Views: 3.8ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view?term=Spring+2025" for ::1 at 2025-04-05 16:05:25 -0400
+Processing by ScheduleViewController#index as HTML
+  Parameters: {"term" => "Spring 2025"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:3:in 'ScheduleViewController#index'
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" IN (101, 102) /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 920ms (Views: 2.6ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/schedule_view?term=Summer+2025" for ::1 at 2025-04-05 16:05:34 -0400
+Processing by ScheduleViewController#index as HTML
+  Parameters: {"term" => "Summer 2025"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:3:in 'ScheduleViewController#index'
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" IN (101, 102) /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 978ms (Views: 4.0ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?term=Summer+2025" for ::1 at 2025-04-05 16:05:36 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"term" => "Summer 2025"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."term" = 'Summer 2025' /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:198
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | GC: 0.0ms)
+Completed 200 OK in 877ms (Views: 14.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:20:33 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.0ms)
+Completed 200 OK in 978ms (Views: 12.0ms | ActiveRecord: 1.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:24:09 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:86:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 49.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 52.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 818ms (ActiveRecord: 4.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'notifications_path' for an instance of #<Class:0x0000019405345bf8>)
+Caused by: NameError (undefined local variable or method 'notifications_path' for an instance of #<Class:0x0000019405345bf8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'notifications_path' for an instance of #<Class:0x0000019405345bf8>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <button class="green-button" onclick="window.location.href='<%= notifications_path %>';">Notifications</button>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'notifications_path' for an instance of #<Class:0x0000019405345bf8>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/favicon.ico" for ::1 at 2025-04-05 16:24:12 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/dashboard" for ::1 at 2025-04-05 16:29:01 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1147ms (ActiveRecord: 3.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194058bf160>)
+Caused by: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194058bf160>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194058bf160>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <button class="green-button" onclick="window.location.href='<%= student_notifications_path %>';">Notifications</button>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194058bf160>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/dashboard" for ::1 at 2025-04-05 16:30:47 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.8ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 13.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.9ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1494ms (ActiveRecord: 7.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404d1abe8>)
+Caused by: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404d1abe8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404d1abe8>):
+    145:     <div class="button-container">
+    146:     <%= link_to "Go to Schedule", schedule_view_index_path, class: "green-button" %>
+    147:     <%= link_to "Profile", student_profile_path(@student), class: "green-button" %>
+    148:     <%= link_to "Notifications", student_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   
+    151:   </div>
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404d1abe8>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/dashboard" for ::1 at 2025-04-05 16:31:20 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1269ms (ActiveRecord: 6.7ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404c38400>)
+Caused by: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404c38400>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404c38400>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <button class="green-button" onclick="window.location.href='<%= url_for(student_notifications_path) %>';">Notifications</button>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x0000019404c38400>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/dashboard" for ::1 at 2025-04-05 16:32:42 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 850ms (ActiveRecord: 4.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194057b64a8>)
+Caused by: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194057b64a8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194057b64a8>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", student_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'student_notifications_path' for an instance of #<Class:0x00000194057b64a8>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/dashboard" for ::1 at 2025-04-05 16:33:55 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1038ms (ActiveRecord: 3.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194036b64b0>)
+Caused by: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194036b64b0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194036b64b0>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", students_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194036b64b0>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/" for ::1 at 2025-04-05 16:34:13 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | GC: 0.0ms)
+Completed 200 OK in 1116ms (Views: 28.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-05 16:34:19 -0400
+Processing by StudentsController#new as HTML
+Started POST "/login" for ::1 at 2025-04-05 16:34:20 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 86.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 93.0ms | GC: 0.0ms)
+Completed 200 OK in 1162ms (Views: 117.6ms | ActiveRecord: 2.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = '123@123.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 1708ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:34:22 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190966 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190966 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1222ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194075dd530>)
+Caused by: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194075dd530>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194075dd530>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", students_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000194075dd530>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/" for ::1 at 2025-04-05 16:35:23 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | GC: 0.0ms)
+Completed 200 OK in 1452ms (Views: 25.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-05 16:35:31 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 1351ms (ActiveRecord: 5.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:35:32 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 13.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.5ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1340ms (ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x0000019404e8d7a0>)
+Caused by: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x0000019404e8d7a0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x0000019404e8d7a0>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", students_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x0000019404e8d7a0>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/" for ::1 at 2025-04-05 16:41:23 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 91.6ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 121.5ms | GC: 0.3ms)
+Completed 200 OK in 1840ms (Views: 140.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/login" for ::1 at 2025-04-05 16:41:29 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 928ms (ActiveRecord: 4.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:41:30 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 12.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 831ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ec6b42f0>)
+Caused by: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ec6b42f0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ec6b42f0>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", students_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ec6b42f0>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/" for ::1 at 2025-04-05 16:44:07 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.7ms | GC: 0.0ms)
+Completed 200 OK in 2270ms (Views: 66.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-05 16:44:16 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 1098ms (ActiveRecord: 8.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:44:17 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1771ms (ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ef97e618>)
+Caused by: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ef97e618>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ef97e618>):
+    145:     <div class="button-container">
+    146:     <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
+    147:     <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
+    148:     <%= link_to "Notifications", students_notifications_path, class: "green-button" %>
+    149:   </div>
+    150:   </div>
+    151: 
+  
+app/views/students/dashboard.html.erb:148
+
+Information for cause: NameError (undefined local variable or method 'students_notifications_path' for an instance of #<Class:0x00000231ef97e618>):
+  
+app/views/students/dashboard.html.erb:148
+Started GET "/" for ::1 at 2025-04-05 16:45:28 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | GC: 0.0ms)
+Completed 200 OK in 1031ms (Views: 28.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-05 16:45:34 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'ca.caraballo@yahoo.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://[::1]:3000/dashboard
+Completed 302 Found in 948ms (ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:45:35 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 0.0ms)
+Completed 200 OK in 957ms (Views: 11.3ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for ::1 at 2025-04-05 16:46:35 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 772ms (Views: 4.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:48:02 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:91:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | GC: 0.0ms)
+Completed 200 OK in 951ms (Views: 19.6ms | ActiveRecord: 2.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for ::1 at 2025-04-05 16:48:05 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 986ms (Views: 3.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:49:36 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | GC: 0.0ms)
+Completed 200 OK in 1426ms (Views: 21.9ms | ActiveRecord: 2.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for ::1 at 2025-04-05 16:49:39 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 886ms (Views: 4.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:50:01 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | GC: 0.0ms)
+Completed 200 OK in 954ms (Views: 7.1ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for ::1 at 2025-04-05 16:50:03 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 0.0ms)
+Completed 200 OK in 916ms (Views: 4.8ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-04-05 16:50:05 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 672ms (Views: 4.4ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
