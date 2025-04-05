@@ -1,0 +1,15 @@
+<h2>Students</h2>
+<% @students.each do |student| %>
+  <p>
+    <%= student.name %>
+    <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>
+
+<h2>Courses</h2>
+<% @courses.each do |course| %>
+  <p>
+    <%= course.class_name %>
+    <%= button_to 'Delete', destroy_course_admins_dashboard_path(course.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>
