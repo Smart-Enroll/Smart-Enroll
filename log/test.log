@@ -407,3 +407,418 @@ Processing by ScheduleViewController#index as HTML
   Rendered layout layouts/application.html.erb (Duration: 5.8ms | GC: 0.0ms)
 Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.1ms (4 queries, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:35:05.088993', '2025-04-05 19:35:05.088993'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:35:05.088993', '2025-04-05 19:35:05.088993');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:35:05.090658', '2025-04-05 19:35:05.090658', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:35:05.090658', '2025-04-05 19:35:05.090658', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$aJstaZmJ9JXWMlYRZZGB8u1NL1R5ds4E5JajtwbHZAKkfvqD891CW', 60, '2025-04-05 19:35:05.091428', '2025-04-05 19:35:05.091428', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$Rhz0eaxddfSO8pwulaFZVOx0.Z9cslYPvtBmun1X/jM56yF.NJWqu', 100, '2025-04-05 19:35:05.091428', '2025-04-05 19:35:05.091428', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:35:05.092398', '2025-04-05 19:35:05.092398', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:35:05.092398', '2025-04-05 19:35:05.092398', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+UserFlowsTest: test_user_can_sign_up
+------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:35:05 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 12.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 32.9ms | GC: 0.0ms)
+Completed 200 OK in 69ms (Views: 43.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:35:05 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:35:05.876558"], ["updated_at", "2025-04-05 19:35:05.876558"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 23ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:35:05 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 14.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:37:46.026704', '2025-04-05 19:37:46.026704'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:37:46.026704', '2025-04-05 19:37:46.026704');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:37:46.029397', '2025-04-05 19:37:46.029397', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:37:46.029397', '2025-04-05 19:37:46.029397', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$h9vYlRwSg9SZlyf6zX6.5OprBYuvMOJJJXX8kpLyu8BUEei.lB70W', 60, '2025-04-05 19:37:46.030174', '2025-04-05 19:37:46.030174', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$796KJ1jI1Q48Zq3n5n0fq.ESbwXBPun4pVeX1j1IXODuJSV81j66S', 100, '2025-04-05 19:37:46.030174', '2025-04-05 19:37:46.030174', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:37:46.031283', '2025-04-05 19:37:46.031283', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:37:46.031283', '2025-04-05 19:37:46.031283', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+UserFlowsTest: test_user_can_sign_up
+------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:37:46 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 13.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.9ms | GC: 0.0ms)
+Completed 200 OK in 102ms (Views: 67.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:37:46 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:37:46.531147"], ["updated_at", "2025-04-05 19:37:46.531147"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 34ms (ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:37:46 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 21.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.5ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 27.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:45:23.416011', '2025-04-05 19:45:23.416011'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:45:23.416011', '2025-04-05 19:45:23.416011');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:45:23.417585', '2025-04-05 19:45:23.417585', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:45:23.417585', '2025-04-05 19:45:23.417585', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$e66PBtvfjmdVoX3CzlwXf.74Y6PgQQ39mv/V1PdjrQGLpQ9/xYPT.', 60, '2025-04-05 19:45:23.418374', '2025-04-05 19:45:23.418374', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$fanC0ENhGeN.T9UOcQtGf.Ra2QYavbSG9.tCu4VVfn7DC2Yr.k.CC', 100, '2025-04-05 19:45:23.418374', '2025-04-05 19:45:23.418374', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:45:23.419474', '2025-04-05 19:45:23.419474', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:45:23.419474', '2025-04-05 19:45:23.419474', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+UserSignupTest: test_user_can_sign_up_successfully
+--------------------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:45:31 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 133.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 372.2ms | GC: 0.0ms)
+Completed 200 OK in 775ms (Views: 478.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/application-e92a05ba.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/signup-08adf3cf.css" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/turbo.min-1262d735.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-04-05 15:45:32 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:48:39.851350', '2025-04-05 19:48:39.851350'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:48:39.851350', '2025-04-05 19:48:39.851350');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:48:39.852941', '2025-04-05 19:48:39.852941', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:48:39.852941', '2025-04-05 19:48:39.852941', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$0D83d3zzLKk5rA3GHwPdLOo9wp0KRusSneXxd3ZJDkfHQaUHjmMci', 60, '2025-04-05 19:48:39.853701', '2025-04-05 19:48:39.853701', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$htJHuAxweI2RlMsqKl.t2.5203Hi/LQKgD8ytCCVEDnCawQecYG9K', 100, '2025-04-05 19:48:39.853701', '2025-04-05 19:48:39.853701', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:48:39.854716', '2025-04-05 19:48:39.854716', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:48:39.854716', '2025-04-05 19:48:39.854716', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+UserSignupTest: test_user_can_sign_up_successfully
+--------------------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 9.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.6ms | GC: 0.0ms)
+Completed 200 OK in 63ms (Views: 41.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/application-e92a05ba.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/signup-08adf3cf.css" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/turbo.min-1262d735.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-04-05 15:48:44 -0400
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:48:45 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "major" => "Computer Science", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Sign Up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:48:45.866394"], ["updated_at", "2025-04-05 19:48:45.866394"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53215/
+Completed 302 Found in 180ms (ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:48:45 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 173.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 176.7ms | GC: 0.0ms)
+Completed 200 OK in 209ms (Views: 183.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/LogoWithCircle-81fac526.png" for 127.0.0.1 at 2025-04-05 15:48:46 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.3ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:49:24.946614', '2025-04-05 19:49:24.946614'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:49:24.946614', '2025-04-05 19:49:24.946614');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:49:24.951003', '2025-04-05 19:49:24.951003', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:49:24.951003', '2025-04-05 19:49:24.951003', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$2rAQNgIx9nBsONkUHmK7RekCOLAgMmxnCrvd.24wuGDYmjmNvlNJ2', 60, '2025-04-05 19:49:24.952477', '2025-04-05 19:49:24.952477', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$3hbCgyVz2B7MG797jL6ojOvjIVK9gJ3.b.N5S3uCwXFQs96ns30z6', 100, '2025-04-05 19:49:24.952477', '2025-04-05 19:49:24.952477', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:49:24.954094', '2025-04-05 19:49:24.954094', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:49:24.954094', '2025-04-05 19:49:24.954094', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+UserSignupTest: test_user_can_sign_up_successfully
+--------------------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:49:29 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 12.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 47.2ms | GC: 0.0ms)
+Completed 200 OK in 103ms (Views: 65.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-04-05 15:49:29 -0400
+Started GET "/assets/signup-08adf3cf.css" for 127.0.0.1 at 2025-04-05 15:49:29 -0400
+Started GET "/assets/application-e92a05ba.js" for 127.0.0.1 at 2025-04-05 15:49:29 -0400
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started GET "/assets/turbo.min-1262d735.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-04-05 15:49:30 -0400
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:49:31 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "major" => "Computer Science", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Sign Up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:49:31.357903"], ["updated_at", "2025-04-05 19:49:31.357903"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53239/
+Completed 302 Found in 25ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:49:31 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 12.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | GC: 0.0ms)
+Completed 200 OK in 19ms (Views: 17.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/LogoWithCircle-81fac526.png" for 127.0.0.1 at 2025-04-05 15:49:31 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:49:46.099818', '2025-04-05 19:49:46.099818'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:49:46.099818', '2025-04-05 19:49:46.099818');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:49:46.101462', '2025-04-05 19:49:46.101462', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:49:46.101462', '2025-04-05 19:49:46.101462', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$Mx7sN65I7/zuvkwat91O7ePYbC8FYCb2sUMYnObYcGOnsKuvPsxVi', 60, '2025-04-05 19:49:46.102199', '2025-04-05 19:49:46.102199', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$tikyTTbYnLf78kIIv9aViuuAO4lPNZ9lDq6q0SNLb16oijfNexlum', 100, '2025-04-05 19:49:46.102199', '2025-04-05 19:49:46.102199', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:49:46.103084', '2025-04-05 19:49:46.103084', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:49:46.103084', '2025-04-05 19:49:46.103084', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+UserSignupTest: test_user_can_sign_up_successfully
+--------------------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 8.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.4ms | GC: 0.0ms)
+Completed 200 OK in 68ms (Views: 43.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/application-e92a05ba.js" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/signup-08adf3cf.css" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/turbo.min-1262d735.js" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-04-05 15:49:50 -0400
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-04-05 15:49:51 -0400
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-04-05 15:49:51 -0400
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:49:52 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "major" => "Computer Science", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Sign Up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.3ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:49:52.043157"], ["updated_at", "2025-04-05 19:49:52.043157"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53262/
+Completed 302 Found in 27ms (ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:49:52 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 14.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/LogoWithCircle-81fac526.png" for 127.0.0.1 at 2025-04-05 15:49:52 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:50:30.023445', '2025-04-05 19:50:30.023445'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:50:30.023445', '2025-04-05 19:50:30.023445');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:50:30.024984', '2025-04-05 19:50:30.024984', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:50:30.024984', '2025-04-05 19:50:30.024984', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$QgziXWJnsqIre./9PjykguxmhKJsuLKdlnF4XIU2lIdlYcdNQSjvy', 60, '2025-04-05 19:50:30.025734', '2025-04-05 19:50:30.025734', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$bBvkoIri09lTfivHGZEIkOkCryRjqQ3GAD9.3.XWqUfj820mghImG', 100, '2025-04-05 19:50:30.025734', '2025-04-05 19:50:30.025734', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:50:30.026653', '2025-04-05 19:50:30.026653', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:50:30.026653', '2025-04-05 19:50:30.026653', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+UserSignupTest: test_user_can_sign_up_successfully
+--------------------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 9.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 32.7ms | GC: 0.0ms)
+Completed 200 OK in 67ms (Views: 43.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/signup-08adf3cf.css" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/turbo.min-1262d735.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/application-e92a05ba.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-04-05 15:50:34 -0400
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-04-05 15:50:35 -0400
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:50:35 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "major" => "Computer Science", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Sign Up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:50:35.877244"], ["updated_at", "2025-04-05 19:50:35.877244"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53286/
+Completed 302 Found in 21ms (ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:50:35 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/assets/LogoWithCircle-81fac526.png" for 127.0.0.1 at 2025-04-05 15:50:35 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:51:31.615407', '2025-04-05 19:51:31.615407'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 19:51:31.615407', '2025-04-05 19:51:31.615407');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 19:51:31.619539', '2025-04-05 19:51:31.619539', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 19:51:31.619539', '2025-04-05 19:51:31.619539', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$Ot.D7DlPRxP6JRUhCeXLUuEC7ws5m3ZIBEXZcYtpjRc5XUEwxnSPS', 60, '2025-04-05 19:51:31.620506', '2025-04-05 19:51:31.620506', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$mo6hrK.DTnr8C48FNkDqWuuPG5.Vpeczqw72T8AeVqFTEZ3NHihxO', 100, '2025-04-05 19:51:31.620506', '2025-04-05 19:51:31.620506', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 19:51:31.621696', '2025-04-05 19:51:31.621696', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 19:51:31.621696', '2025-04-05 19:51:31.621696', NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+UserFlowsTest: test_user_can_sign_up
+------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-05 15:51:32 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 15.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 37.8ms | GC: 0.0ms)
+Completed 200 OK in 80ms (Views: 50.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started POST "/students" for 127.0.0.1 at 2025-04-05 15:51:32 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-05 19:51:32.383019"], ["updated_at", "2025-04-05 19:51:32.383019"], ["major", "Computer Science"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 26ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-05 15:51:32 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 19.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.1ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 24.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
