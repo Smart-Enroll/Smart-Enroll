@@ -19036,3 +19036,737 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 659ms (Views: 7.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for ::1 at 2025-04-04 15:27:38 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 18.0ms | GC: 6.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.8ms | GC: 6.5ms)
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'current_user' for an instance of #<Class:0x000000012195f980>)
+Caused by: NameError (undefined local variable or method 'current_user' for an instance of #<Class:0x000000012195f980>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'current_user' for an instance of #<Class:0x000000012195f980>):
+    155:         <div class="signup-container">
+    156:             <%= link_to 'Sign Up', new_student_path, class: 'signup-button' %>
+    157: 
+    158:             <% if current_user && current_user.email.include?("@admin.com") %>
+    159:                 <div style="margin-top: 10px;">
+    160:                     <%= link_to "Go to Admin Dashboard", admins_dashboard_index_path, class: "signup-button" %>
+    161:                 </div>
+  
+app/views/home/index.html.erb:158
+
+Information for cause: NameError (undefined local variable or method 'current_user' for an instance of #<Class:0x000000012195f980>):
+  
+app/views/home/index.html.erb:158
+Started GET "/favicon.ico" for ::1 at 2025-04-04 15:27:39 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2025-04-04 15:30:26 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | GC: 0.0ms)
+Completed 200 OK in 51ms (Views: 13.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/application-e92a05ba.js" for ::1 at 2025-04-04 15:30:26 -0400
+Started GET "/assets/turbo.min-1262d735.js" for ::1 at 2025-04-04 15:30:26 -0400
+Started GET "/assets/LogoWithCircle-cf1a1a1f.png" for ::1 at 2025-04-04 15:30:26 -0400
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mAdmin Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mAdmin Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mAdmin Create (1.1ms)[0m  [1m[32mINSERT INTO "admins" ("name", "email", "password_digest", "role", "created_at", "updated_at") VALUES ('Admin One', 'admin1@admin.com', '$2a$12$GNeIJCZnY5B7CAaGEat9He0MS9mWH2ND3.yxQCg6GnvqGqKidEokK', 'admin', '2025-04-04 19:37:13.764669', '2025-04-04 19:37:13.764669') RETURNING "id" /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
+Started GET "/" for ::1 at 2025-04-04 15:38:10 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | GC: 0.0ms)
+Completed 200 OK in 50ms (Views: 12.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 15:38:43 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://localhost:3000/login
+Completed 302 Found in 36ms (ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-04-04 15:38:43 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/" for ::1 at 2025-04-04 15:38:43 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 3.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 15:39:13 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+Redirected to http://localhost:3000/login
+Completed 302 Found in 22ms (ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-04-04 15:39:13 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/" for ::1 at 2025-04-04 15:39:13 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-04 15:41:29 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.9ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | GC: 0.5ms)
+Completed 200 OK in 49ms (Views: 13.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.2ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 15:41:43 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  [1m[36mAdmin Load (1.8ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:14:in 'SessionsController#create'
+Redirected to http://localhost:3000/admins_dashboard/index
+Completed 302 Found in 225ms (ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:41:43 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 12.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012cd3af18>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012cd3af18>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012cd3af18>):
+    1: <h2>Students</h2>
+    2: <% @students.each do |student| %>
+    3:   <p><%= student.name %> <%= button_to 'Delete', destroy_student_admins_dashboard_path(student), method: :delete %></p>
+    4: <% end %>
+    5: 
+    6: <h2>Courses</h2>
+  
+app/views/admins_dashboard/index.html.erb:3
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012cd3af18>):
+  
+app/views/admins_dashboard/index.html.erb:3
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/" for ::1 at 2025-04-04 15:49:03 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 23.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.7ms | GC: 0.0ms)
+Completed 200 OK in 64ms (Views: 29.2ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:49:05 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (2.0ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 17.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.2ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 2.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_index_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:49:10 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 6.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_index_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/" for ::1 at 2025-04-04 15:49:14 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 36ms (Views: 4.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:49:18 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (1.8ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 3.1ms | GC: 1.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 1.6ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_index_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:49:24 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_index_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_index_path' for an instance of #<Class:0x00000001308b5f20>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:51:02 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:51:06 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (3.2ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 8.7ms | GC: 1.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | GC: 1.5ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 3.1ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/" for ::1 at 2025-04-04 15:51:11 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 30.3ms | GC: 5.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 37.9ms | GC: 6.9ms)
+Completed 200 OK in 66ms (Views: 37.7ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 6.9ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:51:14 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 4.5ms | GC: 1.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | GC: 1.2ms)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/" for ::1 at 2025-04-04 15:51:16 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 980190963 LIMIT 1 /*action='index',application='SmartEnroll',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 36ms (Views: 4.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-04 15:51:18 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 9.6ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | GC: 0.3ms)
+Completed 200 OK in 39ms (Views: 11.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 15:51:19 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 2.0ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.7ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012ea7aa10>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/students/new" for ::1 at 2025-04-04 15:51:19 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-04 15:55:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.0ms)
+Completed 200 OK in 45ms (Views: 11.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-04-04 16:00:27 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.0ms)
+Completed 200 OK in 45ms (Views: 11.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 16:01:04 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  [1m[36mAdmin Load (1.7ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:14:in 'SessionsController#create'
+Redirected to http://localhost:3000/admins_dashboard/index
+Completed 302 Found in 221ms (ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard/index" for ::1 at 2025-04-04 16:01:04 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012a136188>)
+Caused by: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012a136188>)
+
+Information for: ActionView::Template::Error (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012a136188>):
+    2: <% @students.each do |student| %>
+    3:   <p>
+    4:     <%= student.name %>
+    5:     <%= button_to 'Delete', destroy_student_admins_dashboard_path(student.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    6:   </p>
+    7: <% end %>
+    8: 
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+
+Information for cause: NoMethodError (undefined method 'destroy_student_admins_dashboard_path' for an instance of #<Class:0x000000012a136188>):
+  
+app/views/admins_dashboard/index.html.erb:5
+app/views/admins_dashboard/index.html.erb:2
+Started GET "/" for ::1 at 2025-04-04 21:11:57 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 46ms (Views: 11.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-04 21:11:58 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 6.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 55ms (Views: 7.4ms | ActiveRecord: 1.6ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 21:12:05 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  [1m[36mAdmin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:14:in 'SessionsController#create'
+Redirected to http://localhost:3000/admins_dashboard
+Completed 302 Found in 217ms (ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard" for ::1 at 2025-04-04 21:12:05 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:10
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 17.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.3ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'name' for an instance of Course)
+Caused by: NoMethodError (undefined method 'name' for an instance of Course)
+
+Information for: ActionView::Template::Error (undefined method 'name' for an instance of Course):
+     9: <h2>Courses</h2>
+    10: <% @courses.each do |course| %>
+    11:   <p>
+    12:     <%= course.name %>
+    13:     <%= button_to 'Delete', destroy_course_admins_dashboard_path(course.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    14:   </p>
+    15: <% end %>
+  
+app/views/admins_dashboard/index.html.erb:12
+app/views/admins_dashboard/index.html.erb:10
+
+Information for cause: NoMethodError (undefined method 'name' for an instance of Course):
+  
+app/views/admins_dashboard/index.html.erb:12
+app/views/admins_dashboard/index.html.erb:10
+Started GET "/signup" for ::1 at 2025-04-04 21:21:01 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/signup"):
+  
+Started GET "/" for ::1 at 2025-04-04 21:21:26 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 6.3ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 1.3ms)
+Completed 200 OK in 56ms (Views: 13.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
+
+
+Started POST "/login" for ::1 at 2025-04-04 21:21:37 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  [1m[36mAdmin Load (1.5ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'admin1@admin.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:14:in 'SessionsController#create'
+Redirected to http://localhost:3000/admins_dashboard
+Completed 302 Found in 233ms (ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 1.8ms)
+
+
+Started GET "/admins_dashboard" for ::1 at 2025-04-04 21:21:37 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:10
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 16.4ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | GC: 1.0ms)
+Completed 200 OK in 36ms (Views: 18.0ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started DELETE "/admins_dashboard/destroy_student/980190963" for ::1 at 2025-04-04 21:26:05 -0400
+Processing by AdminsDashboardController#destroy_student as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:8:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mStudent Destroy (2.1ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = 980190963 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 2.8ms (2 queries, 0 cached) | GC: 2.2ms)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed)
+Caused by: SQLite3::ConstraintException (FOREIGN KEY constraint failed)
+
+Information for: ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+
+Information for cause: SQLite3::ConstraintException (FOREIGN KEY constraint failed):
+  
+app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+Started GET "/admins_dashboard" for ::1 at 2025-04-04 21:28:50 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  [1m[36mCourse Load (1.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:10
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 24.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.6ms | GC: 0.0ms)
+Completed 200 OK in 80ms (Views: 30.5ms | ActiveRecord: 3.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/admins_dashboard/destroy_student/980190963" for ::1 at 2025-04-04 21:28:58 -0400
+Processing by AdminsDashboardController#destroy_student as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "980190963"}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190963 LIMIT 1 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:8:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190963 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mUserSchedule Destroy (0.1ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = 980191021 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mStudent Destroy (0.0ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = 980190963 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+Redirected to http://localhost:3000/admins_dashboard
+Completed 302 Found in 82ms (ActiveRecord: 2.9ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard" for ::1 at 2025-04-04 21:28:59 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:10
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 12.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 14.9ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/admins_dashboard/destroy_student/980190967" for ::1 at 2025-04-04 21:29:08 -0400
+Processing by AdminsDashboardController#destroy_student as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "980190967"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190967 LIMIT 1 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:8:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mUserSchedule Load (0.6ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190967 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mUserSchedule Destroy (0.6ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = 980191017 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mStudent Destroy (0.0ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = 980190967 /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_student',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/controllers/admins_dashboard_controller.rb:9:in 'AdminsDashboardController#destroy_student'
+Redirected to http://localhost:3000/admins_dashboard
+Completed 302 Found in 47ms (ActiveRecord: 0.8ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admins_dashboard" for ::1 at 2025-04-04 21:29:08 -0400
+Processing by AdminsDashboardController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:2
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='admins_dashboard'*/[0m
+  ↳ app/views/admins_dashboard/index.html.erb:10
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 11.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.0ms)
+Completed 200 OK in 28ms (Views: 12.1ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+

@@ -3,11 +3,11 @@ class Student < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :credits_earned, numericality: { greater_than_or_equal_to: 0 }
-  validates :major, presence: true, on: :create  # Only required when creating a student
+  validates :major, presence: true, on: :create
   validates :password, presence: true, confirmation: true, if: :password_required?
 
   # Associations
-  has_many :user_schedules
+  has_many :user_schedules, dependent: :destroy
   has_many :courses, through: :user_schedules
 
   # Secure password handling
@@ -20,6 +20,6 @@ class Student < ApplicationRecord
   private
 
   def password_required?
-    new_record? || password.present?  # Require password only for new records or when explicitly changing it
+    new_record? || password.present?
   end
 end

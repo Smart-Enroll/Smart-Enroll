@@ -407,3 +407,153 @@ Processing by ScheduleViewController#index as HTML
   Rendered layout layouts/application.html.erb (Duration: 5.8ms | GC: 0.0ms)
 Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.1ms (4 queries, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "admins"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "admins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "courses" ("CRN" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "class_name" varchar NOT NULL, "professor" varchar NOT NULL, "term" varchar NOT NULL, "credits" integer NOT NULL, "class_time" time NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "major" varchar, "status" varchar, "prerequisite" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "students"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "students" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "credits_earned" integer DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "major" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "user_schedules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "term" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_course_id" ON "user_schedules" ("course_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_student_id" ON "user_schedules" ("student_id")[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "auser_schedules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "term" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_auser_schedules_on_student_id" ON "auser_schedules" ("student_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_auser_schedules_on_course_id" ON "auser_schedules" ("course_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "auser_schedules" ("id","student_id","course_id","status","created_at","updated_at","term")
+                     SELECT "id","student_id","course_id","status","created_at","updated_at","term" FROM "user_schedules"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "user_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "user_schedules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "term" varchar, CONSTRAINT "fk_rails_0a6fe67229"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("CRN")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_course_id" ON "user_schedules" ("course_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_student_id" ON "user_schedules" ("student_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "user_schedules" ("id","student_id","course_id","status","created_at","updated_at","term")
+                     SELECT "id","student_id","course_id","status","created_at","updated_at","term" FROM "auser_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "auser_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "auser_schedules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "term" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_auser_schedules_on_student_id" ON "auser_schedules" ("student_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_auser_schedules_on_course_id" ON "auser_schedules" ("course_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "auser_schedules" ("id","student_id","course_id","status","created_at","updated_at","term")
+                     SELECT "id","student_id","course_id","status","created_at","updated_at","term" FROM "user_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "user_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "user_schedules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "term" varchar, CONSTRAINT "fk_rails_0a6fe67229"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("CRN")
+, CONSTRAINT "fk_rails_f7c5c03ee1"
+FOREIGN KEY ("student_id")
+  REFERENCES "students" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_course_id" ON "user_schedules" ("course_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_user_schedules_on_student_id" ON "user_schedules" ("student_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "user_schedules" ("id","student_id","course_id","status","created_at","updated_at","term")
+                     SELECT "id","student_id","course_id","status","created_at","updated_at","term" FROM "auser_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "auser_schedules"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250403003229)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250402234319),
+(20250330184452),
+(20250329210254),
+(20250329194919),
+(20250309195056),
+(20250309191103),
+(20250308201943),
+(20250308195034),
+(20250308182627);[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-04-05 01:35:16.257489', '2025-04-05 01:35:16.257490') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '82e3190693e017372e736c0e1dbecdaa76b7175b', '2025-04-05 01:35:16.259252', '2025-04-05 01:35:16.259253') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 01:35:17.018616', '2025-04-05 01:35:17.018616'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 01:35:17.018616', '2025-04-05 01:35:17.018616');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 01:35:17.022252', '2025-04-05 01:35:17.022252', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 01:35:17.022252', '2025-04-05 01:35:17.022252', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$ZuAPUCPmfws1DaAZhdbrOOmqZgPG6XKq/AFK/fMBCNev2e4snS1..', 60, '2025-04-05 01:35:17.025220', '2025-04-05 01:35:17.025220', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$ujr20CVEPm7o0ChXQzMq/u5wz0yavq4ej1ct/p3zG0mJIeP7yaKfq', 100, '2025-04-05 01:35:17.025220', '2025-04-05 01:35:17.025220', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 01:35:17.028636', '2025-04-05 01:35:17.028636', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 01:35:17.028636', '2025-04-05 01:35:17.028636', NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------
+AdminsDashboardControllerTest: test_should_get_index
+----------------------------------------------------
+Started GET "/admins_dashboard" for 127.0.0.1 at 2025-04-04 21:35:17 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 16.2ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.4ms | GC: 0.4ms)
+Completed 200 OK in 39ms (Views: 24.7ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.7ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 01:37:37.369231', '2025-04-05 01:37:37.369231'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-05 01:37:37.369231', '2025-04-05 01:37:37.369231');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-05 01:37:37.371297', '2025-04-05 01:37:37.371297', NULL, NULL, NULL), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-05 01:37:37.371297', '2025-04-05 01:37:37.371297', NULL, NULL, NULL);
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$P1Tzia5oKC8JGL2alKLH7.q9Ee6ZHX.t0hCZQQPOHpEGNhLLO3xZG', 60, '2025-04-05 01:37:37.375328', '2025-04-05 01:37:37.375328', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$iomcsL9xlYJTFO5h5T1JneRMef6jW/YDJaneq6U5Wur1iYRJayu/2', 100, '2025-04-05 01:37:37.375328', '2025-04-05 01:37:37.375328', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'active', '2025-04-05 01:37:37.379312', '2025-04-05 01:37:37.379312', NULL), (298486374, 298486374, 102, 'Inactive', '2025-04-05 01:37:37.379312', '2025-04-05 01:37:37.379312', NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------
+AdminsDashboardControllerTest: test_should_get_index
+----------------------------------------------------
+Started GET "/admins_dashboard" for 127.0.0.1 at 2025-04-04 21:37:37 -0400
+Processing by AdminsDashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admins_dashboard/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered admins_dashboard/index.html.erb within layouts/application (Duration: 14.6ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | GC: 0.7ms)
+Completed 200 OK in 30ms (Views: 19.7ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.9ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m

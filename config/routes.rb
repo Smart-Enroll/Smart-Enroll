@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  # Admin dashboard routes
+  get 'admins_dashboard', to: 'admins_dashboard#index', as: 'admins_dashboard_index'
+  delete 'admins_dashboard/destroy_student/:id', to: 'admins_dashboard#destroy_student', as: 'destroy_student_admins_dashboard'
+  delete 'admins_dashboard/destroy_course/:id', to: 'admins_dashboard#destroy_course', as: 'destroy_course_admins_dashboard'
+
   # Root path
-  root "home#index"  # Sets the home page to the index action of HomeController
+  root "home#index"
 
   # Authentication routes
   post "/login", to: "sessions#create"
@@ -9,22 +14,22 @@ Rails.application.routes.draw do
 
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
+
   # Resourceful routes
   resources :students
+
   resources :courses do
     member do
-      get 'enroll'  # Custom route for enrolling in a course
+      get 'enroll'
     end
   end
-  resources :schedule_view, only: [:index]  # Restrict to index action
+
+  resources :schedule_view, only: [:index]
   resources :admins
+
   get 'students/:id/edit_password', to: 'students#edit_password', as: 'edit_password'
   patch 'students/:id/update_password', to: 'students#update_password', as: 'update_password'
 
   delete '/courses/:id/unenroll', to: 'courses#unenroll', as: 'unenroll_course'
   get '/students/:id', to: 'students#show', as: 'student_profile'
-
-  # Future PWA support (commented for now)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 end
