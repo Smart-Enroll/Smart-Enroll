@@ -20,7 +20,11 @@ class AdminsController < ApplicationController
         render :edit
       end
     end
-  
+
+    def admins_dashboard
+      @courses = Course.all
+    end
+    
     def destroy
       @admin = Admin.find(params[:id])
       @admin.destroy
