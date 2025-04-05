@@ -1,0 +1,118 @@
+<h1 class="header">Admin Dashboard - Manage Courses</h1>
+
+<table class="courses-table">
+  <thead>
+    <tr>
+      <th>CRN</th>
+      <th>Course Name</th>
+      <th>Professor</th>
+      <th>Term</th>
+      <th>Credits</th>
+      <th>Major</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.CRN %></td>
+        <td><%= course.class_name %></td>
+        <td><%= course.professor %></td>
+        <td><%= course.term %></td>
+        <td><%= course.credits %></td>
+        <td><%= course.major.present? ? course.major : "N/A" %></td>
+        <td><%= course.status.present? ? course.status : "N/A" %></td>
+        <td>
+          <%= link_to "Edit", edit_course_path(course), class: "action-button edit" %>
+          <%= button_to "Delete", course_path(course), method: :delete, data: { confirm: "Are you sure?" }, class: "action-button delete" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <%= link_to "Add New Course", new_course_path, class: "green-button" %>
+  <%= button_to "Log Out", logout_path, method: :delete, class: "green-button" %>
+</div>
+
+<style>
+  body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .header {
+    background-color: #004B2D;
+    color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .button-container {
+    margin-bottom: 20px;
+  }
+
+  .green-button {
+    background: #004B2D;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 5px;
+  }
+
+  .green-button:hover {
+    background: #003F26;
+  }
+
+  .courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto 30px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .courses-table th, .courses-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .courses-table th {
+    background-color: #004B2D;
+    color: white;
+  }
+
+  .action-button {
+    background: #004B2D;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 2px;
+    display: inline-block;
+  }
+
+  .action-button.edit {
+    background-color: #4CAF50;
+  }
+
+  .action-button.delete {
+    background-color: #f44336;
+  }
+
+  .action-button:hover {
+    opacity: 0.8;
+  }
+</style>

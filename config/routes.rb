@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :schedule_view, only: [:index]
   resources :admins
 
+  get 'admin/dashboard', to: 'admins#admins_dashboard', as: 'admin_dashboard'
+
+
   get 'students/:id/edit_password', to: 'students#edit_password', as: 'edit_password'
   patch 'students/:id/update_password', to: 'students#update_password', as: 'update_password'
 
