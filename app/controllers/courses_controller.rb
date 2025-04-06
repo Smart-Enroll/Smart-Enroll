@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
+  include ScheduleViewHelper
   before_action :set_course, only: %i[show edit update destroy]
-  
+  before_action :set_dropdown_terms, only: [:new, :create]
+
   def index
     @term = params[:term] # get the term from URL params
     @courses = Course.all
@@ -10,7 +12,7 @@ class CoursesController < ApplicationController
 
     # Search filter
     if params[:search].present?
-      search_term = "%#{params[:search].downcase}%" 
+      search_term = "%#{params[:search].downcase}%"
       @courses = @courses.where("LOWER(class_name) LIKE ?", search_term)
     end
 
@@ -19,12 +21,13 @@ class CoursesController < ApplicationController
       @courses = @courses.where(major: current_student.major)
     end
   end
-  
+
   def show
   end
 
   def new
     @course = Course.new
+    # @dropdown_terms is set by the before_action
   end
 
   def enroll
@@ -71,9 +74,10 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-      redirect_to @course, notice: 'Course was successfully created.'
+      redirect_to admin_dashboard_path, notice: "Course successfully created."
     else
-      render :new, status: :unprocessable_entity
+      flash.now[:alert] = "Error creating course. Please check the form."
+      render :new
     end
   end
 
@@ -89,8 +93,9 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    @course = Course.find(params[:id])
     @course.destroy
-    redirect_to courses_path, notice: 'Course was successfully deleted.'
+    redirect_to admin_dashboard_path, notice: 'Course was successfully deleted.'
   end
 
   private
@@ -99,7 +104,11 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def set_dropdown_terms
+    @dropdown_terms = build_term_dropdown
+  end
+
   def course_params
-    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :prerequisite, :status)
+    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :prerequisite, :status, :major)
   end
 end
