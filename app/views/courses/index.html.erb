@@ -12,7 +12,7 @@
 
   .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
@@ -29,7 +29,7 @@
     align-items: center;
     margin-left: 70%;
     gap: 10px;
-    height: 0px;
+    height: 0;
   }
 
   input[type="checkbox"] {
@@ -57,6 +57,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+    margin-bottom: 40px; 
   }
 
   .courses-table th, .courses-table td {
@@ -71,31 +72,51 @@
     font-weight: bold;
   }
 
-  .enroll-button, .back-button {
+  .enroll-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  .enroll-button:hover {
+    background-color: #45a049;
+  }
+
+  .enroll-button.planned,
+  .enroll-button.taken {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: default;
+  }
+  
+  .enroll-button.planned:hover,
+  .enroll-button.taken:hover {
+    background-color: red; 
+  }
+
+  .back-button {
     padding: 15px 30px;
     font-size: 18px;
     border-radius: 4px;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-  }
-
-  .enroll-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-
-  .enroll-button:hover {
-    background-color: #45a049;
-  }
-
-  .back-button {
-    margin-top: 30px;
-    height: 48px;
     background-color: #f44336;
     color: white;
     border: none;
+    margin-top: 20px; 
   }
 
   .back-button:hover {
@@ -111,8 +132,9 @@
       padding: 15px;
       font-size: 16px;
     }
-
-    .enroll-button, .back-button {
+  
+    .enroll-button, .back-button,
+    .enroll-button.planned, .enroll-button.taken {
       padding: 12px 24px;
       font-size: 16px;
     }
@@ -159,6 +181,10 @@
   .search-form button:hover {
     background-color: #45a049;
   }
+
+  .search-form h1 {
+    margin: 0;
+  }
 </style>
 
 <div class="container">
@@ -174,7 +200,7 @@
 
     <h1>All Courses for <%= @term %></h1>
 
-    <!-- Search bar (already present) -->
+    <!-- Search bar -->
     <form method="get" action="<%= courses_path %>" class="search-form">
       <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>">
       <button type="submit">Search</button>
@@ -206,7 +232,7 @@
             <td><%= course.status.present? ? course.status : "N/A" %></td>
             <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
             <td>
-              <%= link_to "Enroll", enroll_course_path(course), method: :get, class: "enroll-button" %>
+              <%= enrollment_action_for(course) %>
             </td>
           </tr>
         <% end %>
@@ -217,7 +243,8 @@
 
     <!-- Checkbox for filtering recommended courses -->
     <label>
-      <h1>Recommended Courses</h1><input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>
+      <h1>Recommended Courses</h1>
+      <input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>>
     </label>
   </div>
 </div>
@@ -232,7 +259,6 @@
     } else {
       url.searchParams.delete("recommended");
     }
-
     window.location.href = url.toString();
   });
 </script>

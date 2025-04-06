@@ -1,0 +1,175 @@
+<!-- app/views/courses/new.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Course</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <style>
+    /* Global styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #000; /* All text black */
+    }
+    
+    /* Content Container Styling */
+    .content-container {
+      max-width: 1200px;  /* Increased width */
+      margin: 100px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    /* Form styling */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #000; /* Ensure label text is black */
+    }
+    
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #004B2D;
+      outline: none;
+    }
+    
+    /* Flex row for side-by-side fields */
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+    
+    /* Increase space between fields */
+    .form-row.spacious {
+      gap: 40px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+    }
+    
+    /* Button styling */
+    .green-button {
+      background: #004B2D;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s ease;
+      display: inline-block;
+    }
+    
+    .green-button:hover {
+      background: #003F26;
+    }
+    
+    /* Link styling */
+    a.green-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+    <h1>Add New Course</h1>
+    <%= form_with model: @course, local: true do |f| %>
+      <!-- CRN (full width) -->
+      <div class="form-group">
+        <%= f.label :CRN, "CRN" %>
+        <%= f.text_field :CRN %>
+      </div>
+      
+      <!-- Course Name and Professor side by side with extra space -->
+      <div class="form-row spacious">
+        <div class="form-group">
+          <%= f.label :class_name, "Course Name" %>
+          <%= f.text_field :class_name %>
+        </div>
+        <div class="form-group">
+          <%= f.label :professor, "Professor" %>
+          <%= f.text_field :professor %>
+        </div>
+      </div>
+      
+      <!-- Term and Credits side by side -->
+      <div class="form-row">
+        <div class="form-group">
+          <%= f.label :term, "Term" %>
+          <%= f.select :term, options_for_select(@dropdown_terms, @course.term), {}, { id: "term-dropdown", onchange: "this.form.submit()" } %>
+        </div>      
+        <div class="form-group">
+          <%= f.label :credits, "Credits" %>
+          <%= f.number_field :credits %>
+        </div>
+      </div>
+      
+      <!-- Major as dropdown -->
+      <div class="form-group">
+        <%= f.label :major, "Major" %>
+        <%= f.select :major, [
+          "Computer Science", "Information Technology", "Software Engineering", 
+          "Electrical Engineering", "Mechanical Engineering", "Civil Engineering",
+          "Business Administration", "Finance", "Biology", "Chemistry", "Mathematics", 
+          "Physics", "Psychology", "Political Science", "English", "History"
+        ], { selected: @course.major }, { class: "input-box" } %>
+      </div>
+      
+      <!-- Status as dropdown -->
+      <div class="form-group">
+        <%= f.label :status, "Status" %>
+        <%= f.select :status, options_for_select(["Open", "Closed", "Waitlist"], @course.status) %>
+      </div>
+      
+      <!-- Class Time and Prerequisite side by side with extra space -->
+      <div class="form-row spacious">
+        <div class="form-group">
+          <%= f.label :class_time, "Class Time" %>
+          <%= f.text_field :class_time %>
+        </div>
+        <div class="form-group">
+          <%= f.label :prerequisite, "Prerequisite" %>
+          <%= f.text_field :prerequisite %>
+        </div>
+      </div>
+      
+      <div>
+        <%= f.submit "Create Course", class: "green-button" %>
+      </div>
+    <% end %>
+    <%= link_to "Back to Dashboard", admin_dashboard_path, class: "green-button" %>
+  </div>
+</body>
+</html>
