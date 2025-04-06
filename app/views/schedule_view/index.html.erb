@@ -60,7 +60,6 @@
       left: 0;
       z-index: 1000;
     }
-    /* Back Button with specified characteristics */
     .back-button {
       position: fixed;
       bottom: 120px;
@@ -130,7 +129,6 @@
     .unenroll-button:hover {
       background-color: #cc0000;
     }
-    /* Add button now gets a higher z-index so it stays clickable if overlapping the back button */
     .add-button {
       background: #f4f4f4;
       color: black;
@@ -208,50 +206,51 @@
   <div class="content-container">
     <% if @user_schedules.empty? %>
       <p style="font-weight: bold;">No courses enrolled for <%= @term %>.</p>
-    <% else %>
-      <div class="course-container">
-        <% @user_schedules.each do |schedule| %>
-          <% course = schedule.course %>
-          <div class="course-card">
-            <table class="invisible-table">
-              <tr>
-                <th>Course Name</th>
-                <td><%= course.class_name %></td>
-              </tr>
-              <tr>
-                <th>CRN</th>
-                <td><%= course.CRN %></td>
-              </tr>
-              <tr>
-                <th>Professor</th>
-                <td><%= course.professor %></td>
-              </tr>
-              <tr>
-                <th>Term</th>
-                <td><%= course.term %></td>
-              </tr>
-              <tr>
-                <th>Credits</th>
-                <td><%= course.credits %></td>
-              </tr>
-              <tr>
-                <th>Status</th>
-                <td><%= schedule.status %></td>
-              </tr>
-            </table>
-            <div class="unenroll-container">
-              <%= button_to "Unenroll", unenroll_course_path(course),
-                            method: :delete, class: "unenroll-button" %>
-            </div>
-          </div>
-        <% end %>
-        <!-- Add Button as part of the same grid -->
-        <div class="add-button"
-             onclick="window.location.href='<%= courses_path(term: @term) %>';">
-          +
-        </div>
-      </div>
     <% end %>
+    
+    <!-- Always render the course container so the Add button is visible -->
+    <div class="course-container">
+      <% @user_schedules.each do |schedule| %>
+        <% course = schedule.course %>
+        <div class="course-card">
+          <table class="invisible-table">
+            <tr>
+              <th>Course Name</th>
+              <td><%= course.class_name %></td>
+            </tr>
+            <tr>
+              <th>CRN</th>
+              <td><%= course.CRN %></td>
+            </tr>
+            <tr>
+              <th>Professor</th>
+              <td><%= course.professor %></td>
+            </tr>
+            <tr>
+              <th>Term</th>
+              <td><%= course.term %></td>
+            </tr>
+            <tr>
+              <th>Credits</th>
+              <td><%= course.credits %></td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td><%= schedule.status %></td>
+            </tr>
+          </table>
+          <div class="unenroll-container">
+            <%= button_to "Unenroll", unenroll_course_path(course),
+                          method: :delete, class: "unenroll-button" %>
+          </div>
+        </div>
+      <% end %>
+      <!-- Add Button is always visible -->
+      <div class="add-button"
+           onclick="window.location.href='<%= courses_path(term: @term) %>';">
+        +
+      </div>
+    </div>
   </div>
 
   <!-- Bottom Banner -->
