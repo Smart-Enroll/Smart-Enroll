@@ -9,87 +9,115 @@
   <%= javascript_include_tag 'application' %>
 
   <style>
-    body {
-      background-color: #004B2D;
-      color: white;
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start; 
-      height: 100vh;
-    }
-
-    .container {
-      background: white;
-      color: black;
-      border-radius: 10px;
       width: 100%;
-      max-width: 1400px; 
-      padding: 20px;
-      margin: 0 auto;
-      text-align: center;
-      min-height: 100vh; 
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; 
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
     }
-
-    .header {
+    body {
+      background-color: #ffffff;
+      color: black; 
+    }
+    .top-banner {
       background-color: #004B2D;
-      color: white;
-      padding: 15px;
-      border-radius: 10px 10px 0 0;
+      width: 100%;
+      height: 100px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
-      width: 99%;
-      margin-left: -4%;
+      padding: 0 20px;
     }
-
-    .header img {
+    .top-banner img {
       width: 80px;
-      position: relative;
-      z-index: 2;
     }
-
+    .top-banner h2 {
+      margin: 0;
+      font-size: 28px; 
+      color: white;
+    }
+    .top-banner form {
+      margin: 0;
+    }
+    .top-banner select {
+      font-size: 14px;
+      padding: 4px;
+    }
+    .bottom-banner {
+      background-color: #004B2D;
+      width: 100%;
+      height: 100px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    /* Back Button with specified characteristics */
+    .back-button {
+      position: fixed;
+      bottom: 120px;
+      left: 20px;
+      z-index: 1100;
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      width: auto;
+    }
+    .back-button:hover {
+      background-color: #004d00;
+    }
+    .content-container {
+      position: fixed;
+      top: 100px;    
+      bottom: 100px; 
+      left: 0;
+      right: 0;
+      padding: 20px;
+      overflow-y: auto;
+    }
     .course-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-  gap: 15px;
-  margin-top: 20px;
-  flex-grow: 1;
-  position: relative;
-  align-items: start; 
-}
-
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      align-items: start;
+      margin-top: 20px;
+    }
     .course-card {
       background: #f4f4f4;
+      color: black;
       border-radius: 10px;
       padding: 12px;
-      text-align: center;
       font-weight: bold;
       position: relative;
       height: 200px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s ease-in-out;
     }
-
     .course-card:hover {
       transform: scale(1.05);
     }
-
     .unenroll-container {
       position: absolute;
       bottom: 10px;
       right: 10px;
     }
-
     .unenroll-button {
       background-color: #ff4d4d;
       color: white;
@@ -99,47 +127,13 @@
       cursor: pointer;
       border-radius: 5px;
     }
-
     .unenroll-button:hover {
       background-color: #cc0000;
     }
-
-    .status {
-      display: block;
-      padding: 5px;
-      font-size: 12px;
-      border-radius: 5px;
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .status.ready {
-      background: green;
-      color: white;
-    }
-
-    .status.full {
-      background: yellow;
-      color: black;
-    }
-
-    .status.conflict {
-      background: red;
-      color: white;
-    }
-
-    .info-icon {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
+    /* Add button now gets a higher z-index so it stays clickable if overlapping the back button */
     .add-button {
       background: #f4f4f4;
+      color: black;
       border-radius: 10px;
       padding: 12px;
       font-size: 24px;
@@ -149,98 +143,73 @@
       align-items: center;
       justify-content: center;
       border: 1px solid #ddd;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       height: 200px;
-      width: 95%;
-      text-align: center;
       position: relative;
-      order: 999; 
+      z-index: 1200;
     }
-
-    .footer {
-      margin-top: 20px;
-      font-weight: bold;
+    .add-button:hover {
+      transform: scale(1.05);
     }
-
-    .back-button {
-      background: #004B2D;
-      color: white;
-      padding: 8px 16px;
-      font-size: 14px; 
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      position: fixed;
-      bottom: 20px; 
-      left: 20px;
-      z-index: 10;
-    }
-
-    .back-button:hover {
-      background: #003F26;
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
     }
-
     td, th {
-      padding: 8px;
+      padding: 4px;
       text-align: left;
       vertical-align: middle;
+      color: #333;
+      font-weight: normal;
     }
-
     th {
       font-weight: bold;
       color: #333;
     }
-
-    td {
-      color: #555;
-    }
-
-    .invisible-table th, .invisible-table td {
+    .invisible-table th,
+    .invisible-table td {
       border: none;
     }
-
     @media (max-width: 768px) {
       .course-container {
         grid-template-columns: 1fr;
       }
-
-      .course-card {
+      .course-card,
+      .add-button {
         height: auto;
       }
-
-      .add-button {
-        width: auto;
-        position: relative;
-        margin-top: 20px; 
     }
-   
-
   </style>
-  </head>
+</head>
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="<%= asset_path('LogoWithCircle.png') %>" alt="USF Logo">
-      <h2>Student Course Schedule for <span style="color: yellow;"><%= @term %></span></h2>
-      <form action="#" method="get" class="term-dropdown-form">
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <img src="<%= asset_path('LogoWithCircle.png') %>" alt="USF Logo">
+    <h2>
+      Student Course Schedule for
+      <span style="color: yellow;"><%= @term %></span>
+    </h2>
+    <form action="#" method="get" class="term-dropdown-form">
       <select name="term" id="term-dropdown" onchange="this.form.submit()">
         <% @dropdown_terms.each do |term| %>
-          <option value="<%= term %>" <%= 'selected' if term == @term %>> <%= term %> </option>
+          <option value="<%= term %>" <%= 'selected' if term == @term %>>
+            <%= term %>
+          </option>
         <% end %>
       </select>
     </form>
-    </div>
+  </div>
 
-    <div class="course-container">
-      <% if @user_schedules.empty? %>
-        <p style="margin-top: 40px; font-weight: bold; width: 100%;">No courses enrolled for <%= @term %>.</p>
-      <% else %>
+  <!-- Back Button on bottom left -->
+  <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
+
+  <!-- Main Content Container (fixed between banners) -->
+  <div class="content-container">
+    <% if @user_schedules.empty? %>
+      <p style="font-weight: bold;">No courses enrolled for <%= @term %>.</p>
+    <% else %>
+      <div class="course-container">
         <% @user_schedules.each do |schedule| %>
           <% course = schedule.course %>
           <div class="course-card">
@@ -270,18 +239,22 @@
                 <td><%= schedule.status %></td>
               </tr>
             </table>
-
             <div class="unenroll-container">
-              <%= button_to "Unenroll", unenroll_course_path(course), method: :delete, class: "unenroll-button" %>
+              <%= button_to "Unenroll", unenroll_course_path(course),
+                            method: :delete, class: "unenroll-button" %>
             </div>
           </div>
         <% end %>
-      <% end %>
-
-      <div class="add-button" onclick="window.location.href='<%= courses_path(term: @term) %>';">+</div>
-    </div>
+        <!-- Add Button as part of the same grid -->
+        <div class="add-button"
+             onclick="window.location.href='<%= courses_path(term: @term) %>';">
+          +
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <button class="back-button" onclick="window.location.href='<%= dashboard_path %>';">← Back</button>
+  <!-- Bottom Banner -->
+  <div class="bottom-banner"></div>
 </body>
 </html>
