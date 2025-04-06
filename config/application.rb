@@ -1,5 +1,5 @@
 require_relative "boot"
-
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
