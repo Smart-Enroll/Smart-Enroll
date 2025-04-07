@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-  self.primary_key = "CRN"  
+  self.primary_key = "CRN"
 
   # Validations
   validates :CRN, presence: true, uniqueness: true, numericality: { only_integer: true }
@@ -9,7 +9,7 @@ class Course < ApplicationRecord
   validates :credits, numericality: { greater_than: 0 }
   validates :class_time, presence: true
   validates :major, presence: true
-  validates :status, presence: true, inclusion: { in: ["Open", "Closed", "Waitlist"] }
+  validates :status, presence: true, inclusion: { in: [ "Open", "Closed", "Waitlist" ] }
   validates :prerequisite, presence: true
 
   # Associations

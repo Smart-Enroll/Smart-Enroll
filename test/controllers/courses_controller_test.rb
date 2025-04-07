@@ -8,10 +8,10 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     @integration_session = open_session
     @integration_session.cookies["student_id"] = @student.id
   end
-  
+
 
   test "should create course" do
-    assert_difference('Course.count') do
+    assert_difference("Course.count") do
       post courses_url, params: { course: { CRN: 123456, class_name: "Test Course", professor: "Dr. Smith", term: "Fall 2025", credits: 3, class_time: "2000-01-01 10:00:00", prerequisite: "None", status: "Open", major: "Computer Science" } }
     end
     assert_redirected_to admin_dashboard_path
@@ -66,7 +66,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
       student_id: @student.id,
       course_id: prerequisite_course.CRN,
       term: prerequisite_course.term,
-      status: "Planned"  
+      status: "Planned"
     )
 
     # Now enrollment should succeed.
@@ -85,7 +85,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy course" do
-    assert_difference('Course.count', -1) do
+    assert_difference("Course.count", -1) do
       delete course_url(@course)
     end
     assert_redirected_to admin_dashboard_path

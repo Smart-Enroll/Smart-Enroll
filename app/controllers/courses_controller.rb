@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   include ScheduleViewHelper
   before_action :set_course, only: %i[show edit update destroy]
-  before_action :set_dropdown_terms, only: [:new, :create, :edit]
+  before_action :set_dropdown_terms, only: [ :new, :create, :edit ]
 
   def index
     @term = params[:term] # get the term from URL params
@@ -86,7 +86,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update(course_params)
-      redirect_to admin_dashboard_path, notice: 'Course was successfully updated.'
+      redirect_to admin_dashboard_path, notice: "Course was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -95,7 +95,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
-    redirect_to admin_dashboard_path, notice: 'Course was successfully deleted.'
+    redirect_to admin_dashboard_path, notice: "Course was successfully deleted."
   end
 
   private

@@ -6,4 +6,3 @@ class Admin < ApplicationRecord
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
   validates :role, presence: true, inclusion: { in: %w[superadmin moderator] }
 end
-

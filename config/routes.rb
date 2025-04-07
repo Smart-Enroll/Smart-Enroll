@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "students#dashboard", as: :dashboard
 
   # Notifications as a top-level route
-  get 'notifications', to: 'students#notifications', as: 'notifications'
+  get "notifications", to: "students#notifications", as: "notifications"
 
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
@@ -18,19 +18,19 @@ Rails.application.routes.draw do
 
   resources :courses do
     member do
-      get 'enroll'
+      get "enroll"
     end
   end
 
-  resources :schedule_view, only: [:index]
+  resources :schedule_view, only: [ :index ]
   resources :admins
 
-  get 'admin/dashboard', to: 'admins#admins_dashboard', as: 'admin_dashboard'
+  get "admin/dashboard", to: "admins#admins_dashboard", as: "admin_dashboard"
 
 
-  get 'students/:id/edit_password', to: 'students#edit_password', as: 'edit_password'
-  patch 'students/:id/update_password', to: 'students#update_password', as: 'update_password'
+  get "students/:id/edit_password", to: "students#edit_password", as: "edit_password"
+  patch "students/:id/update_password", to: "students#update_password", as: "update_password"
 
-  delete '/courses/:id/unenroll', to: 'courses#unenroll', as: 'unenroll_course'
-  get '/students/:id', to: 'students#show', as: 'student_profile'
+  delete "/courses/:id/unenroll", to: "courses#unenroll", as: "unenroll_course"
+  get "/students/:id", to: "students#show", as: "student_profile"
 end

@@ -22,14 +22,14 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
   test "should update student" do
     student = students(:one)
     patch student_url(student), params: { student: { name: "Updated Name" } }, as: :json
-    
+
     assert_response :success
-    
+
     json_response = JSON.parse(response.body)
     assert_equal true, json_response["success"]
     assert_equal "Updated Name", json_response["student"]["name"]
   end
-  
+
 
   test "should destroy student" do
     student = students(:one)
