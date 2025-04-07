@@ -6,35 +6,43 @@ class UserScheduleTest < ActiveSupport::TestCase
       email: "test@student.com",
       name: "Test Student",
       password: "password",
-      credits_earned: 0
+      credits_earned: 0,
+      major: "Computer Science"
     )
+
     @course = Course.create!(
       CRN: 12345,
       class_name: "Test Course",
       professor: "Test Professor",
       term: "Fall 2025",
       credits: 3,
-      class_time: "2000-01-01 10:00:00"
+      class_time: "2000-01-01 10:00:00",
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
-    @user_schedule = UserSchedule.create!(student: @student, course: @course)
+
+    @user_schedule = UserSchedule.create!(
+      student: @student,
+      course: @course,
+      term: @course.term
+    )
   end
 
-  # Test to see if the user_Schedule properties match
   test "should create user_schedule with valid student and course associations" do
     assert @user_schedule.valid?, "UserSchedule should be valid with proper associations"
-    assert_equal @student, @user_schedule.student, "Associated student should be the one created in setup"
-    assert_equal @course, @user_schedule.course, "Associated course should be the one created in setup"
+    assert_equal @student, @user_schedule.student, "Associated student should match"
+    assert_equal @course, @user_schedule.course, "Associated course should match"
+    assert_equal "Fall 2025", @user_schedule.term, "Term should match the course term"
   end
 
-  # Test to make sure we cant have a course schedule without a student
   test "should not be valid without a student" do
-    invalid_schedule = UserSchedule.new(course: @course)
+    invalid_schedule = UserSchedule.new(course: @course, term: @course.term)
     assert_not invalid_schedule.valid?, "UserSchedule should be invalid without a student"
   end
 
-  # Test to make sure we cant have a course schedule without a course
   test "should not be valid without a course" do
-    invalid_schedule = UserSchedule.new(student: @student)
+    invalid_schedule = UserSchedule.new(student: @student, term: @course.term)
     assert_not invalid_schedule.valid?, "UserSchedule should be invalid without a course"
   end
 end

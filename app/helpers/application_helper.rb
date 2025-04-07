@@ -2,7 +2,7 @@ module ApplicationHelper
     def next_term
       today = Date.today
       year = today.year
-  
+
       case today
       when Date.new(year, 1, 1)..Date.new(year, 5, 15)
         "Summer #{year}"
@@ -14,5 +14,4 @@ module ApplicationHelper
         "Spring #{year}" # fallback
       end
     end
-  end
-  
+end

@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:dashboard]
+  before_action :set_student, only: [ :show, :edit, :update, :destroy ]
+  before_action :require_login, only: [ :dashboard ]
 
   # GET /students
   def index
@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      redirect_to root_path, notice: 'Student was successfully created. Please log in.'
+      redirect_to root_path, notice: "Student was successfully created. Please log in."
     else
       render :new
     end
@@ -38,17 +38,17 @@ class StudentsController < ApplicationController
 
   def notifications
     @student = Student.find(session[:student_id])
-  
+
     # If you have a Notification model related to Student:
     # @notifications = @student.notifications.order(created_at: :desc)
-  
+
     # For now, placeholder data:
     @notifications = [
       { title: "New Course Added", body: "The course 'Advanced Algorithms' has been added to your major.", created_at: Time.now - 1.day },
       { title: "Course Updated", body: "The course 'Software Engineering' schedule has been updated.", created_at: Time.now - 2.days }
     ]
   end
-  
+
 
   # PATCH/PUT /students/:id
   def update
@@ -57,22 +57,22 @@ class StudentsController < ApplicationController
       if params[:student][:email] != @student.email
         session[:student_id] = @student.id
       end
-  
+
       render json: { success: true, student: @student }
     else
       render json: { success: false, errors: @student.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  
+
   def edit_password
     @student = Student.find_by(id: session[:student_id])
-    return redirect_to dashboard_path, alert: "Student not found." unless @student
+    redirect_to dashboard_path, alert: "Student not found." unless @student
   end
-  
+
   def update_password
     @student = Student.find_by(id: session[:student_id])
     return redirect_to dashboard_path, alert: "Student not found." unless @student
-  
+
     if @student.authenticate(params[:student][:current_password])
       if @student.update(password_params)
         redirect_to @student, notice: "Password successfully updated."
@@ -84,14 +84,14 @@ class StudentsController < ApplicationController
       render :edit_password
     end
   end
-  
-  
-  
+
+
+
 
   # DELETE /students/:id
   def destroy
     @student.destroy
-    redirect_to students_url, notice: 'Student was successfully removed.'
+    redirect_to students_url, notice: "Student was successfully removed."
   end
 
   private
@@ -104,18 +104,18 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
-  
+
+
   private
-  
+
   def password_params
     params.require(:student).permit(:password, :password_confirmation)
   end
-  
+
   def set_student
     @student = Student.find_by(id: params[:id]) || Student.find_by(id: session[:student_id])
   end
-  
+
 
   def student_params
     if action_name == "create"
@@ -124,5 +124,4 @@ class StudentsController < ApplicationController
       params.require(:student).permit(:name, :email)  # Only allow name and email for updates
     end
   end
-  
 end

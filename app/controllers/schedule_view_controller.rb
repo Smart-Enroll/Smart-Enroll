@@ -50,7 +50,7 @@ class ScheduleViewController < ApplicationController
   # Build the dropdown list of terms
   def build_term_dropdown
     current_year = Date.today.year
-    seasons = ["Spring", "Summer", "Fall"]
+    seasons = [ "Spring", "Summer", "Fall" ]
 
     terms = []
 
@@ -62,6 +62,6 @@ class ScheduleViewController < ApplicationController
     end
 
     # Sort terms by year and season (Spring, Summer, Fall)
-    terms.sort_by { |term| [term.split.last.to_i, seasons.index(term.split.first)] }
+    terms.sort_by { |term| [ term.split.last.to_i, seasons.index(term.split.first) ] }
   end
 end

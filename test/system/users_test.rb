@@ -11,8 +11,7 @@ class UserSignupTest < ApplicationSystemTestCase
     fill_in "Confirm Password", with: "securepassword"
 
     click_on "Sign Up"
-    
+
     assert_current_path root_path
   end
 end
-

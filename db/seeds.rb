@@ -16,8 +16,8 @@
 #   role: "superadmin"
 # )
 # Student.create!(email: "student42@example.com",
-#  name: "Marin Doe", 
-#  password_digest: "hashedpassword321", 
+#  name: "Marin Doe",
+#  password_digest: "hashedpassword321",
 #  credits_earned: 20)
 
 #  Course.create!(

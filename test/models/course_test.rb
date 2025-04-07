@@ -11,7 +11,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: 4,
-      class_time: Time.parse("14:00")  # Ensure class_time is a Time object
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert course.valid?, "Course should be valid with all attributes"
   end
@@ -24,7 +27,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: 4,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without a CRN"
   end
@@ -37,7 +43,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: 4,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without a class_name"
   end
@@ -50,7 +59,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: nil,
       term: "Spring 2024",
       credits: 4,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without a professor"
   end
@@ -63,7 +75,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: nil,
       credits: 4,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without a term"
   end
@@ -76,7 +91,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: nil,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without credits"
   end
@@ -89,7 +107,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: 4,
-      class_time: nil
+      class_time: nil,
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
     assert_not course.valid?, "Course should be invalid without class_time"
   end
@@ -103,7 +124,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Adams",
       term: "Spring 2024",
       credits: 4,
-      class_time: Time.parse("14:00")
+      class_time: Time.parse("14:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
 
     course = Course.new(
@@ -112,7 +136,10 @@ class CourseTest < ActiveSupport::TestCase
       professor: "Dr. Brown",
       term: "Fall 2024",
       credits: 3,
-      class_time: Time.parse("16:00")
+      class_time: Time.parse("16:00"),
+      status: "Open",
+      major: "Computer Science",
+      prerequisite: "None"
     )
 
     assert_not course.valid?, "Course should be invalid with a duplicate CRN"

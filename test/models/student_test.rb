@@ -8,7 +8,8 @@ class StudentTest < ActiveSupport::TestCase
       name: "John Doe",
       credits_earned: 30,
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
+      major: "Computer Science"
     )
   end
 
