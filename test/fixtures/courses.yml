@@ -1,5 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   CRN: 101
   class_name: "Database Design"
@@ -20,5 +18,4 @@ two:
   class_time: "2000-01-01 10:00:00"
   major: "Computer Science"
   status: "Open"
-  prerequisite: "None"
-
+  prerequisite: "Database Design"
