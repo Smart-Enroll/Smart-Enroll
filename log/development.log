@@ -34914,3 +34914,38 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 37ms (Views: 10.3ms | ActiveRecord: 0.3ms (9 queries, 0 cached) | GC: 6.8ms)
 
 
+Started DELETE "/logout" for ::1 at 2025-04-06 16:13:27 -0400
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to http://[::1]:3000/
+Completed 302 Found in 43ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/" for ::1 at 2025-04-06 16:13:27 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.9ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.9ms)
+Completed 200 OK in 28ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/students/new" for ::1 at 2025-04-06 16:13:28 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 30.3ms | GC: 4.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.3ms | GC: 4.9ms)
+Completed 200 OK in 72ms (Views: 31.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.1ms)
+
+
+Started GET "/" for ::1 at 2025-04-06 19:24:35 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | GC: 0.0ms)
+Completed 200 OK in 77ms (Views: 16.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

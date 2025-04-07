@@ -7,6 +7,9 @@ one:
   term: "Fall 2024"
   credits: 3
   class_time: "2000-01-01 10:00:00"
+  major: "Computer Science"
+  status: "Open"
+  prerequisite: "None"
 
 two:
   CRN: 102
@@ -15,3 +18,7 @@ two:
   term: "Fall 2023"
   credits: 3
   class_time: "2000-01-01 10:00:00"
+  major: "Computer Science"
+  status: "Open"
+  prerequisite: "None"
+
