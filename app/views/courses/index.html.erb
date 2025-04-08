@@ -201,7 +201,10 @@
     <h1>All Courses for <%= @term %></h1>
 
     <!-- Search bar -->
- 
+    <form method="get" action="<%= courses_path %>" class="search-form">
+      <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>">
+      <button type="submit">Search</button>
+    </form>
 
     <table class="courses-table">
       <thead>
