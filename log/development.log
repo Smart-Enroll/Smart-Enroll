@@ -36236,3 +36236,229 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 10ms (Views: 3.9ms | ActiveRecord: 0.3ms (7 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/schedule_view" for 127.0.0.1 at 2025-04-08 17:38:08 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mStudent Load (2.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:3:in 'ScheduleViewController#index'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 /*action='index',application='SmartEnroll',controller='schedule_view'*/[0m
+  ↳ app/controllers/schedule_view_controller.rb:12:in 'ScheduleViewController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | GC: 0.1ms)
+Completed 200 OK in 98ms (Views: 14.9ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:12 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 7.2ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/students/980190970" for 127.0.0.1 at 2025-04-08 17:38:14 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190970"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:116:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 4.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:18 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.3ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/980190970" for 127.0.0.1 at 2025-04-08 17:38:19 -0400
+Processing by StudentsController#show as HTML
+  Parameters: {"id" => "980190970"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='show',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:116:in 'StudentsController#set_student'
+  Rendering layout layouts/application.html.erb
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:22 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.0ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for 127.0.0.1 at 2025-04-08 17:38:21 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 2.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:22 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 2.3ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/notifications" for 127.0.0.1 at 2025-04-08 17:38:23 -0400
+Processing by StudentsController#notifications as HTML
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='notifications',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:40:in 'StudentsController#notifications'
+  Rendering layout layouts/application.html.erb
+  Rendering students/notifications.html.erb within layouts/application
+  Rendered students/notifications.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 0.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:23 -0400
+Processing by StudentsController#dashboard as HTML
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2025-04-08 17:38:26 -0400
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-04-08 17:38:26 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 6.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2025-04-08 17:38:32 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'pat@pat.com' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+Redirected to http://127.0.0.1:3000/dashboard
+Completed 302 Found in 172ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2025-04-08 17:38:33 -0400
+Processing by StudentsController#dashboard as TURBO_STREAM
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:100:in 'StudentsController#require_login'
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='dashboard',application='SmartEnroll',controller='students'*/[0m
+  ↳ app/controllers/students_controller.rb:12:in 'StudentsController#dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering students/dashboard.html.erb within layouts/application
+  Rendered students/dashboard.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 0.9ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2025-04-08 17:38:35 -0400
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-04-08 17:38:35 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for 127.0.0.1 at 2025-04-08 17:38:36 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/students/new" for 127.0.0.1 at 2025-04-08 17:38:38 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2025-04-08 17:38:44 -0400
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = 'biedermann@usf.edu' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  [1m[36mAdmin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'biedermann@usf.edu' LIMIT 1 /*action='create',application='SmartEnroll',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:14:in 'SessionsController#create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 24ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-04-08 17:38:44 -0400
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 4.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-04-08 17:39:06 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
