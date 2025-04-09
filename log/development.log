@@ -36462,3 +36462,16 @@ Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached
 
 
   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Migrating to AddDayBooleansToCourses (20250409150009)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "courses" ADD "mon" boolean DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "courses" ADD "tue" boolean DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "courses" ADD "wed" boolean DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "courses" ADD "thu" boolean DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "courses" ADD "fri" boolean DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250409150009') RETURNING "version" /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+  [1m[36mCourse Load (2.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for pp */ LIMIT 11 /*application='SmartEnroll'*/[0m
