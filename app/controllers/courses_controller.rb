@@ -20,6 +20,24 @@ class CoursesController < ApplicationController
     if params[:recommended] == "true" && current_student
       @courses = @courses.where(major: current_student.major)
     end
+
+    # Filter for days of the week
+    if params[:day].present?
+      day_param = params[:day].downcase
+
+      case day_param
+      when "mon"
+        @courses = @courses.where(mon: true)
+      when "tue"
+        @courses = @courses.where(tue: true)
+      when "wed"
+        @courses = @courses.where(wed: true)
+      when "thu"
+        @courses = @courses.where(thu: true)
+      when "fri"
+        @courses = @courses.where(fri: true)
+      end
+    end
   end
 
   def show
