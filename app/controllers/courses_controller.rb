@@ -22,6 +22,25 @@ class CoursesController < ApplicationController
     end
   end
 
+  if params[:day].present?
+    # We expect params[:day] to be one of: "mon", "tue", "wed", "thu", "fri"
+    day_param = params[:day].downcase
+
+    case day_param
+    when "mon"
+      @courses = @courses.where(mon: true)
+    when "tue"
+      @courses = @courses.where(tue: true)
+    when "wed"
+      @courses = @courses.where(wed: true)
+    when "thu"
+      @courses = @courses.where(thu: true)
+    when "fri"
+      @courses = @courses.where(fri: true)
+    end
+  end
+
+
   def show
   end
 
