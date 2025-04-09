@@ -36579,3 +36579,350 @@ Completed 200 OK in 45ms (Views: 35.3ms | ActiveRecord: 0.7ms (7 queries, 0 cach
   [1m[36mCourse Update (0.0ms)[0m  [1m[33mUPDATE "courses" SET "updated_at" = '2025-04-09 15:06:25.107240', "mon" = 1, "wed" = 1 WHERE "courses"."CRN" = 12312515 /*application='SmartEnroll'*/[0m
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
   [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for pp */ LIMIT 11 /*application='SmartEnroll'*/[0m
+Started GET "/courses?term=Summer+2025" for 127.0.0.1 at 2025-04-09 11:11:58 -0400
+  
+NameError (undefined local variable or method 'params' for class CoursesController):
+  
+app/controllers/courses_controller.rb:25:in '<class:CoursesController>'
+app/controllers/courses_controller.rb:1:in '<main>'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-04-09 11:11:59 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/courses?term=Summer+2025" for 127.0.0.1 at 2025-04-09 11:12:31 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"term" => "Summer 2025"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (2.9ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."term" = 'Summer 2025' /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:233
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 77.7ms | GC: 17.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 87.1ms | GC: 20.1ms)
+Completed 200 OK in 109ms (Views: 86.5ms | ActiveRecord: 2.5ms (7 queries, 0 cached) | GC: 20.6ms)
+
+
+Started GET "/courses?term=Summer+2025" for 127.0.0.1 at 2025-04-09 11:12:49 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"term" => "Summer 2025"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."term" = 'Summer 2025' /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 46.2ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 48.7ms | GC: 0.9ms)
+Completed 200 OK in 71ms (Views: 49.1ms | ActiveRecord: 1.8ms (7 queries, 0 cached) | GC: 1.4ms)
+
+
+Started GET "/courses?term=Summer+2025" for 127.0.0.1 at 2025-04-09 11:13:12 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"term" => "Summer 2025"}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."term" = 'Summer 2025' /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 38.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 40.7ms | GC: 0.0ms)
+Completed 200 OK in 59ms (Views: 41.1ms | ActiveRecord: 2.0ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?day=mon&search=" for 127.0.0.1 at 2025-04-09 11:13:14 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "mon", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mon" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 10.1ms | ActiveRecord: 0.3ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?day=tue&search=" for 127.0.0.1 at 2025-04-09 11:13:17 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "tue", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."tue" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 4.8ms | ActiveRecord: 0.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?day=wed&search=" for 127.0.0.1 at 2025-04-09 11:13:19 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "wed", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."wed" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 11.0ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.5ms)
+Completed 200 OK in 23ms (Views: 15.3ms | ActiveRecord: 0.3ms (6 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/courses?day=thu&search=" for 127.0.0.1 at 2025-04-09 11:13:21 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "thu", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."thu" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 8.4ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.4ms)
+Completed 200 OK in 16ms (Views: 9.0ms | ActiveRecord: 0.2ms (4 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/courses?day=fri&search=" for 127.0.0.1 at 2025-04-09 11:13:22 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "fri", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."fri" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 5.9ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/courses?day=&search=" for 127.0.0.1 at 2025-04-09 11:13:24 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:243
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 7.7ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.6ms)
+Completed 200 OK in 15ms (Views: 8.7ms | ActiveRecord: 0.4ms (9 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/courses?day=&search=" for 127.0.0.1 at 2025-04-09 11:15:30 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:244
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 38.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 42.3ms | GC: 0.0ms)
+Completed 200 OK in 55ms (Views: 42.7ms | ActiveRecord: 1.2ms (9 queries, 0 cached) | GC: 0.5ms)
+
+
+  [1m[36mCourse Load (0.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = 12314214124 LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mCourse Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = 12314214124 AND "courses"."CRN" != 12314214124 LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mCourse Update (0.1ms)[0m  [1m[33mUPDATE "courses" SET "updated_at" = '2025-04-09 15:15:58.422719', "mon" = 1, "wed" = 1 WHERE "courses"."CRN" = 12314214124 /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (77.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
+Started GET "/courses?day=&search=" for 127.0.0.1 at 2025-04-09 11:16:00 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:244
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 10.2ms | ActiveRecord: 0.4ms (9 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/courses?day=mon&search=" for 127.0.0.1 at 2025-04-09 11:16:03 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "mon", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mon" = 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:244
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 5.0ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | GC: 0.6ms)
+Completed 200 OK in 12ms (Views: 5.5ms | ActiveRecord: 0.3ms (7 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/courses?day=&search=" for 127.0.0.1 at 2025-04-09 11:16:05 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:244
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 6.6ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | GC: 0.5ms)
+Completed 200 OK in 13ms (Views: 6.9ms | ActiveRecord: 0.4ms (9 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/courses?day=&search=" for 127.0.0.1 at 2025-04-09 11:16:46 -0400
+Processing by CoursesController#index as HTML
+  Parameters: {"day" => "", "search" => ""}
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/views/courses/index.html.erb:244
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = 980190970 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/controllers/application_controller.rb:5:in 'ApplicationController#current_student'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 4444 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40001 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40002 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 40003 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 1111111 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12312515 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = 980190970 AND "user_schedules"."course_id" = 12314214124 LIMIT 1 /*action='index',application='SmartEnroll',controller='courses'*/[0m
+  ↳ app/helpers/courses_helper.rb:7:in 'CoursesHelper#enrollment_status_for'
+  Rendered courses/index.html.erb within layouts/application (Duration: 32.6ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 35.6ms | GC: 0.3ms)
+Completed 200 OK in 52ms (Views: 36.0ms | ActiveRecord: 1.0ms (9 queries, 0 cached) | GC: 0.6ms)
+
+

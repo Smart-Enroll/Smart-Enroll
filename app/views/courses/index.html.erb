@@ -185,6 +185,16 @@
   .search-form h1 {
     margin: 0;
   }
+
+    .search-form label {
+    margin-top: 10px;
+  }
+
+  .search-form select {
+    width: 150px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
 </style>
 
 <div class="container">
@@ -202,6 +212,15 @@
 
     <!-- Search bar -->
     <form method="get" action="<%= courses_path %>" class="search-form">
+      <label for="day">Day:</label>
+      <select name="day" id="day">
+        <option value="">All Days</option>
+        <option value="mon" <%= "selected" if params[:day] == "mon" %>>Monday</option>
+        <option value="tue" <%= "selected" if params[:day] == "tue" %>>Tuesday</option>
+        <option value="wed" <%= "selected" if params[:day] == "wed" %>>Wednesday</option>
+        <option value="thu" <%= "selected" if params[:day] == "thu" %>>Thursday</option>
+        <option value="fri" <%= "selected" if params[:day] == "fri" %>>Friday</option>
+      </select>
       <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>">
       <button type="submit">Search</button>
     </form>
@@ -213,6 +232,7 @@
           <th>Course Name</th>
           <th>Professor</th>
           <th>Term</th>
+          <th>Days</th>
           <th>Credits</th>
           <th>Major</th>
           <th>Status</th>
@@ -227,6 +247,16 @@
             <td><%= course.class_name %></td>
             <td><%= course.professor %></td>
             <td><%= course.term %></td>
+            <%# Create array of days and add any days that the course has and display %>
+            <td>
+              <% days = [] %>
+              <% days << "Mon" if course.mon %>
+              <% days << "Tue" if course.tue %>
+              <% days << "Wed" if course.wed %>
+              <% days << "Thu" if course.thu %>
+              <% days << "Fri" if course.fri %>
+              <%= days.join(", ") %>
+          </td>
             <td><%= course.credits %></td>
             <td><%= course.major.present? ? course.major : "Not Provided" %></td>
             <td><%= course.status.present? ? course.status : "N/A" %></td>
