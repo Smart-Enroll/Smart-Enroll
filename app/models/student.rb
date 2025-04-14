@@ -9,6 +9,7 @@ class Student < ApplicationRecord
   # Associations
   has_many :user_schedules
   has_many :courses, through: :user_schedules
+  has_many :notifications, dependent: :destroy
 
   # Secure password handling
   has_secure_password

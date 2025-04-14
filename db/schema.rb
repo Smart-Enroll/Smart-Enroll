@@ -39,6 +39,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_14_152247) do
     t.time "end_time"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.string "message", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "body"
+    t.index ["student_id"], name: "index_notifications_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "email"
     t.string "name"
@@ -61,6 +72,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_14_152247) do
     t.index ["student_id"], name: "index_user_schedules_on_student_id"
   end
 
+  add_foreign_key "notifications", "students"
   add_foreign_key "user_schedules", "courses", primary_key: "CRN"
   add_foreign_key "user_schedules", "students"
 end
