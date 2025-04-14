@@ -51,26 +51,26 @@ class CoursesController < ApplicationController
   def enroll
     course = Course.find(params[:id])
     current_student = Student.find(session[:student_id]) # Ensure user is logged in
-
+  
     # Check if the student is already enrolled
     if current_student.courses.include?(course)
       flash[:notice] = "You're already enrolled in this course!"
-      redirect_to courses_path and return
+      redirect_to courses_path(term: course.term) and return
     end
-
+  
     # Check if the course has a prerequisite
     if course.prerequisite.present?
       # Get all completed courses for the student
       completed_courses = current_student.user_schedules.where(status: "Planned").pluck(:course_id)
-
+  
       # Ensure the prerequisite course is completed
       prerequisite_course = Course.find_by(class_name: course.prerequisite)
       if prerequisite_course && !completed_courses.include?(prerequisite_course.id)
         flash[:alert] = "You cannot enroll in #{course.class_name} because you have not completed the prerequisite: #{course.prerequisite}."
-        redirect_to courses_path and return
+        redirect_to courses_path(term: course.term) and return
       end
     end
-
+  
     # Enroll the student by creating a new UserSchedule entry
     UserSchedule.create!(
       student_id: current_student.id,
@@ -78,11 +78,11 @@ class CoursesController < ApplicationController
       term: course.term,
       status: "Planned"
     )
-
+  
     flash[:notice] = "Successfully enrolled in #{course.class_name} for #{course.term}!"
-    redirect_to courses_path
+    redirect_to courses_path(term: course.term, day: params[:day], search: params[:search], recommended: params[:recommended])
   end
-
+  
   def unenroll
     course = Course.find(params[:id])
     current_student.courses.delete(course)
@@ -99,6 +99,9 @@ class CoursesController < ApplicationController
       flash.now[:alert] = "Error creating course. Please check the form."
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -128,7 +131,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :prerequisite, :status, :major)
+    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :end_time, :prerequisite, :status, :major)
   end
 
   def send_notification_to_all_users(course, action:)
