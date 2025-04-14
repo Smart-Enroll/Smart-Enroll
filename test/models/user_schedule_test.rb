@@ -16,7 +16,8 @@ class UserScheduleTest < ActiveSupport::TestCase
       professor: "Test Professor",
       term: "Fall 2025",
       credits: 3,
-      class_time: "2000-01-01 10:00:00",
+      class_time: "10:00:00",
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
