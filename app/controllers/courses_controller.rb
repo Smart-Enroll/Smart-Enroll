@@ -82,7 +82,7 @@ class CoursesController < ApplicationController
     flash[:notice] = "Successfully enrolled in #{course.class_name} for #{course.term}!"
     redirect_to courses_path(term: course.term, day: params[:day], search: params[:search], recommended: params[:recommended])
   end
-  
+
   def unenroll
     course = Course.find(params[:id])
     current_student.courses.delete(course)
@@ -144,9 +144,13 @@ class CoursesController < ApplicationController
                 "Course #{course.class_name} has been #{action}"
               end
   
-    # Iterate through all students and create a notification for each one
     Student.find_each do |student|
       Notification.create!(student: student, message: message)
+      # Use the attribute accessor (student[:notifications]) to get the DB column value,
+      # then update it directly to avoid conflict with the association.
+      new_count = student[:notifications].to_i + 1
+      student.update_column(:notifications, new_count)
     end
   end
+  
 end

@@ -12,112 +12,120 @@
   <%= javascript_include_tag 'application' %>
 
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
 
-  .top-banner, .bottom-banner {
-    background-color: #004B2D;
-    width: 100%;
-    height: 100px; 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    position: fixed;
-    left: 0;
-    z-index: 1000;
-  }
+    .top-banner, .bottom-banner {
+      background-color: #004B2D;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: fixed;
+      left: 0;
+      z-index: 1000;
+    }
 
-  .top-banner {
-    top: 0;
-  }
+    .top-banner {
+      top: 0;
+    }
 
-  .bottom-banner {
-    bottom: 0;
-  }
+    .bottom-banner {
+      bottom: 0;
+    }
 
-  .banner-text {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-  }
+    .banner-text {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-  .top-right {
-    display: flex;
-    align-items: center;
-  }
+    .top-right {
+      display: flex;
+      align-items: center;
+    }
 
-  .logo {
-    height: 80px; 
-    margin-right: 35px;
-  }
+    .logo {
+      height: 80px;
+      margin-right: 35px;
+    }
 
-  .logout-container {
-    position: absolute;
-    top: 110px; 
-    right: 20px; 
-  }
+    .logout-container {
+      position: absolute;
+      top: 110px;
+      right: 20px;
+    }
 
-  .logout-button {
-    background-color: #006747;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-decoration: none;
-  }
+    .logout-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
 
-  .logout-button:hover {
-    background-color: #004d00;
-  }
+    .logout-button:hover {
+      background-color: #004d00;
+    }
 
-  .dashboard-container {
-    text-align: center;
-    flex-grow: 1;  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 140px; 
-  }
+    .dashboard-container {
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 140px;
+    }
 
-  .welcome-text h2 {
-    color: #006747; 
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-  }
+    .welcome-text h2 {
+      color: #006747;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px; 
-    margin-top: 40px;
-  }
+    .notification-status {
+      font-size: 18px;
+      color: #333;
+      margin-top: 10px;
+    }
 
-  .green-button {
-    background-color: #006747;
-    color: white;
-    border: none;
-    padding: 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 200px; 
-  }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
 
-  .green-button:hover {
-    background-color: #004d00;
-  }
+    .green-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 200px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .green-button:hover {
+      background-color: #004d00;
+    }
   </style>
 </head>
 <body>
@@ -136,18 +144,22 @@
   </div>
 
   <div class="dashboard-container">
-    <!-- Welcome text -->
+    <!-- Welcome Text -->
     <div class="welcome-text">
       <h2>Welcome, <%= @student.name %>!</h2>
+    </div>
+    
+    <!-- Notification Count Display -->
+    <div class="notification-status">
+      You have <strong><%= @student.notifications.count %></strong> notifications.
     </div>
 
     <!-- Buttons -->
     <div class="button-container">
-    <button class="green-button" onclick="window.location.href='<%= schedule_view_index_path %>';">Go to Schedule</button>
-    <button class="green-button" onclick="window.location.href='<%= student_profile_path(@student) %>';">Profile</button>
-    <button class="green-button" onclick="window.location.href='<%= url_for(notifications_path) %>';">Notifications</button>
-
-  </div>
+      <%= link_to "Go to Schedule", schedule_view_index_path, class: "green-button" %>
+      <%= link_to "Profile", student_profile_path(@student), class: "green-button" %>
+      <%= link_to "Notifications (#{@student.notifications.count})", notifications_path, class: "green-button" %>
+    </div>
   </div>
 
   <!-- Bottom Banner -->
