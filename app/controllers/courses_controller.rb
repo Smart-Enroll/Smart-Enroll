@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   include ScheduleViewHelper
   before_action :set_course, only: %i[show edit update destroy]
-  before_action :set_dropdown_terms, only: [ :new, :create, :edit ]
+  before_action :set_dropdown_terms, only: [:index, :new, :create, :edit]
 
   def index
     @term = params[:term] # get the term from URL params

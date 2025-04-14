@@ -1,296 +1,310 @@
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Courses</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
 
-  .top-banner, .bottom-banner {
-    background-color: #004B2D;
-    color: white;
-    text-align: center;
-    padding: 30px;
-  }
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-  label {
-    display: flex;
-    align-items: center;
-    margin-left: 70%;
-    gap: 10px;
-    height: 0;
-  }
+    .top-banner, .bottom-banner {
+      background-color: #004B2D;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
 
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-  }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  .main-content {
-    background-color: white;
-    flex-grow: 1;
-    padding: 60px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-  }
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
 
-  h1 {
-    margin-bottom: 30px;
-    font-size: 32px;
-    color: #333;
-  }
+    .main-content {
+      background-color: white;
+      flex-grow: 1;
+      padding: 60px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
 
-  .courses-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-    margin-bottom: 40px; 
-  }
+    h1 {
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #333;
+    }
 
-  .courses-table th, .courses-table td {
-    padding: 20px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 18px;
-  }
+    .courses-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
 
-  .courses-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-
-  .enroll-button {
-    padding: 15px 40px;
-    font-size: 18px;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  .enroll-button:hover {
-    background-color: #45a049;
-  }
-
-  .enroll-button.planned,
-  .enroll-button.taken {
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: default;
-  }
-  
-  .enroll-button.planned:hover,
-  .enroll-button.taken:hover {
-    background-color: red; 
-  }
-
-  .back-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    margin-top: 20px; 
-  }
-
-  .back-button:hover {
-    background-color: #da190b;
-  }
-
-  .courses-table td:nth-child(5), .courses-table th:nth-child(5) {
-    text-align: center;
-  }
-
-  @media (max-width: 768px) {
     .courses-table th, .courses-table td {
-      padding: 15px;
-      font-size: 16px;
+      padding: 20px;
+      text-align: left;
+      border: 1px solid #ddd;
+      font-size: 18px;
     }
-  
-    .enroll-button, .back-button,
-    .enroll-button.planned, .enroll-button.taken {
-      padding: 12px 24px;
-      font-size: 16px;
+
+    .courses-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
     }
-  }
 
-  .flash-notice {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-  }
+    .enroll-button {
+      padding: 15px 40px;
+      font-size: 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+    
+    .enroll-button:hover {
+      background-color: #45a049;
+    }
 
-  .flash-alert {
-    background-color: #f44336;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-  }
+    .enroll-button.planned,
+    .enroll-button.taken {
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: default;
+    }
+    
+    .enroll-button.planned:hover,
+    .enroll-button.taken:hover {
+      background-color: red; 
+    }
 
-  .search-form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px; 
-  }
+    .back-button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      margin-top: 20px;
+    }
 
-  .search-form input[type="text"] {
-    padding: 10px;
-    width: 300px;
-    font-size: 16px;
-  }
+    .back-button:hover {
+      background-color: #da190b;
+    }
 
-  .search-form button {
-    padding: 5px 10px;
-    background-color: #004B2D;
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 100px;
-    margin-top: 10px;
-  }
+    .courses-table td:nth-child(5), .courses-table th:nth-child(5) {
+      text-align: center;
+    }
 
-  .search-form button:hover {
-    background-color: #45a049;
-  }
+    @media (max-width: 768px) {
+      .courses-table th, .courses-table td {
+        padding: 15px;
+        font-size: 16px;
+      }
+    
+      .enroll-button, .back-button,
+      .enroll-button.planned, .enroll-button.taken {
+        padding: 12px 24px;
+        font-size: 16px;
+      }
+    }
 
-  .search-form h1 {
-    margin: 0;
-  }
+    .flash-notice {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
 
-    .search-form label {
-    margin-top: 10px;
-  }
+    .flash-alert {
+      background-color: #f44336;
+      color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
 
-  .search-form select {
-    width: 150px;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-</style>
+    .search-form {
+      margin-top: 40px;
+    }
 
-<div class="container">
-  <div class="top-banner">
-    <h2>Welcome to the Course List</h2>
-  </div>
-  <div class="main-content">
-    <% flash.each do |key, message| %>
-      <div class="flash-<%= key %>">
-        <%= message %>
-      </div>
-    <% end %>
+    /* Invisible table for dropdowns only */
+    .invisible-table {
+      width: auto;
+      border-collapse: collapse;
+    }
+    
+    .invisible-table td {
+      border: none;
+      vertical-align: middle;
+      padding-right: 15px;
+    }
+  </style>
+</head>
 
-    <h1>All Courses for <%= @term %></h1>
+<body>
+  <div class="container">
+    <div class="top-banner">
+      <h2>Welcome to the Course List</h2>
+    </div>
 
-    <!-- Search bar -->
-    <form method="get" action="<%= courses_path %>" class="search-form">
-      <label for="day">Day:</label>
-      <!-- Added onchange event to auto-submit the form -->
-      <select name="day" id="day" onchange="this.form.submit()">
-        <option value="">All Days</option>
-        <option value="mon" <%= "selected" if params[:day] == "mon" %>>Monday</option>
-        <option value="tue" <%= "selected" if params[:day] == "tue" %>>Tuesday</option>
-        <option value="wed" <%= "selected" if params[:day] == "wed" %>>Wednesday</option>
-        <option value="thu" <%= "selected" if params[:day] == "thu" %>>Thursday</option>
-        <option value="fri" <%= "selected" if params[:day] == "fri" %>>Friday</option>
-      </select>
-      <input type="text" name="search" placeholder="Search for a course..." value="<%= params[:search] %>">
-      <button type="submit">Search</button>
-    </form>
+    <div class="main-content">
+      <% flash.each do |key, message| %>
+        <div class="flash-<%= key %>">
+          <%= message %>
+        </div>
+      <% end %>
 
+      <h1>All Courses for <%= @term %></h1>
 
-    <table class="courses-table">
-      <thead>
-        <tr>
-          <th>CRN</th>
-          <th>Course Name</th>
-          <th>Professor</th>
-          <th>Term</th>
-          <th>Days</th>
-          <th>Credits</th>
-          <th>Major</th>
-          <th>Status</th>
-          <th>Prerequisite</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @courses.each do |course| %>
+      <!-- Form with dropdowns in an invisible table -->
+      <form method="get" action="<%= courses_path %>" class="search-form">
+        <table class="invisible-table">
           <tr>
-            <td><%= course.CRN %></td>
-            <td><%= course.class_name %></td>
-            <td><%= course.professor %></td>
-            <td><%= course.term %></td>
-            <%# Create array of days and add any days that the course has and display %>
+            <!-- Day Filter -->
             <td>
-              <% days = [] %>
-              <% days << "Mon" if course.mon %>
-              <% days << "Tue" if course.tue %>
-              <% days << "Wed" if course.wed %>
-              <% days << "Thu" if course.thu %>
-              <% days << "Fri" if course.fri %>
-              <%= days.join(", ") %>
-          </td>
-            <td><%= course.credits %></td>
-            <td><%= course.major.present? ? course.major : "Not Provided" %></td>
-            <td><%= course.status.present? ? course.status : "N/A" %></td>
-            <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
+              <label for="day" style="font-weight: bold;">Day:</label>
+              <select name="day" id="day" onchange="this.form.submit()">
+                <option value="">All Days</option>
+                <option value="mon" <%= "selected" if params[:day] == "mon" %>>Monday</option>
+                <option value="tue" <%= "selected" if params[:day] == "tue" %>>Tuesday</option>
+                <option value="wed" <%= "selected" if params[:day] == "wed" %>>Wednesday</option>
+                <option value="thu" <%= "selected" if params[:day] == "thu" %>>Thursday</option>
+                <option value="fri" <%= "selected" if params[:day] == "fri" %>>Friday</option>
+              </select>
+            </td>
+
+            <!-- Term Filter -->
             <td>
-              <%= enrollment_action_for(course) %>
+              <label for="term" style="font-weight: bold;">Term:</label>
+              <select name="term" id="term" onchange="this.form.submit()">
+                <% @dropdown_terms.each do |term_option| %>
+                  <option value="<%= term_option %>" <%= 'selected' if term_option == @term %>>
+                    <%= term_option %>
+                  </option>
+                <% end %>
+              </select>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </table>
 
-    <%= link_to "Back", schedule_view_index_path, class: "back-button" %>
+        <!-- Search bar and button below the dropdown table -->
+        <div style="margin-top: 10px;">
+          <input type="text" 
+                 name="search"
+                 placeholder="Search for a course..." 
+                 value="<%= params[:search] %>"
+                 style="padding: 8px; width: 300px;"/>
+          <button type="submit"
+                  style="padding: 8px 16px; background-color: #004B2D; color: white; border: none; cursor: pointer; display: inline-block; width: auto;">
+            Search
+          </button>
+        </div>
+      </form>
 
-    <!-- Checkbox for filtering recommended courses -->
-    <label>
-      <h1>Recommended Courses</h1>
-      <input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>>
-    </label>
+      <table class="courses-table">
+        <thead>
+          <tr>
+            <th>CRN</th>
+            <th>Course Name</th>
+            <th>Professor</th>
+            <th>Term</th>
+            <th>Days</th>
+            <th>Credits</th>
+            <th>Major</th>
+            <th>Status</th>
+            <th>Prerequisite</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @courses.each do |course| %>
+            <tr>
+              <td><%= course.CRN %></td>
+              <td><%= course.class_name %></td>
+              <td><%= course.professor %></td>
+              <td><%= course.term %></td>
+              <td>
+                <% days = [] %>
+                <% days << "Mon" if course.mon %>
+                <% days << "Tue" if course.tue %>
+                <% days << "Wed" if course.wed %>
+                <% days << "Thu" if course.thu %>
+                <% days << "Fri" if course.fri %>
+                <%= days.join(", ") %>
+              </td>
+              <td><%= course.credits %></td>
+              <td><%= course.major.present? ? course.major : "Not Provided" %></td>
+              <td><%= course.status.present? ? course.status : "N/A" %></td>
+              <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
+              <td>
+                <%= enrollment_action_for(course) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to "Back", schedule_view_index_path(term: @term), class: "back-button" %>
+
+      <!-- Checkbox for filtering recommended courses -->
+      <label style="margin-top: 30px;">
+        <h1 style="margin: 0;">Recommended Courses</h1>
+        <input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>>
+      </label>
+    </div>
   </div>
-</div>
 
-<script>
-  document.getElementById("recommended-courses-checkbox").addEventListener("change", function() {
-    const checked = this.checked;
-    const url = new URL(window.location.href);
-    
-    if (checked) {
-      url.searchParams.set("recommended", "true");
-    } else {
-      url.searchParams.delete("recommended");
-    }
-    window.location.href = url.toString();
-  });
-</script>
+  <script>
+    document.getElementById("recommended-courses-checkbox").addEventListener("change", function() {
+      const checked = this.checked;
+      const url = new URL(window.location.href);
+      
+      if (checked) {
+        url.searchParams.set("recommended", "true");
+      } else {
+        url.searchParams.delete("recommended");
+      }
+      window.location.href = url.toString();
+    });
+  </script>
+</body>
+</html>
