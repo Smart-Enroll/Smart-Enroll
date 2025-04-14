@@ -214,6 +214,8 @@
             <th>Course Name</th>
             <th>Professor</th>
             <th>Term</th>
+            <th>Class Time</th>
+            <th>End Time</th>
             <th>Credits</th>
             <th>Major</th>
             <th>Status</th>
@@ -227,13 +229,19 @@
               <td><%= course.class_name %></td>
               <td><%= course.professor %></td>
               <td><%= course.term %></td>
+              <td>
+                <%= course.class_time.present? ? (course.class_time.respond_to?(:strftime) ? course.class_time.strftime("%I:%M %p") : course.class_time) : "N/A" %>
+              </td>
+              <td>
+                <%= course.end_time.present? ? (course.end_time.respond_to?(:strftime) ? course.end_time.strftime("%I:%M %p") : course.end_time) : "N/A" %>
+              </td>
               <td><%= course.credits %></td>
               <td><%= course.major.present? ? course.major : "N/A" %></td>
               <td><%= course.status.present? ? course.status : "N/A" %></td>
               <td>
                 <div class="action-buttons-container">
                   <%= link_to "Edit", edit_course_path(course), class: "action-button edit" %>
-                  <%= button_to "Delete", course_path(course), method: :delete, onclick: "return confirm('Are you sure?')" , class: "action-button delete" %>
+                  <%= button_to "Delete", course_path(course), method: :delete, onclick: "return confirm('Are you sure?')", class: "action-button delete" %>
                 </div>
               </td>
             </tr>

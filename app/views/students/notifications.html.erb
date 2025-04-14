@@ -176,23 +176,26 @@
     <%= button_to "Logout", logout_path, method: :delete, class: "logout-button" %>
   </div>
 
-  <!-- Main Content -->
-  <div class="content-container">
-    <h1 class="header">Notifications</h1>
-
-    <div class="notifications-container">
-      <% if @notifications.any? %>
-        <% @notifications.each do |notification| %>
-          <div class="notification-card">
-            <h2><%= notification[:title] %></h2>
-            <p><%= notification[:body] %></p>
-            <span class="timestamp"><%= notification[:created_at].strftime("%B %d, %Y at %I:%M %p") %></span>
-          </div>
+      <!-- Main Content -->
+    <div class="content-container">
+      <h1 class="header">Notifications</h1>
+      <div class="notifications-container">
+        <% if @notifications.any? %>
+          <% @notifications.each do |notification| %>
+            <div class="notification-card">
+              <h2>Notification</h2>
+              <p><%= notification.message %></p>
+              <span class="timestamp">
+                <%= notification.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %d, %Y at %I:%M %p") %>
+              </span>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="empty-message">🎉 You have no notifications at this time.</p>
         <% end %>
-      <% else %>
-        <p class="empty-message">🎉 You have no notifications at this time.</p>
-      <% end %>
-    </div>
+      </div>
+
+  
 
     <div class="button-container">
       <%= link_to "Back to Dashboard", dashboard_path, class: "green-button" %>

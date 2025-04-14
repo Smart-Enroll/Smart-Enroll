@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   include ScheduleViewHelper
   before_action :set_course, only: %i[show edit update destroy]
-  before_action :set_dropdown_terms, only: [:index, :new, :create, :edit]
+  before_action :set_dropdown_terms, only: [:index, :new, :create, :edit, :update]
 
   def index
     @term = params[:term] # get the term from URL params
@@ -92,6 +92,8 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
+      # Send notification to every user upon creation of the course
+      send_notification_to_all_users(@course, action: "created")
       redirect_to admin_dashboard_path, notice: "Course successfully created."
     else
       flash.now[:alert] = "Error creating course. Please check the form."
@@ -99,11 +101,10 @@ class CoursesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @course.update(course_params)
+      # Send notification to every user upon update of the course
+      send_notification_to_all_users(@course, action: "updated")
       redirect_to admin_dashboard_path, notice: "Course was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -128,5 +129,21 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :prerequisite, :status, :major)
+  end
+
+  def send_notification_to_all_users(course, action:)
+    message = case action
+              when "created"
+                "New course created: #{course.class_name}"
+              when "updated"
+                "Course updated: #{course.class_name}"
+              else
+                "Course #{course.class_name} has been #{action}"
+              end
+  
+    # Iterate through all students and create a notification for each one
+    Student.find_each do |student|
+      Notification.create!(student: student, message: message)
+    end
   end
 end

@@ -11,6 +11,8 @@ class Course < ApplicationRecord
   validates :major, presence: true
   validates :status, presence: true, inclusion: { in: [ "Open", "Closed", "Waitlist" ] }
   validates :prerequisite, presence: true
+  validates :end_time, presence: true
+
 
   # Associations
   has_many :user_schedules
@@ -19,5 +21,8 @@ class Course < ApplicationRecord
   # Instance Methods
   def full_course_name
     "#{class_name} (#{CRN}) - #{term}"
+  end
+  def normalize_prerequisite
+    self.prerequisite = prerequisite&.strip&.downcase || ""
   end
 end
