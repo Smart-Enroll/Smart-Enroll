@@ -33,4 +33,6 @@ Rails.application.routes.draw do
 
   delete "/courses/:id/unenroll", to: "courses#unenroll", as: "unenroll_course"
   get "/students/:id", to: "students#show", as: "student_profile"
+
+  delete 'notifications/:id', to: 'students#destroy_notification', as: 'notification'
 end

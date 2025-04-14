@@ -21,6 +21,7 @@
       flex-direction: column;
       height: 100vh;
       text-align: center;
+      overflow-y: auto;  /* Allow overall page scrolling */
     }
 
     .top-banner, .bottom-banner {
@@ -91,6 +92,8 @@
       margin-top: 140px;  /* space for top banner */
       margin-bottom: 120px;  /* space for bottom banner */
       width: 100%;
+      overflow-y: auto;  /* Enable scrolling within main content */
+      padding: 20px;
     }
 
     /* Notifications view specific styles */
@@ -136,6 +139,25 @@
       color: gray;
     }
 
+    .notification-buttons {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .clear-button {
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .clear-button:hover {
+      background-color: #c9302c;
+    }
+
     .empty-message {
       color: gray;
       font-style: italic;
@@ -176,26 +198,27 @@
     <%= button_to "Logout", logout_path, method: :delete, class: "logout-button" %>
   </div>
 
-      <!-- Main Content -->
-    <div class="content-container">
-      <h1 class="header">Notifications</h1>
-      <div class="notifications-container">
-        <% if @notifications.any? %>
-          <% @notifications.each do |notification| %>
-            <div class="notification-card">
-              <h2>Notification</h2>
-              <p><%= notification.message %></p>
-              <span class="timestamp">
-                <%= notification.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %d, %Y at %I:%M %p") %>
-              </span>
+  <!-- Main Content -->
+  <div class="content-container">
+    <h1 class="header">Notifications</h1>
+    <div class="notifications-container">
+      <% if @notifications.any? %>
+        <% @notifications.each do |notification| %>
+          <div class="notification-card">
+            <h2>Notification</h2>
+            <p><%= notification.message %></p>
+            <span class="timestamp">
+              <%= notification.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %d, %Y at %I:%M %p") %>
+            </span>
+            <div class="notification-buttons">
+              <%= button_to "Clear", notification_path(notification), method: :delete, data: { confirm: "Are you sure you want to delete this notification?" }, class: "clear-button" %>
             </div>
-          <% end %>
-        <% else %>
-          <p class="empty-message">🎉 You have no notifications at this time.</p>
+          </div>
         <% end %>
-      </div>
-
-  
+      <% else %>
+        <p class="empty-message">🎉 You have no notifications at this time.</p>
+      <% end %>
+    </div>
 
     <div class="button-container">
       <%= link_to "Back to Dashboard", dashboard_path, class: "green-button" %>

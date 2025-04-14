@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [ :show, :edit, :update, :destroy ]
-  before_action :require_login, only: [ :dashboard ]
+  before_action :require_login, only: [ :dashboard, :notifications, :destroy_notification ]
 
   # GET /students
   def index
@@ -36,12 +36,30 @@ class StudentsController < ApplicationController
   def edit
   end
 
+  # GET /notifications
   def notifications
     @student = Student.find(session[:student_id])
     @notifications = @student.notifications.order(created_at: :desc)
   end
-  
 
+  # DELETE /notifications/:id
+  def destroy_notification
+    @notification = Notification.find_by(id: params[:id])
+    
+    # Ensure the notification belongs to the currently logged in student.
+    if @notification && @notification.student_id == session[:student_id]
+      @notification.destroy
+      respond_to do |format|
+        format.html { redirect_to notifications_path, notice: "Notification cleared." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to notifications_path, alert: "Notification not found or unauthorized." }
+        format.json { render json: { error: "Notification not found or unauthorized." }, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /students/:id
   def update
@@ -78,9 +96,6 @@ class StudentsController < ApplicationController
     end
   end
 
-
-
-
   # DELETE /students/:id
   def destroy
     @student.destroy
@@ -98,9 +113,6 @@ class StudentsController < ApplicationController
     end
   end
 
-
-  private
-
   def password_params
     params.require(:student).permit(:password, :password_confirmation)
   end
@@ -108,7 +120,6 @@ class StudentsController < ApplicationController
   def set_student
     @student = Student.find_by(id: params[:id]) || Student.find_by(id: session[:student_id])
   end
-
 
   def student_params
     if action_name == "create"
