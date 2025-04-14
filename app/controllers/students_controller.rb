@@ -45,7 +45,7 @@ class StudentsController < ApplicationController
   # DELETE /notifications/:id
   def destroy_notification
     @notification = Notification.find_by(id: params[:id])
-    
+
     # Ensure the notification belongs to the currently logged in student.
     if @notification && @notification.student_id == session[:student_id]
       @notification.destroy

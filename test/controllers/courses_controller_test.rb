@@ -14,7 +14,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create course" do
     assert_difference("Course.count") do
-      post courses_url, params: { course: { CRN: 123456, class_name: "Test Course", professor: "Dr. Smith", term: "Fall 2025", credits: 3, class_time: "2000-01-01 10:00:00", prerequisite: "None", status: "Open", major: "Computer Science" } }
+      post courses_url, params: { course: { CRN: 123456, class_name: "Test Course", professor: "Dr. Smith", term: "Fall 2025", credits: 3, class_time: "10:00:00", end_time: "12:00:00", prerequisite: "None", status: "Open", major: "Computer Science" } }
     end
     assert_redirected_to admin_dashboard_path
   end
@@ -27,7 +27,8 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
       professor: "Dr. Example",
       term: "Fall 2025",
       credits: 3,
-      class_time: "2000-01-01 11:00:00",
+      class_time: "11:00:00",
+      end_time: "12:00:00",
       prerequisite: prerequisite_course.class_name,
       status: "Open",
       major: "Computer Science"
@@ -38,7 +39,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
       @integration_session.get enroll_course_url(course_with_prereq)
     end
 
-    assert_redirected_to courses_path
+    assert_redirected_to courses_path(term: "Fall 2025")
     expected_alert = "You cannot enroll in Advanced Course because you have not completed the prerequisite: #{prerequisite_course.class_name}."
     assert_equal expected_alert, flash[:alert]
   end
@@ -51,7 +52,8 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
       professor: "Dr. Example",
       term: "Fall 2025",
       credits: 3,
-      class_time: "2000-01-01 11:00:00",
+      class_time: "11:00:00",
+      end_time: "12:00:00",
       prerequisite: prerequisite_course.class_name,
       status: "Open",
       major: "Computer Science"
@@ -67,7 +69,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("UserSchedule.count", 1) do
       @integration_session.get enroll_course_url(course_with_prereq)
     end
-    assert_redirected_to courses_path
+    assert_redirected_to courses_path(term: "Fall 2025")
     assert_match /Successfully enrolled in Advanced Course/, flash[:notice]
   end
 

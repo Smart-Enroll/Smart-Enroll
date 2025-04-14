@@ -12,6 +12,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -28,6 +29,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -44,6 +46,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -60,6 +63,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -76,6 +80,7 @@ class CourseTest < ActiveSupport::TestCase
       term: nil,
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -92,6 +97,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: nil,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -108,6 +114,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: nil,
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -125,6 +132,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Spring 2024",
       credits: 4,
       class_time: Time.parse("14:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
@@ -137,6 +145,7 @@ class CourseTest < ActiveSupport::TestCase
       term: "Fall 2024",
       credits: 3,
       class_time: Time.parse("16:00"),
+      end_time: "12:00:00",
       status: "Open",
       major: "Computer Science",
       prerequisite: "None"
