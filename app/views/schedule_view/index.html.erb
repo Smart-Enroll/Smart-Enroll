@@ -112,6 +112,10 @@
     .course-card:hover {
       transform: scale(1.05);
     }
+    .course-card table td,
+    .course-card table th {
+      font-size: 15px;
+    }
     .unenroll-container {
       position: absolute;
       bottom: 10px;
@@ -212,7 +216,13 @@
     <div class="course-container">
       <% @user_schedules.each do |schedule| %>
         <% course = schedule.course %>
-        <div class="course-card">
+        <% border_color = case course.status
+             when "Closed" then "red"
+             when "Open" then "green"
+             when "Waitlist" then "yellow"
+             else "#ddd"
+           end %>
+        <div class="course-card" style="border: 2px solid <%= border_color %>;">
           <table class="invisible-table">
             <tr>
               <th>Course Name</th>
@@ -227,16 +237,24 @@
               <td><%= course.professor %></td>
             </tr>
             <tr>
-              <th>Term</th>
-              <td><%= course.term %></td>
-            </tr>
-            <tr>
               <th>Credits</th>
               <td><%= course.credits %></td>
             </tr>
             <tr>
+              <th>Start Time</th>
+              <td>
+                <%= course.class_time.strftime("%I:%M %p") if course.class_time.present? %>
+              </td>
+            </tr>
+            <tr>
+              <th>End Time</th>
+              <td>
+                <%= course.end_time.strftime("%I:%M %p") if course.end_time.present? %>
+              </td>
+            </tr>
+            <tr>
               <th>Status</th>
-              <td><%= schedule.status %></td>
+              <td><%= course.status %></td>
             </tr>
           </table>
           <div class="unenroll-container">

@@ -37500,3 +37500,32 @@ Processing by ScheduleViewController#index as HTML
 Completed 200 OK in 742ms (Views: 9.5ms | ActiveRecord: 2.5ms (3 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Migrating to AddEndingTimeToCoursesAndNotificationsToStudents (20250414151943)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "courses" ADD "ending_time" time /*application='SmartEnroll'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "students" ADD "notifications" integer DEFAULT 0 /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
+Migrating to MoveEndTimeFromStudentsToCourses (20250414152247)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "courses" ADD "end_time" time /*application='SmartEnroll'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='SmartEnroll'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='SmartEnroll'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astudents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "credits_earned" integer DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "major" varchar, "end_time" time, "notifications" integer) /*application='SmartEnroll'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "astudents" ("id","email","name","password_digest","credits_earned","created_at","updated_at","major","end_time","notifications")
+                     SELECT "id","email","name","password_digest","credits_earned","created_at","updated_at","major","end_time","notifications" FROM "students" /*application='SmartEnroll'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE "students" /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "students" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "credits_earned" integer DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "major" varchar, "notifications" integer) /*application='SmartEnroll'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("id","email","name","password_digest","credits_earned","created_at","updated_at","major","notifications")
+                     SELECT "id","email","name","password_digest","credits_earned","created_at","updated_at","major","notifications" FROM "astudents" /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "astudents" /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='SmartEnroll'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250414152247') RETURNING "version" /*application='SmartEnroll'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='SmartEnroll'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='SmartEnroll'*/[0m
