@@ -21,6 +21,10 @@ class CoursesController < ApplicationController
       @courses = @courses.where(major: current_student.major)
     end
 
+    if params[:low_demand] == "true"
+      @courses = @courses.where("volume < capacity")
+    end
+
     # Filter for days of the week
     if params[:day].present?
       day_param = params[:day].downcase

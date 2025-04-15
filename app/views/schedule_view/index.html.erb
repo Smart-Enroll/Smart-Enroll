@@ -101,7 +101,7 @@
       padding: 12px;
       font-weight: bold;
       position: relative;
-      height: 200px;
+      height: 280px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -146,7 +146,7 @@
       justify-content: center;
       border: 1px solid #ddd;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      height: 200px;
+      height: 280px;
       position: relative;
       z-index: 1200;
     }
@@ -251,6 +251,22 @@
               <td>
                 <%= course.end_time.strftime("%I:%M %p") if course.end_time.present? %>
               </td>
+            </tr>
+            <tr>
+              <th>Days</th>
+              <td>
+                <% days = [] %>
+                <% days << "Mon" if course.mon %>
+                <% days << "Tue" if course.tue %>
+                <% days << "Wed" if course.wed %>
+                <% days << "Thu" if course.thu %>
+                <% days << "Fri" if course.fri %>
+                <%= days.join(", ") %>
+              </td>
+            </tr>
+            <tr>
+              <th>Class Demand</th>
+              <td><%= "#{course.volume}/#{course.capacity}" %></td>
             </tr>
             <tr>
               <th>Status</th>
