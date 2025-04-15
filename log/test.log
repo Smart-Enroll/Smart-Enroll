@@ -28040,3 +28040,514 @@ CourseTest: test_should_be_invalid_without_a_CRN
 ------------------------------------------------
   [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (2.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "admins";
+DELETE FROM "courses";
+DELETE FROM "students";
+DELETE FROM "user_schedules";
+INSERT INTO "admins" ("id", "name", "email", "password_digest", "role", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-14 18:27:37.904817', '2025-04-14 18:27:37.904817'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', '2025-04-14 18:27:37.904817', '2025-04-14 18:27:37.904817');
+INSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (101, 'Database Design', 'Dr. Smith', 'Fall 2024', 3, '2000-01-01 10:00:00', '2025-04-14 18:27:37.906927', '2025-04-14 18:27:37.906927', 'Computer Science', 'Open', 'None', '0', '0', '0', '0', '0', '2000-01-01 12:00:00'), (102, 'Operating Systems', 'Dr. Small', 'Fall 2023', 3, '2000-01-01 10:00:00', '2025-04-14 18:27:37.906927', '2025-04-14 18:27:37.906927', 'Computer Science', 'Open', 'Database Design', '0', '0', '0', '0', '0', '2000-01-01 12:00:00');
+INSERT INTO "students" ("id", "email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (980190962, 'one@student.com', 'Student One', '$2a$12$OUpyihp5ki5QWKqEnMhSMetrJ7GzY69i.iB4UdDNGHExcb4EtauHq', 60, '2025-04-14 18:27:37.913768', '2025-04-14 18:27:37.913768', 'Computer Science', NULL), (298486374, 'two@student.com', 'Student Two', '$2a$12$RmgCd62nSj/Zk8Nh2pzufuUf3R9FTLWKoucxk6WdtSzQqxyfl26uC', 100, '2025-04-14 18:27:37.913768', '2025-04-14 18:27:37.913768', 'Computer Science', NULL);
+INSERT INTO "user_schedules" ("id", "student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (980190962, 980190962, 101, 'Planned', '2025-04-14 18:27:37.921725', '2025-04-14 18:27:37.921725', NULL), (298486374, 298486374, 102, 'Planned', '2025-04-14 18:27:37.921725', '2025-04-14 18:27:37.921725', NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+UserFlowsTest: test_user_can_sign_up
+------------------------------------
+Started GET "/students/new" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/new.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 13.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started POST "/students" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "John Doe", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-14 18:27:38.095182"], ["updated_at", "2025-04-14 18:27:38.095182"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 21ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------
+CourseTest: test_should_be_valid_with_valid_attributes
+------------------------------------------------------
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+CourseTest: test_should_be_invalid_without_credits
+--------------------------------------------------
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------
+CourseTest: test_should_be_invalid_without_class_time
+-----------------------------------------------------
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------
+CourseTest: test_should_be_invalid_without_a_professor
+------------------------------------------------------
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------
+CourseTest: test_should_be_invalid_if_CRN_is_not_unique
+-------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 203], ["class_name", "Computer Networks"], ["professor", "Dr. Adams"], ["term", "Spring 2024"], ["credits", 4], ["class_time", "2000-01-01 19:00:00"], ["created_at", "2025-04-14 18:27:38.138579"], ["updated_at", "2025-04-14 18:27:38.138579"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "None"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+CourseTest: test_should_be_invalid_without_a_term
+-------------------------------------------------
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+CourseTest: test_should_be_invalid_without_a_CRN
+------------------------------------------------
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------
+CourseTest: test_should_be_invalid_without_a_class_name
+-------------------------------------------------------
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 203], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+ScheduleViewControllerTest: test_should_get_index
+-------------------------------------------------
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 245ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/schedule_view" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by ScheduleViewController#index as HTML
+  [1m[36mCACHE Student Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.1ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ?[0m  [["CRN", 101]]
+  Rendering layout layouts/application.html.erb
+  Rendering schedule_view/index.html.erb within layouts/application
+  Rendered schedule_view/index.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 1.4ms | ActiveRecord: 0.1ms (3 queries, 1 cached) | GC: 0.8ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------------------
+StudentTest: test_should_save_student_with_valid_credits_earned
+---------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 10], ["created_at", "2025-04-14 18:27:38.436356"], ["updated_at", "2025-04-14 18:27:38.436356"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------
+StudentTest: test_should_save_student_with_password
+---------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 30], ["created_at", "2025-04-14 18:27:38.449357"], ["updated_at", "2025-04-14 18:27:38.449357"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------
+StudentTest: test_should_not_save_student_without_name
+------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------
+StudentTest: test_should_not_save_student_with_duplicate_email
+--------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.0ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "John Doe"], ["password_digest", "[FILTERED]"], ["credits_earned", 30], ["created_at", "2025-04-14 18:27:38.454681"], ["updated_at", "2025-04-14 18:27:38.454681"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+StudentTest: test_should_not_save_student_without_password
+----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------------
+StudentTest: test_should_not_save_student_with_negative_credits_earned
+----------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------
+StudentTest: test_should_not_save_student_without_email
+-------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------
+StudentsControllerTest: test_should_get_index
+---------------------------------------------
+Started GET "/students.html" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  Rendered students/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+StudentsControllerTest: test_should_update_student
+--------------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/students/980190962" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#update as JSON
+  Parameters: {"student" => {"name" => "Updated Name"}, "id" => "980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? AND "students"."id" != ? LIMIT ?[0m  [["email", "[FILTERED]"], ["id", 980190962], ["LIMIT", 1]]
+  [1m[36mStudent Update (0.0ms)[0m  [1m[33mUPDATE "students" SET "name" = ?, "updated_at" = ? WHERE "students"."id" = ?[0m  [["name", "Updated Name"], ["updated_at", "2025-04-14 18:27:38.482149"], ["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mNotification Load (0.1ms)[0m  [1m[34mSELECT "notifications".* FROM "notifications" WHERE "notifications"."student_id" = ?[0m  [["student_id", 980190962]]
+Completed 200 OK in 24ms (Views: 8.3ms | ActiveRecord: 0.6ms (4 queries, 0 cached) | GC: 0.2ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------
+StudentsControllerTest: test_should_create_student
+--------------------------------------------------
+  [1m[36mStudent Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+Started POST "/students" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#create as HTML
+  Parameters: {"student" => {"name" => "Test Student", "email" => "[FILTERED]", "credits_earned" => "10", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}}
+[31mUnpermitted parameter: :credits_earned. Context: { controller: StudentsController, action: create, request: #<ActionDispatch::Request:0x00000001224c9ed8>, params: {"student" => {"name" => "Test Student", "email" => "[FILTERED]", "credits_earned" => "10", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "major" => "Computer Science"}, "controller" => "students", "action" => "create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "Test Student"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-14 18:27:38.505763"], ["updated_at", "2025-04-14 18:27:38.505763"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mStudent Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------
+StudentsControllerTest: test_should_destroy_student
+---------------------------------------------------
+  [1m[36mStudent Load (1.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.3ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+Started DELETE "/students/980190962" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#destroy as HTML
+  Parameters: {"id" => "980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mNotification Load (0.0ms)[0m  [1m[34mSELECT "notifications".* FROM "notifications" WHERE "notifications"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mStudent Destroy (0.0ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/students
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms (3 queries, 0 cached) | GC: 0.2ms)
+  [1m[36mStudent Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------
+StudentsControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/students/980190962/edit.html" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by StudentsController#edit as HTML
+  Parameters: {"id" => "980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/edit.html.erb within layouts/application (Duration: 2.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------------------------
+CoursesControllerTest: test_should_not_enroll_if_prerequisite_not_met
+---------------------------------------------------------------------
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.1ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 243ms (ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123457], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 123457], ["class_name", "Advanced Course"], ["professor", "Dr. Example"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 11:00:00"], ["created_at", "2025-04-14 18:27:38.780898"], ["updated_at", "2025-04-14 18:27:38.780898"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "Database Design"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "user_schedules" WHERE "user_schedules"."student_id" = ? AND "user_schedules"."course_id" = ? AND "user_schedules"."status" = ? LIMIT ?[0m  [["student_id", 980190962], ["course_id", 101], ["status", "Planned"], ["LIMIT", 1]]
+  [1m[36mUserSchedule Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_schedules"[0m
+Started GET "/courses/123457/enroll" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by CoursesController#enroll as HTML
+  Parameters: {"id" => "123457"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123457], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" INNER JOIN "user_schedules" ON "courses"."CRN" = "user_schedules"."course_id" WHERE "user_schedules"."student_id" = ? AND "courses"."CRN" = ? LIMIT ?[0m  [["student_id", 980190962], ["CRN", 123457], ["LIMIT", 1]]
+  [1m[36mUserSchedule Pluck (0.0ms)[0m  [1m[34mSELECT "user_schedules"."course_id" FROM "user_schedules" WHERE "user_schedules"."student_id" = ? AND "user_schedules"."status" = ?[0m  [["student_id", 980190962], ["status", "Planned"]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."class_name" = ? LIMIT ?[0m  [["class_name", "Database Design"], ["LIMIT", 1]]
+Redirected to http://www.example.com/courses?term=Fall+2025
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms (5 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mCACHE UserSchedule Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_schedules"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+CoursesControllerTest: test_should_update_course
+------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.2ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:38 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 242ms (ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+Started PATCH "/courses/101" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by CoursesController#update as HTML
+  Parameters: {"course" => {"class_name" => "Updated Course"}, "id" => "101"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? AND "courses"."CRN" != ? LIMIT ?[0m  [["CRN", 101], ["CRN", 101], ["LIMIT", 1]]
+  [1m[36mCourse Update (0.0ms)[0m  [1m[33mUPDATE "courses" SET "class_name" = ?, "updated_at" = ? WHERE "courses"."CRN" = ?[0m  [["class_name", "Updated Course"], ["updated_at", "2025-04-14 18:27:39.042588"], ["CRN", 101]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mNotification Create (0.1ms)[0m  [1m[32mINSERT INTO "notifications" ("student_id", "message", "read", "created_at", "updated_at", "title", "body") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 298486374], ["message", "Course updated: Updated Course"], ["read", 0], ["created_at", "2025-04-14 18:27:39.054310"], ["updated_at", "2025-04-14 18:27:39.054310"], ["title", nil], ["body", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Update (0.0ms)[0m  [1m[33mUPDATE "students" SET "notifications" = ? WHERE "students"."id" = ?[0m  [["notifications", 1], ["id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mNotification Create (0.1ms)[0m  [1m[32mINSERT INTO "notifications" ("student_id", "message", "read", "created_at", "updated_at", "title", "body") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190962], ["message", "Course updated: Updated Course"], ["read", 0], ["created_at", "2025-04-14 18:27:39.057188"], ["updated_at", "2025-04-14 18:27:39.057188"], ["title", nil], ["body", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Update (0.0ms)[0m  [1m[33mUPDATE "students" SET "notifications" = ? WHERE "students"."id" = ?[0m  [["notifications", 1], ["id", 980190962]]
+Redirected to http://www.example.com/admin/dashboard
+Completed 302 Found in 19ms (ActiveRecord: 0.4ms (8 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+CoursesControllerTest: test_should_create_course
+------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.0ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 242ms (ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mCourse Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+Started POST "/courses" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by CoursesController#create as HTML
+  Parameters: {"course" => {"CRN" => "123456", "class_name" => "Test Course", "professor" => "Dr. Smith", "term" => "Fall 2025", "credits" => "3", "class_time" => "10:00:00", "end_time" => "12:00:00", "prerequisite" => "None", "status" => "Open", "major" => "Computer Science"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123456], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 123456], ["class_name", "Test Course"], ["professor", "Dr. Smith"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 10:00:00"], ["created_at", "2025-04-14 18:27:39.308807"], ["updated_at", "2025-04-14 18:27:39.308807"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "None"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mNotification Create (0.1ms)[0m  [1m[32mINSERT INTO "notifications" ("student_id", "message", "read", "created_at", "updated_at", "title", "body") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 298486374], ["message", "New course created: Test Course"], ["read", 0], ["created_at", "2025-04-14 18:27:39.310487"], ["updated_at", "2025-04-14 18:27:39.310487"], ["title", nil], ["body", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Update (0.0ms)[0m  [1m[33mUPDATE "students" SET "notifications" = ? WHERE "students"."id" = ?[0m  [["notifications", 1], ["id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mNotification Create (0.1ms)[0m  [1m[32mINSERT INTO "notifications" ("student_id", "message", "read", "created_at", "updated_at", "title", "body") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190962], ["message", "New course created: Test Course"], ["read", 0], ["created_at", "2025-04-14 18:27:39.311890"], ["updated_at", "2025-04-14 18:27:39.311890"], ["title", nil], ["body", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Update (0.0ms)[0m  [1m[33mUPDATE "students" SET "notifications" = ? WHERE "students"."id" = ?[0m  [["notifications", 1], ["id", 980190962]]
+Redirected to http://www.example.com/admin/dashboard
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms (7 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mCourse Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+CoursesControllerTest: test_should_destroy_course
+-------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.0ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.0ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 242ms (ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mCourse Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+Started DELETE "/courses/101" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by CoursesController#destroy as HTML
+  Parameters: {"id" => "101"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mCACHE Course Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "user_schedules" ON "students"."id" = "user_schedules"."student_id" WHERE "user_schedules"."course_id" = ?[0m  [["course_id", 101]]
+  [1m[36mCourse Destroy (0.0ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."CRN" = ?[0m  [["CRN", 101]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/dashboard
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms (4 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mCourse Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------------
+CoursesControllerTest: test_should_enroll_if_prerequisite_met
+-------------------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mUserSchedule Load (0.2ms)[0m  [1m[34mSELECT "user_schedules".* FROM "user_schedules" WHERE "user_schedules"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Destroy (0.0ms)[0m  [1m[31mDELETE FROM "user_schedules" WHERE "user_schedules"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/login" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/dashboard
+Completed 302 Found in 242ms (ActiveRecord: 0.0ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123458], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 123458], ["class_name", "Advanced Course"], ["professor", "Dr. Example"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 11:00:00"], ["created_at", "2025-04-14 18:27:39.813582"], ["updated_at", "2025-04-14 18:27:39.813582"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "Database Design"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 101], ["LIMIT", 1]]
+  [1m[36mUserSchedule Create (0.0ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190962], ["course_id", 101], ["status", "Planned"], ["created_at", "2025-04-14 18:27:39.818448"], ["updated_at", "2025-04-14 18:27:39.818448"], ["term", "Fall 2024"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_schedules"[0m
+Started GET "/courses/123458/enroll" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by CoursesController#enroll as HTML
+  Parameters: {"id" => "123458"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123458], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" INNER JOIN "user_schedules" ON "courses"."CRN" = "user_schedules"."course_id" WHERE "user_schedules"."student_id" = ? AND "courses"."CRN" = ? LIMIT ?[0m  [["student_id", 980190962], ["CRN", 123458], ["LIMIT", 1]]
+  [1m[36mUserSchedule Pluck (0.0ms)[0m  [1m[34mSELECT "user_schedules"."course_id" FROM "user_schedules" WHERE "user_schedules"."student_id" = ? AND "user_schedules"."status" = ?[0m  [["student_id", 980190962], ["status", "Planned"]]
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."class_name" = ? LIMIT ?[0m  [["class_name", "Database Design"], ["LIMIT", 1]]
+  [1m[36mCACHE Student Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 123458], ["LIMIT", 1]]
+  [1m[36mUserSchedule Create (0.0ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190962], ["course_id", 123458], ["status", "Planned"], ["created_at", "2025-04-14 18:27:39.823706"], ["updated_at", "2025-04-14 18:27:39.823706"], ["term", "Fall 2025"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/courses?term=Fall+2025
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms (8 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mUserSchedule Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_schedules"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------
+CoursesSearchTest: test_index_page_has_a_search_form
+----------------------------------------------------
+Started GET "/courses" for 127.0.0.1 at 2025-04-14 14:27:39 -0400
+Processing by CoursesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCACHE Student Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered courses/index.html.erb within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.2ms (3 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------------------------------------------------------
+UserScheduleTest: test_should_create_user_schedule_with_valid_student_and_course_associations
+---------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "Test Student"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-14 18:27:39.844385"], ["updated_at", "2025-04-14 18:27:39.844385"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 12345], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 12345], ["class_name", "Test Course"], ["professor", "Test Professor"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 10:00:00"], ["created_at", "2025-04-14 18:27:39.845919"], ["updated_at", "2025-04-14 18:27:39.845919"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "None"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Create (0.1ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190963], ["course_id", 12345], ["status", nil], ["created_at", "2025-04-14 18:27:39.846904"], ["updated_at", "2025-04-14 18:27:39.846904"], ["term", "Fall 2025"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------
+UserScheduleTest: test_should_not_be_valid_without_a_course
+-----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "Test Student"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-14 18:27:39.849013"], ["updated_at", "2025-04-14 18:27:39.849013"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 12345], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.0ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 12345], ["class_name", "Test Course"], ["professor", "Test Professor"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 10:00:00"], ["created_at", "2025-04-14 18:27:39.850453"], ["updated_at", "2025-04-14 18:27:39.850453"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "None"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Create (0.1ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190963], ["course_id", 12345], ["status", nil], ["created_at", "2025-04-14 18:27:39.851097"], ["updated_at", "2025-04-14 18:27:39.851097"], ["term", "Fall 2025"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+UserScheduleTest: test_should_not_be_valid_without_a_student
+------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mStudent Create (0.1ms)[0m  [1m[32mINSERT INTO "students" ("email", "name", "password_digest", "credits_earned", "created_at", "updated_at", "major", "notifications") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["email", "[FILTERED]"], ["name", "Test Student"], ["password_digest", "[FILTERED]"], ["credits_earned", 0], ["created_at", "2025-04-14 18:27:39.865500"], ["updated_at", "2025-04-14 18:27:39.865500"], ["major", "Computer Science"], ["notifications", nil]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "courses" WHERE "courses"."CRN" = ? LIMIT ?[0m  [["CRN", 12345], ["LIMIT", 1]]
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("CRN", "class_name", "professor", "term", "credits", "class_time", "created_at", "updated_at", "major", "status", "prerequisite", "mon", "tue", "wed", "thu", "fri", "end_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "CRN"[0m  [["CRN", 12345], ["class_name", "Test Course"], ["professor", "Test Professor"], ["term", "Fall 2025"], ["credits", 3], ["class_time", "2000-01-01 10:00:00"], ["created_at", "2025-04-14 18:27:39.866439"], ["updated_at", "2025-04-14 18:27:39.866439"], ["major", "Computer Science"], ["status", "Open"], ["prerequisite", "None"], ["mon", 0], ["tue", 0], ["wed", 0], ["thu", 0], ["fri", 0], ["end_time", "2000-01-01 12:00:00"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUserSchedule Create (0.1ms)[0m  [1m[32mINSERT INTO "user_schedules" ("student_id", "course_id", "status", "created_at", "updated_at", "term") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["student_id", 980190963], ["course_id", 12345], ["status", nil], ["created_at", "2025-04-14 18:27:39.867115"], ["updated_at", "2025-04-14 18:27:39.867115"], ["term", "Fall 2025"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
