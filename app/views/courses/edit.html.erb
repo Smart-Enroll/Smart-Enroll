@@ -172,6 +172,12 @@
         <%= f.select :status, options_for_select(["Open", "Closed", "Waitlist"], @course.status) %>
       </div>
       
+      <!-- Capacity input field added -->
+      <div class="form-group">
+        <%= f.label :capacity, "Capacity" %>
+        <%= f.number_field :capacity %>
+      </div>
+      
       <!-- Class Time, End Time, and Prerequisite side by side with extra space -->
       <div class="form-row spacious">
         <div class="form-group">

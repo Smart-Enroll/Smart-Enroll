@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_14_152247) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_15_195207) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -37,6 +37,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_14_152247) do
     t.boolean "thu", default: false
     t.boolean "fri", default: false
     t.time "end_time"
+    t.integer "volume", default: 0, null: false
+    t.integer "capacity", default: 0, null: false
   end
 
   create_table "notifications", force: :cascade do |t|
