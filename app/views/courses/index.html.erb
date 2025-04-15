@@ -23,7 +23,6 @@
       display: flex;
       flex-direction: column;
     }
-    
     .top-banner {
       background-color: #004B2D;
       height: 100px;
@@ -43,22 +42,6 @@
       top: 50%;
       transform: translateY(-50%);
     }
-    .bottom-banner {
-      background-color: #004B2D;
-      color: white;
-      text-align: center;
-      padding: 30px;
-    }
-    /* Common styles */
-    label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-    }
     .main-content {
       background-color: white;
       flex-grow: 1;
@@ -77,50 +60,57 @@
       border-collapse: collapse;
       margin-top: 30px;
       margin-bottom: 40px;
+      table-layout: fixed;
     }
     .courses-table th, .courses-table td {
-      padding: 20px;
+      padding: 8px;
       text-align: left;
       border: 1px solid #ddd;
-      font-size: 18px;
+      font-size: 14px;
+      word-wrap: break-word;
     }
     .courses-table th {
       background-color: #f2f2f2;
       font-weight: bold;
     }
+    /* Button Styles */
     .enroll-button {
-      padding: 15px 40px;
-      font-size: 18px;
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
       border-radius: 4px;
       text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
       background-color: #4CAF50;
       color: white;
       border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .enroll-button:hover {
       background-color: #45a049;
     }
     .enroll-button.planned,
     .enroll-button.taken {
-      padding: 15px 30px;
-      font-size: 18px;
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
       border-radius: 4px;
       text-decoration: none;
-      display: inline-block;
       background-color: red;
       color: white;
       border: none;
       cursor: default;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .enroll-button.planned:hover,
     .enroll-button.taken:hover {
-      background-color: red; 
+      background-color: red;
     }
     .back-button {
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 12px 24px;
+      font-size: 16px;
       border-radius: 4px;
       text-decoration: none;
       display: inline-block;
@@ -128,23 +118,62 @@
       background-color: #f44336;
       color: white;
       border: none;
-      margin-top: 20px;
     }
     .back-button:hover {
       background-color: #da190b;
     }
+    /* Flex container for bottom actions */
+    .bottom-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .bottom-actions > .actions-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .recommended-label, .low-demand-label {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      gap: 10px;
+      color: #333;
+    }
     .courses-table td:nth-child(5), .courses-table th:nth-child(5) {
       text-align: center;
     }
+    .search-form input[type="text"] {
+      padding: 8px;
+      width: 300px;
+      font-size: 14px;
+    }
+    .search-form button {
+      display: inline-block;
+      width: auto;
+      padding: 8px 16px;
+      background-color: #004B2D;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
     @media (max-width: 768px) {
       .courses-table th, .courses-table td {
-        padding: 15px;
-        font-size: 16px;
+        padding: 6px;
+        font-size: 12px;
       }
-      .enroll-button, .back-button,
-      .enroll-button.planned, .enroll-button.taken {
-        padding: 12px 24px;
-        font-size: 16px;
+      .enroll-button,
+      .enroll-button.planned,
+      .enroll-button.taken,
+      .back-button {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .bottom-actions {
+        flex-direction: column;
+        gap: 10px;
       }
     }
     .flash-notice {
@@ -160,9 +189,6 @@
       padding: 10px;
       margin-bottom: 20px;
       border-radius: 4px;
-    }
-    .search-form {
-      margin-top: 40px;
     }
     .invisible-table {
       width: auto;
@@ -208,7 +234,6 @@
                 <option value="fri" <%= "selected" if params[:day] == "fri" %>>Friday</option>
               </select>
             </td>
-
             <!-- Term Filter -->
             <td>
               <label for="term" style="font-weight: bold;">Term:</label>
@@ -223,15 +248,15 @@
           </tr>
         </table>
 
-        <!-- Search bar and button placed below the dropdowns -->
-        <div style="margin-top: 10px;">
+        <!-- Search bar and button placed inline -->
+        <div style="margin-top: 10px; display: flex; align-items: center;">
           <input type="text" 
                  name="search"
                  placeholder="Search for a course..." 
                  value="<%= params[:search] %>"
-                 style="padding: 8px; width: 300px;"/>
+                 style="padding: 6px; width: 300px; font-size: 14px;"/>
           <button type="submit"
-                  style="padding: 8px 16px; background-color: #004B2D; color: white; border: none; cursor: pointer; display: inline-block; width: auto;">
+                  style="padding: 6px 10px; margin-left: 5px; background-color: #004B2D; color: white; border: none; cursor: pointer; font-size: 14px;">
             Search
           </button>
         </div>
@@ -244,11 +269,14 @@
             <th>Course Name</th>
             <th>Professor</th>
             <th>Term</th>
+            <th>Class Time</th>
             <th>Days</th>
             <th>Credits</th>
             <th>Major</th>
             <th>Status</th>
             <th>Prerequisite</th>
+            <th>Capacity</th>
+            <th>Volume</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -259,6 +287,13 @@
               <td><%= course.class_name %></td>
               <td><%= course.professor %></td>
               <td><%= course.term %></td>
+              <td>
+                <% if course.class_time.present? && course.end_time.present? %>
+                  <%= "#{course.class_time.strftime('%I:%M %p')} - #{course.end_time.strftime('%I:%M %p')}" %>
+                <% else %>
+                  N/A
+                <% end %>
+              </td>
               <td>
                 <% days = [] %>
                 <% days << "Mon" if course.mon %>
@@ -272,33 +307,54 @@
               <td><%= course.major.present? ? course.major : "Not Provided" %></td>
               <td><%= course.status.present? ? course.status : "N/A" %></td>
               <td><%= course.prerequisite.present? ? course.prerequisite : "None" %></td>
+              <td><%= course.capacity %></td>
+              <td><%= course.volume %></td>
               <td>
-                <%= enrollment_action_for(course) %>
+                <%= enrollment_action_for(course, text: "Add to Plan") %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
 
-      <%= link_to "Back", schedule_view_index_path(term: @term), class: "back-button" %>
-
-      <!-- Checkbox for filtering recommended courses -->
-      <label style="margin-top: 30px;">
-        <h1 style="margin: 0;">Recommended Courses</h1>
-        <input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>>
-      </label>
+      <!-- Bottom actions container: Back button on the left and both filtering checkboxes on the right -->
+      <div class="bottom-actions">
+        <%= link_to "Back", schedule_view_index_path(term: @term), class: "back-button" %>
+        <div class="actions-group">
+          <label class="recommended-label">
+            <span>Recommended Courses</span>
+            <input type="checkbox" id="recommended-courses-checkbox" <%= params[:recommended] == "true" ? "checked" : "" %>>
+          </label>
+          <label class="low-demand-label">
+            <span>Low Demand Courses</span>
+            <input type="checkbox" id="low-demand-courses-checkbox" <%= params[:low_demand] == "true" ? "checked" : "" %>>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
+    // Toggle recommended courses
     document.getElementById("recommended-courses-checkbox").addEventListener("change", function() {
       const checked = this.checked;
       const url = new URL(window.location.href);
-      
       if (checked) {
         url.searchParams.set("recommended", "true");
       } else {
         url.searchParams.delete("recommended");
+      }
+      window.location.href = url.toString();
+    });
+
+    // Toggle low demand courses (filtering courses where volume < capacity)
+    document.getElementById("low-demand-courses-checkbox").addEventListener("change", function() {
+      const checked = this.checked;
+      const url = new URL(window.location.href);
+      if (checked) {
+        url.searchParams.set("low_demand", "true");
+      } else {
+        url.searchParams.delete("low_demand");
       }
       window.location.href = url.toString();
     });
