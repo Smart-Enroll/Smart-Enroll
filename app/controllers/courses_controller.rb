@@ -108,7 +108,7 @@ class CoursesController < ApplicationController
       redirect_to admin_dashboard_path, notice: "Course successfully created."
     else
       flash.now[:alert] = "Error creating course. Please check the form."
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -142,7 +142,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :end_time, :prerequisite, :status, :capacity, :major)
+    params.require(:course).permit(:CRN, :class_name, :professor, :term, :credits, :class_time, :end_time, :prerequisite, :status, :capacity, :major, :mon, :tue, :wed, :thu, :fri)
   end
 
   def send_notification_to_all_users(course, action:)

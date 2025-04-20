@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [ :show, :edit, :update, :destroy ]
-  before_action :require_login, only: [ :dashboard, :notifications, :destroy_notification ]
+  before_action :require_login, only: [ :dashboard, :notifications, :destroy_notification , :destroy_all_notifications]
 
   # GET /students
   def index
@@ -42,24 +42,30 @@ class StudentsController < ApplicationController
     @notifications = @student.notifications.order(created_at: :desc)
   end
 
-  # DELETE /notifications/:id
   def destroy_notification
-    @notification = Notification.find_by(id: params[:id])
+    # only find within current_student for authorization
+    @notification = current_student.notifications.find_by(id: params[:id])
 
-    # Ensure the notification belongs to the currently logged in student.
-    if @notification && @notification.student_id == session[:student_id]
+    if @notification
       @notification.destroy
-      respond_to do |format|
-        format.html { redirect_to notifications_path, notice: "Notification cleared." }
-        format.json { head :no_content }
-      end
+      flash_message = "Notification cleared."
     else
-      respond_to do |format|
-        format.html { redirect_to notifications_path, alert: "Notification not found or unauthorized." }
-        format.json { render json: { error: "Notification not found or unauthorized." }, status: :unprocessable_entity }
-      end
+      flash_message = "Notification not found or unauthorized."
+    end
+
+    respond_to do |format|
+      format.html { redirect_to notifications_path, notice: flash_message }
+      format.json { head :no_content }
     end
   end
+
+  def destroy_all_notifications
+    @student = Student.find(session[:student_id])
+    @student.notifications.destroy_all
+
+    redirect_to notifications_path, notice: "All notifications have been cleared."
+  end
+
 
   # PATCH/PUT /students/:id
   def update
