@@ -1,3 +1,4 @@
+<!-- app/views/students/show.html.erb -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,13 +37,8 @@
       z-index: 1000;
     }
 
-    .top-banner {
-      top: 0;
-    }
-
-    .bottom-banner {
-      bottom: 0;
-    }
+    .top-banner { top: 0; }
+    .bottom-banner { bottom: 0; }
 
     .banner-text {
       color: white;
@@ -67,9 +63,7 @@
       margin-top: 140px; 
     }
 
-    h1 {
-      color: #006747;
-    }
+    h1 { color: #006747; }
 
     .profile-info {
       text-align: left;
@@ -140,41 +134,6 @@
     }
   </style>
 
-  <script>
-    function editField(field) {
-      var displayElement = document.getElementById(field + '-display');
-      var inputElement = document.getElementById(field + '-input');
-      var editButton = document.getElementById(field + '-edit-button');
-      var saveButton = document.getElementById(field + '-save-button');
-
-      // Hide display text, show input field
-      displayElement.style.display = 'none';
-      inputElement.style.display = 'inline';
-
-      // Switch buttons
-      editButton.style.display = 'none';
-      saveButton.style.display = 'inline-block';
-    }
-
-    function saveField(field, studentId) {
-      var inputElement = document.getElementById(field + '-input');
-      var displayElement = document.getElementById(field + '-display');
-      var editButton = document.getElementById(field + '-edit-button');
-      var saveButton = document.getElementById(field + '-save-button');
-
-      // Update display text with input value
-      displayElement.textContent = inputElement.value;
-
-      // Toggle visibility back
-      inputElement.style.display = 'none';
-      displayElement.style.display = 'inline';
-
-      saveButton.style.display = 'none';
-      editButton.style.display = 'inline-block';
-
-      // Optionally, send AJAX request here to persist changes
-    }
-  </script>
 </head>
 <body>
   <div class="top-banner">
@@ -246,5 +205,49 @@
   </div>
 
   <div class="bottom-banner"></div>
+
+  <script>
+    function editField(field) {
+      document.getElementById(field + '-display').style.display      = 'none';
+      document.getElementById(field + '-input').style.display        = 'inline';
+      document.getElementById(field + '-edit-button').style.display  = 'none';
+      document.getElementById(field + '-save-button').style.display  = 'inline-block';
+    }
+
+    function saveField(field, studentId) {
+      var inputEl   = document.getElementById(field + '-input');
+      var displayEl = document.getElementById(field + '-display');
+      var editBtn   = document.getElementById(field + '-edit-button');
+      var saveBtn   = document.getElementById(field + '-save-button');
+      var newValue  = inputEl.value;
+      var token     = document.querySelector('meta[name="csrf-token"]').content;
+
+      fetch(`/students/${studentId}.json`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token':  token,
+          'Accept':        'application/json'
+        },
+        body: JSON.stringify({ student: { [field]: newValue } })
+      })
+      .then(response => response.json())
+      .then(json => {
+        if (json.success) {
+          displayEl.textContent   = newValue;
+          inputEl.style.display   = 'none';
+          displayEl.style.display = 'inline';
+          saveBtn.style.display   = 'none';
+          editBtn.style.display   = 'inline-block';
+        } else {
+          alert('Error saving: ' + json.errors.join(', '));
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Unexpected error saving changes.');
+      });
+    }
+  </script>
 </body>
 </html>

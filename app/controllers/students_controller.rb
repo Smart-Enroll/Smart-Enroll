@@ -62,9 +62,10 @@ class StudentsController < ApplicationController
   def destroy_all_notifications
     @student = Student.find(session[:student_id])
     @student.notifications.destroy_all
-
+    @student.update_column(:notifications, 0)
     redirect_to notifications_path, notice: "All notifications have been cleared."
   end
+  
 
 
   # PATCH/PUT /students/:id
