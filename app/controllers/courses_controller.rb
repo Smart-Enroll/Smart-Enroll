@@ -96,7 +96,7 @@ class CoursesController < ApplicationController
  
     course.decrement!(:volume) if course.volume > 0
     
-    redirect_to schedule_view_index_path, notice: "You have been unenrolled from #{course.class_name}."
+    redirect_to schedule_view_index_path(term: course.term), notice: "You have been unenrolled from #{course.class_name}."
   end
   
 
