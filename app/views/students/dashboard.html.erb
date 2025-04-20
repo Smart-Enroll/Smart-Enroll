@@ -241,6 +241,24 @@
       0% { transform: rotateX(90deg); }
       100% { transform: rotateX(0deg); }
     }
+
+    .card-face.top,
+.flip-panel.top-flip {
+  display: none;
+}
+
+.card-face.bottom {
+  height: 100%; /* Use full height since top half is hidden */
+  border-top: none; /* Remove the unnecessary border */
+}
+
+.flip-card {
+  height: 80px; /* Ensure full height usage */
+}
+
+.flip-panel.bottom-flip {
+  height: 100%; /* Expand the animation panel to full height */
+}
   </style>
 </head>
 <body>
