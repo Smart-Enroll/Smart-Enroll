@@ -1,61 +1,46 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
+term       = "Summer 2026"
 
+courses    = [
+  "cis4250 - Ethical Issues",
+  "cis3260 - Software Engineering",
+  "cis3300 - Database Design",
+  "cis3410 - Algorithms",
+  "cis3420 - Operating Systems",
+  "cis3500 - Computer Networks",
+  "cis3600 - Software Testing",
+  "cis3700 - AI Foundations",
+  "cis3800 - Web Development",
+  "cis3900 - Mobile App Development"
+]
 
-# Admin.create!(
-#   name: "Super Admin2",
-#   email: "admin2@example.com",
-#   password: "securepassword2",
-#   password_confirmation: "securepassword2",
-#   role: "superadmin"
-# )
-# Student.create!(email: "student42@example.com",
-#  name: "Marin Doe",
-#  password_digest: "hashedpassword321",
-#  credits_earned: 20)
+professors = %w[Smith Johnson Lee García Patel Brown Davis Miller Wilson Moore]
 
-#  Course.create!(
-#   CRN: 102,
-#   class_name: "Operating Systems",
-#   professor: "Dr. Small",
-#   term: "Fall 2023",
-#   credits: 3,
-#   class_time: "10:00"
-# )
+# Pick 10 unique courses and seed them
+courses.shuffle.first(10).each do |class_tag_name|
+  crn         = rand(100_000..999_999)
+  start_hour  = rand(8..16)
+  class_time  = Time.current.change(hour: start_hour, min: 0)
+  end_time    = class_time + 1.hour
 
+  # pick 1–5 random weekdays
+  days = %i[mon tue wed thu fri].sample(rand(1..5))
 
-# Create an Admin if it doesn't already exist
-Admin.find_or_create_by!(
-  email: "admin@example.com"
-) do |admin|
-  admin.name = "Super Admin"
-  admin.password = "securepassword"
-  admin.password_confirmation = "securepassword"
-  admin.role = "superadmin"
-end
-
-# Create a Student if it doesn't already exist
-Student.find_or_create_by!(
-  email: "student42@example.com"
-) do |student|
-  student.name = "Marin Doe"
-  student.password_digest = "hashedpassword321"
-  student.credits_earned = 20
-end
-
-# Create a Course if it doesn't already exist
-Course.find_or_create_by!(
-  CRN: 102
-) do |course|
-  course.class_name = "Operating Systems"
-  course.professor = "Dr. Small"
-  course.term = "Fall 2023"
-  course.credits = 3
-  course.class_time = "10:00"
+  Course.create!(
+    CRN:          crn,
+    class_name:   class_tag_name,
+    professor:    "Dr. #{professors.sample}",
+    term:         term,
+    credits:      [1, 2, 3, 4].sample,
+    class_time:   class_time,
+    end_time:     end_time,
+    status:       "Open",
+    prerequisite: "None",
+    capacity:     [20, 25, 30].sample,
+    major:        %w[CS ENG MATH BIO].sample,
+    mon:          days.include?(:mon),
+    tue:          days.include?(:tue),
+    wed:          days.include?(:wed),
+    thu:          days.include?(:thu),
+    fri:          days.include?(:fri)
+  )
 end
