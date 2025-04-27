@@ -102,11 +102,11 @@
     }
 
     .green-button {
-      background: #004B2D;
+      background: #006747;
       color: white;
       padding: 10px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
       cursor: pointer;
       text-decoration: none;
       font-size: 16px;
@@ -240,8 +240,13 @@
               <td><%= course.status.present? ? course.status : "N/A" %></td>
               <td>
                 <div class="action-buttons-container">
-                  <%= link_to "Edit", edit_course_path(course), class: "action-button edit" %>
-                  <%= button_to "Delete", course_path(course), method: :delete, onclick: "return confirm('Are you sure?')", class: "action-button delete" %>
+                <%= button_to "Edit", edit_course_path(course),
+                method: :get,
+                class: "action-button edit" %>
+          <%= button_to "Delete", course_path(course),
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: "action-button delete" %>
                 </div>
               </td>
             </tr>
